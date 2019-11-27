@@ -1,7 +1,4 @@
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   margin: 0;
   color: #FFF;
   font-family: 'Montserrat', sans-serif;
@@ -22,7 +19,7 @@ a {
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 0;
 }
 
 .header:before {
@@ -45,20 +42,30 @@ a {
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
   z-index: 2;
 }
 
 .header {
+  top: 0;
   user-select: none;
 }
 
+.footer {
+  bottom: 0;
+}
+
 .content {
+  display: flex;
+  height: 100%;
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 .projects {
+  margin: auto;
   text-align: center;
   font-size: 0;
 }
