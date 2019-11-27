@@ -1,0 +1,95 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  color: #FFF;
+  font-family: 'Montserrat', sans-serif;
+  height: 100vh;
+  background: rgb(8,0,147);
+  background: linear-gradient(180deg, rgba(8,0,147,1) 0%, rgba(0,51,61,1) 100%);
+}
+
+a {
+  user-select: none;
+  color: #FFF;
+  text-decoration: none;
+}
+
+.particles {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.header:before {
+  content: "";
+  display: block;
+  float: left;
+  margin: 10px;
+  width: 30px;
+  border-radius: 50%;
+  height: 30px;
+  background: url("images/logo.png") no-repeat center center;
+  background-size: cover;
+}
+
+.header, .footer {
+  background-color: rgba(0, 0, 0, 0.5);
+  line-height: 50px;
+  padding: 0 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  user-select: none;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+.projects {
+  text-align: center;
+  font-size: 0;
+}
+
+.projects a {
+  position: relative;
+  display: inline-block;
+  padding: 6px 20px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  margin: 5px;
+  box-shadow: 0 0 0 1px #FFF;
+  text-transform: uppercase;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.projects a:hover {
+  background-color: #FFF;
+  color: #000;
+}
+
+@media (max-width: 600px) {
+  .projects a {
+    display: block;
+    box-shadow: none;
+    text-decoration: underline;
+  }
+  .header, .footer {
+    padding: 0;
+  }
+  .footer {
+    text-align: center;
+  }
+}
