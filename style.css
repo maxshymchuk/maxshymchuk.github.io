@@ -29,7 +29,6 @@ a {
   padding: 0 50px;
   overflow: hidden;
   font-size: 30px;
-  letter-spacing: 10px;
 
   position: absolute;
   left: 0;
@@ -39,6 +38,7 @@ a {
 }
 
 footer a {
+  padding: 0 10px;
   transition: color 0.25s;
 }
 
