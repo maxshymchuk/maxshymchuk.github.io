@@ -54,14 +54,24 @@ footer a:hover {
 }
 
 .projects {
+  display: flex;
+  flex-wrap: wrap;
   margin: auto;
+  width: 80%;
+  max-height: 80%;
+  overflow-y: scroll;
   text-align: center;
   font-size: 0;
+}
+
+.projects::-webkit-scrollbar {
+  display: none;
 }
 
 .projects a {
   position: relative;
   display: inline-block;
+  flex: 1;
   padding: 6px 20px;
   border-radius: 5px;
   font-size: 1.2rem;
@@ -77,10 +87,14 @@ footer a:hover {
 }
 
 @media (max-width: 600px) {
+  .projects {
+    flex-wrap: nowrap;
+    overflow-y: auto;
+    flex-direction: column;
+  }
   .projects a {
     display: block;
     box-shadow: none;
-    text-decoration: underline;
   }
   .header, .footer {
     padding: 0;
