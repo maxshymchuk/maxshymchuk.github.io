@@ -13,30 +13,10 @@
 </head>
 <body>
   <main class="content">
-    <section class="projects">
-      <a class="repo" href="https://github.com/maxshymchuk/Font-Viewer" target="_blank">Font Viewer</a>
-      <a class="website" href="https://maxshymchuk.github.io/Mifort-2" target="_blank">Mifort Adaptive</a>
-      <a class="website" href="https://maxshymchuk.github.io/JSPhysics" target="_blank">JSPhysics</a>
-      <a class="website" href="https://maxshymchuk.github.io/RSSchool-theyalow" target="_blank">RSSchool Layout</a>
-      <a class="website" href="http://maxshymchuk.github.io/Tudushka/" target="_blank">Tudushka</a>
-      <a class="repo" href="https://github.com/maxshymchuk/Vault" target="_blank">Vault</a>
-      <a class="repo" href="https://github.com/maxshymchuk/VaultPC" target="_blank">VaultPC</a>
-      <a class="repo" href="https://github.com/maxshymchuk/SaM-Solutions-5" target="_blank">S-S Cookie</a>
-      <a class="repo" href="https://github.com/maxshymchuk/Mifort-4" target="_blank">Mifort CSV Parser</a>
-      <a class="repo" href="https://github.com/maxshymchuk/EasyNote" target="_blank">EasyNote</a>
-      <a class="website" href="https://maxshymchuk.github.io/Sudoku" target="_blank">Sudoku</a>
-      <a class="website" href="http://maxshymchuk.github.io/SaM-Solutions-3" target="_blank">S-S Review</a>
-      <a class="repo" href="https://github.com/maxshymchuk/Game-of-Life" target="_blank">Game of Life</a>
-      <a class="website" href="https://oaip.github.io/" target="_blank">oaip.github.io</a>
-      <a class="website" href="http://maxshymchuk.github.io/SaM-Solutions-2" target="_blank">S-S Layout</a>
-      <a class="website" href="https://maxshymchuk.github.io/rsschool-cv/" target="_blank">RSSchool CV</a>
-      <a class="repo" href="https://github.com/maxshymchuk/food-restaurant" target="_blank">S-S Course Project</a>
-      <a class="repo" href="https://github.com/maxshymchuk/RSOA" target="_blank">RSOA</a>
-      <a class="repo" href="https://github.com/maxshymchuk/Mifort-1" target="_blank">Mifort Dropdown</a>
-      <a class="website" href="http://maxshymchuk.github.io/Cryptography/" target="_blank">Cryptography</a>
-      <a class="repo" href="https://github.com/maxshymchuk/UnoRetranslator" target="_blank">UnoRetranslator</a>
-      <a class="website" href="http://maxshymchuk.github.io/SaM-Solutions-4" target="_blank">S-S GitHub Repos Stats</a>
-      <a class="website" href="https://maxshymchuk.github.io/Mifort-3" target="_blank">Mifort Layout</a>
+    <section class="projects" id="projects">
+      <template id="template__project">
+        <a target="_blank"></a>
+      </template>
     </section>
   </main>
   <footer class="footer">
@@ -47,6 +27,6 @@
   </footer>
   <div class="particles" id="particles-js"></div>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script>particlesJS.load('particles-js', 'particles.json');</script>
+  <script type="module" src="scripts/script.js"></script>
 </body>
 </html>
