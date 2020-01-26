@@ -61,6 +61,7 @@ footer a:hover {
 }
 
 main {
+  display: flex;
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -71,13 +72,13 @@ main {
 main .projects {
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
+  align-content: flex-start;
   width: 80%;
   text-align: center;
   font-size: 0;
   overflow-y: auto;
-  height: 40vh;
-  margin: 0 auto;
+  max-height: 40vh;
+  margin: auto;
   padding: 30vh 0;
   position: relative;
 }
