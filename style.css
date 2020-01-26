@@ -71,6 +71,7 @@ main {
 main .projects {
   display: flex;
   flex-wrap: wrap;
+  align-content: center;
   width: 80%;
   text-align: center;
   font-size: 0;
