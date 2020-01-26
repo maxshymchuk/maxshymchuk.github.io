@@ -94,7 +94,7 @@ export const projects = [
     link: 'https://github.com/maxshymchuk/RSOA',
     type: ProjectType.repo
   },
-  'Mifort Dropdown',{
+  {
     name: 'Mifort Dropdown',
     link: 'https://github.com/maxshymchuk/Mifort-1',
     type: ProjectType.repo

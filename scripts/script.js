@@ -20,4 +20,18 @@ document.body.onload = () => {
     projectElem.innerText = i.name;
     projectList.appendChild(projectElem);
   })
+  shuffled.forEach(i => {
+    const projectElem = templateProjectElem.content.cloneNode(true).querySelector('a');
+    projectElem.classList.add(i.type);
+    projectElem.setAttribute('href', i.link);
+    projectElem.innerText = i.name;
+    projectList.appendChild(projectElem);
+  })
+  shuffled.forEach(i => {
+    const projectElem = templateProjectElem.content.cloneNode(true).querySelector('a');
+    projectElem.classList.add(i.type);
+    projectElem.setAttribute('href', i.link);
+    projectElem.innerText = i.name;
+    projectList.appendChild(projectElem);
+  })
 }
