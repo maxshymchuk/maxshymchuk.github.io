@@ -75,8 +75,8 @@ main .projects {
   text-align: center;
   font-size: 0;
   overflow-y: auto;
-  height: calc(40vh - 100px);
-  margin: 50px auto;
+  height: 40vh;
+  margin: 0 auto;
   padding: 30vh 0;
   position: relative;
 }
