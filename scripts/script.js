@@ -1,22 +1,25 @@
-import { projects } from './projects.js';
+import { CONSTS, REPO_TYPE } from './models.js';
+import { shuffle, getRepos } from "./utils.js";
 
-function shuffle(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    const pos = Math.round(Math.random() * (arr.length - 1));
-    [arr[i], arr[pos]] = [arr[pos], arr[i]];
-  }
-  return arr;
-}
-
-document.body.onload = () => {
-  particlesJS.load('particles-js', 'scripts/particles.json');
-  const shuffled = shuffle(projects);
+document.body.onload = async () => {
+  const initialList = await getRepos();
+  const repos = initialList
+    .filter(repo => repo.name !== CONSTS.SELF)
+    .map(repo => {
+      return {
+        name: repo.name,
+        site: repo.homepage,
+        page: repo.html_url,
+        type: repo.homepage ? REPO_TYPE.WEBSITE : REPO_TYPE.REPO
+      }
+    });
+  const shuffled = shuffle(repos);
   const templateProjectElem = document.getElementById('template__project');
   const projectList = document.getElementById('projects');
   shuffled.forEach(i => {
     const projectElem = templateProjectElem.content.cloneNode(true).querySelector('a');
     projectElem.classList.add(i.type);
-    projectElem.setAttribute('href', i.link);
+    projectElem.setAttribute('href', i.type === REPO_TYPE.REPO ? i.page : i.site);
     projectElem.innerText = i.name;
     projectList.appendChild(projectElem);
   })
