@@ -1,6 +1,11 @@
 import CONSTS from './consts.js';
 import mock from './mock.js';
 
+export const RESPONSE_STATUS = {
+  OK: 'OK',
+  ERROR: 'ERROR'
+}
+
 export const shuffle = (arr) => {
   for (let i = 0; i < arr.length; i++) {
     const pos = Math.round(Math.random() * (arr.length - 1));
@@ -13,10 +18,23 @@ export const rand = (a, b) => {
   return Math.trunc(Math.random() * (b - a)) + a;
 }
 
+export const isConnected = (response) => {
+  return response.status === RESPONSE_STATUS.OK;
+}
+
 export const createRequest = async (url) => {
-  let response;
+  const response = {
+    status: RESPONSE_STATUS.ERROR,
+    data: undefined,
+    toJson() {
+      const error = {
+        error: `Can't convert to json`
+      }
+      return response.data ? response.data.json() : error;
+    }
+  };
   try {
-    response = await fetch(url, {
+    const result = await fetch(url, {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -25,17 +43,23 @@ export const createRequest = async (url) => {
         'Access-Control-Request-Method': 'GET'
       }
     });
-    return response;
+    return {
+      ...response,
+      data: result,
+      status: response.status == 200 ? RESPONSE_STATUS.OK : RESPONSE_STATUS.ERROR
+    }
   } catch {
-    throw new Error("Can't fetch data");
-  } finally {
-    return false;
+    return {
+      ...response,
+      status: RESPONSE_STATUS.ERROR
+    }
+    throw new Error(`Can't fetch data`);
   }
 }
 
 export const getRepos = async () => {
   const repos = await createRequest(`https://api.github.com/users/${CONSTS.GITHUB_ID}/repos`);
-  return repos ? repos.json() : mock;
+  return isConnected(repos) ? repos.toJson() : mock;
 }
 
 export const getRepoProperty = async (url, isForceUpdate = false) => {
@@ -43,7 +67,7 @@ export const getRepoProperty = async (url, isForceUpdate = false) => {
   return (async () => {
     if (result && !isForceUpdate) return result;
     const request = await createRequest(url);
-    result = request ? await request.json() : false;
+    result = request.toJson();
     return result;
   })();
 }
