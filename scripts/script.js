@@ -1,26 +1,48 @@
-import { CONSTS, REPO_TYPE } from './models.js';
-import { shuffle, getRepos } from "./utils.js";
+import CONSTS from './consts.js';
+import {shuffle, getRepos, getRepoProperty, Preloader} from "./utils.js";
+import { Slider } from "./Slider.js";
 
 document.body.onload = async () => {
+  Preloader.show();
+
   const initialList = await getRepos();
-  const repos = initialList
-    .filter(repo => repo.name !== CONSTS.SELF)
-    .map(repo => {
+
+  if (!initialList) return;
+
+  const repos = initialList.filter(repo => repo.name !== CONSTS.SELF);
+
+  const slides = await Promise.all(
+    repos.map(async (repo) => {
+      const languages = await getRepoProperty(repo.languages_url);
+      const contributors = await getRepoProperty(repo.contributors_url);
+      const contributorsArray = contributors && contributors.map(contributor => {
+        return {
+          login: contributor.login,
+          avatar: contributor.avatar_url,
+          url: contributor.html_url,
+          contributions: contributor.contributions
+        }
+      });
       return {
         name: repo.name,
+        description: repo.description,
+        languages: languages && Object.keys(languages),
+        contributors: contributors ? contributorsArray : [],
         site: repo.homepage,
-        page: repo.html_url,
-        type: repo.homepage ? REPO_TYPE.WEBSITE : REPO_TYPE.REPO
+        page: repo.html_url
       }
-    });
-  const shuffled = shuffle(repos);
-  const templateProjectElem = document.getElementById('template__project');
-  const projectList = document.getElementById('projects');
-  shuffled.forEach(i => {
-    const projectElem = templateProjectElem.content.cloneNode(true).querySelector('a');
-    projectElem.classList.add(i.type);
-    projectElem.setAttribute('href', i.type === REPO_TYPE.REPO ? i.page : i.site);
-    projectElem.innerText = i.name;
-    projectList.appendChild(projectElem);
-  })
+    })
+  )
+
+  const shuffled = shuffle(slides);
+
+  const slider = document.getElementById('slider');
+  const sliderEngine = new Slider(shuffled, 'template__project', slider);
+
+  const arrowLeft = document.getElementById('arrow__left');
+  const arrowRight = document.getElementById('arrow__right');
+  arrowLeft.addEventListener('click', sliderEngine.prev.bind(sliderEngine));
+  arrowRight.addEventListener('click', sliderEngine.next.bind(sliderEngine));
+
+  Preloader.hide();
 }
