@@ -1,5 +1,5 @@
 import Delaunator from './Delaunator.js';
-import { Animation } from "./Animation.js";
+import { CustomAnimation } from "./CustomAnimation.js";
 import { rand } from "./utils.js";
 import CONSTS from "./consts.js";
 
@@ -16,7 +16,7 @@ export class Canvas {
     this.canvas.height = rect.height * dpr;
     this.ctx.scale(dpr, dpr);
 
-    this.animation = new Animation(this.canvas);
+    this.animation = new CustomAnimation(this.canvas);
 
     this.redraw();
 

@@ -1,4 +1,4 @@
-import { Animation } from './Animation.js';
+import { CustomAnimation } from './CustomAnimation.js';
 import { Canvas } from "./Canvas.js";
 import CONSTS from "./consts.js";
 
@@ -10,7 +10,7 @@ export class Slider {
     this._pos = 0;
     this._canvas = new Canvas('triangles');
     this._count = 3;
-    this.animation = new Animation(this._slider);
+    this.animation = new CustomAnimation(this._slider);
 
     this.#render();
 
@@ -106,7 +106,6 @@ export class Slider {
 
   next() {
     this.#onSlideChanging();
-    this._pos = this.#getSlide(++this._pos);
     this.animation.run(
       {
         initial: {
@@ -117,13 +116,15 @@ export class Slider {
         }
       },
       null,
-      this.#onSlideChanged.bind(this)
+      () => {
+        this._pos = this.#getSlide(++this._pos);
+        this.#onSlideChanged();
+      }
     )
   }
 
   prev() {
     this.#onSlideChanging();
-    this._pos = this.#getSlide(--this._pos);
     this.animation.run(
       {
         initial: {
@@ -134,7 +135,10 @@ export class Slider {
         }
       },
       null,
-      this.#onSlideChanged.bind(this)
+      () => {
+        this._pos = this.#getSlide(--this._pos);
+        this.#onSlideChanged();
+      }
     )
   }
 }

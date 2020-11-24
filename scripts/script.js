@@ -1,5 +1,5 @@
 import CONSTS from './consts.js';
-import {shuffle, getRepos, getRepoProperty, Preloader, RESPONSE_STATUS, isConnected} from "./utils.js";
+import { shuffle, getRepos, getRepoProperty, Preloader } from "./utils.js";
 import { Slider } from "./Slider.js";
 
 document.body.onload = async () => {
