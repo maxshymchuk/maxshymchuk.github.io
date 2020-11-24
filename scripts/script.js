@@ -15,7 +15,7 @@ document.body.onload = async () => {
     repos.map(async (repo) => {
       const languages = await getRepoProperty(repo.languages_url);
       const contributors = await getRepoProperty(repo.contributors_url);
-      const contributorsArray = isConnected(contributors) && contributors.map(contributor => {
+      const contributorsArray = contributors && contributors.map(contributor => {
         return {
           login: contributor.login,
           avatar: contributor.avatar_url,
@@ -26,8 +26,8 @@ document.body.onload = async () => {
       return {
         name: repo.name,
         description: repo.description,
-        languages: isConnected(languages) && Object.keys(languages),
-        contributors: isConnected(contributors) ? contributorsArray : [],
+        languages: languages ? Object.keys(languages) : {},
+        contributors: contributors ? contributorsArray : [],
         site: repo.homepage,
         page: repo.html_url
       }

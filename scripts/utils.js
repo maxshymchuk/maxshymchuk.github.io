@@ -26,11 +26,11 @@ export const createRequest = async (url) => {
   const response = {
     status: RESPONSE_STATUS.ERROR,
     data: undefined,
-    toJson() {
+    async toJson() {
       const error = {
         error: `Can't convert to json`
       }
-      return response.data ? response.data.json() : error;
+      return this.data ? await this.data.json() : error;
     }
   };
   try {
@@ -46,28 +46,27 @@ export const createRequest = async (url) => {
     return {
       ...response,
       data: result,
-      status: response.status == 200 ? RESPONSE_STATUS.OK : RESPONSE_STATUS.ERROR
+      status: result.status === 200 ? RESPONSE_STATUS.OK : RESPONSE_STATUS.ERROR
     }
   } catch {
     return {
       ...response,
       status: RESPONSE_STATUS.ERROR
     }
-    throw new Error(`Can't fetch data`);
   }
 }
 
 export const getRepos = async () => {
-  const repos = await createRequest(`https://api.github.com/users/${CONSTS.GITHUB_ID}/repos`);
-  return isConnected(repos) ? repos.toJson() : mock;
+  const response = await createRequest(`https://api.github.com/users/${CONSTS.GITHUB_ID}/repos`);
+  return isConnected(response) ? response.toJson() : mock;
 }
 
 export const getRepoProperty = async (url, isForceUpdate = false) => {
   let result;
   return (async () => {
     if (result && !isForceUpdate) return result;
-    const request = await createRequest(url);
-    result = request.toJson();
+    const response = await createRequest(url);
+    result = isConnected(response) ? response.toJson() : undefined;
     return result;
   })();
 }
