@@ -10,12 +10,6 @@ export class Canvas {
     this.triangles = [];
     this.color = '';
 
-    const dpr = window.devicePixelRatio || 1;
-    const rect = document.body.getBoundingClientRect();
-    this.canvas.width  = rect.width * dpr;
-    this.canvas.height = rect.height * dpr;
-    this.ctx.scale(dpr, dpr);
-
     this.animation = new CustomAnimation(this.canvas);
 
     this.redraw();
@@ -60,6 +54,9 @@ export class Canvas {
   }
 
   redraw() {
+    const rect = document.body.getBoundingClientRect();
+    this.canvas.width = rect.width;
+    this.canvas.height = rect.height;
     this.#update();
     // for smooth display
     for (let i = 0; i < 5; i++) {

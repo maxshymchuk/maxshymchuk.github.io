@@ -76,7 +76,7 @@ export class Slider {
   #render() {
     const fragment = document.createDocumentFragment();
     this.slides.forEach(slide => {
-      const projectDOM = this._template.content.cloneNode(true).querySelector('.content');
+      const projectDOM = this._template.content.cloneNode(true).querySelector('.slide');
       const project = {
         title: projectDOM.querySelector('.title'),
         description: projectDOM.querySelector('.description'),

@@ -15,17 +15,16 @@
 * {
   color: #FFF;
   font-family: 'Montserrat', sans-serif;
+  user-select: none;
 }
 
 html, body {
-  height: 100%;
+  height: 100vh;
 }
 
 body {
   display: flex;
   justify-content: center;
-  width: 100vw;
-  overflow-x: hidden;
   margin: 0;
   background-color: #000;
   position: relative;
@@ -49,6 +48,8 @@ main {
   background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 50%) no-repeat center center;
   animation: blinking infinite alternate 3s cubic-bezier(.79,.09,.27,.91);
   position: relative;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 a {
@@ -111,13 +112,21 @@ a {
 
 .arrow {
   width: 80px;
-  height: 100%;
   line-height: 100vh;
   position: fixed;
   top: 0;
   font-size: 40px;
   text-align: center;
   cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+  .arrow {
+    width: 40px;
+    height: 160px;
+    line-height: 160px;
+    top: calc(50% - 80px);
+  }
 }
 
 .arrow svg {
@@ -140,10 +149,9 @@ a {
 .slider {
   display: flex;
   justify-content: center;
-  transition-property: transform;
 }
 
-.content {
+.slide {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -154,19 +162,38 @@ a {
   box-sizing: border-box;
 }
 
-.content .title {
-  text-align: center;
-  font-size: 40px;
+@media screen and (max-width: 480px) {
+  .slide {
+    padding: 40px;
+  }
 }
 
-.content .description {
+.slide .title {
+  text-align: center;
+  font-size: 40px;
+  overflow-wrap: anywhere;
+}
+
+@media screen and (max-width: 480px) {
+  .slide .title {
+    font-size: 30px;
+  }
+}
+
+.slide .description {
   max-width: 60%;
   text-align: center;
   margin: 10px 0;
   font-weight: 300;
 }
 
-.content .languages {
+@media screen and (max-width: 480px) {
+  .slide .description {
+    max-width: 100%;
+  }
+}
+
+.slide .languages {
   font-size: 0.5em;
   text-transform: uppercase;
   text-align: center;
@@ -193,7 +220,7 @@ a {
   height: 20px;
 }
 
-.content .buttons {
+.slide .buttons {
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -214,6 +241,12 @@ a {
   transition: color 0.5s 0.2s, padding 0.2s;
 }
 
+@media screen and (max-width: 480px) {
+  .button {
+    font-size: 15px;
+  }
+}
+
 .button:before {
   content: "";
   width: 100%;
@@ -224,6 +257,12 @@ a {
   left: 0;
   z-index: -1;
   transition: height 0.5s 0.2s;
+}
+
+@media screen and (max-width: 480px) {
+  .button:before {
+    height: 2px;
+  }
 }
 
 .button:hover {
