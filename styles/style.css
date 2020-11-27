@@ -1,19 +1,5 @@
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 300;
-  src: url("fonts/Montserrat-Light.otf");
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 400;
-  src: url("fonts/Montserrat-Medium.otf");
-}
-
 * {
-  color: #FFF;
+  color: var(--color-font);
   font-family: 'Montserrat', sans-serif;
   user-select: none;
 }
@@ -26,22 +12,13 @@ body {
   display: flex;
   justify-content: center;
   margin: 0;
-  background-color: #000;
+  background-color: var(--color-background);
   position: relative;
 }
 
 .triangles {
   position: absolute;
   z-index: -1;
-}
-
-@keyframes blinking {
-  from {
-    background-size: 100% 100%;
-  }
-  to {
-    background-size: 200% 200%;
-  }
 }
 
 main {
@@ -53,8 +30,6 @@ main {
 }
 
 a {
-  user-select: none;
-  color: #FFF;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -66,7 +41,7 @@ a {
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background-color: #000;
+  background-color: var(--color-background);
   transition: opacity 1s, visibility 1s;
   z-index: 999;
 }
@@ -81,57 +56,31 @@ a {
 }
 
 .preloader:before {
-  background: url("assets/preloader_outer.svg") center center no-repeat;
+  background: url("../assets/preloader_outer.svg") center center no-repeat;
   background-size: cover;
   animation: rotating-left infinite 1.5s;
 }
 
 .preloader:after {
-  background: url("assets/preloader_inner.svg") center center no-repeat;
+  background: url("../assets/preloader_inner.svg") center center no-repeat;
   background-size: cover;
   animation: rotating-right infinite 1.5s;
 }
 
-@keyframes rotating-left {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(-360deg);
-  }
-}
-
-@keyframes rotating-right {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .arrow {
-  width: 80px;
-  line-height: 100vh;
+  width: var(--width-arrow-block);
+  height: var(--height-arrow-block);
+  line-height: var(--height-arrow-block);
   position: fixed;
   top: 0;
-  font-size: 40px;
+  font-size: var(--font-size-title);
   text-align: center;
   cursor: pointer;
 }
 
-@media screen and (max-width: 480px) {
-  .arrow {
-    width: 40px;
-    height: 160px;
-    line-height: 160px;
-    top: calc(50% - 80px);
-  }
-}
-
 .arrow svg {
-  width: 20px;
-  fill: #FFFFFF;
+  width: calc(var(--font-size-title) / 2);
+  fill: var(--color-font);
 }
 
 .arrow .arrow__img_left {
@@ -158,39 +107,22 @@ a {
   min-width: 100vw;
   min-height: 100vh;
   flex-direction: column;
-  padding: 100px;
+  padding: var(--width-arrow-block);
   box-sizing: border-box;
-}
-
-@media screen and (max-width: 480px) {
-  .slide {
-    padding: 40px;
-  }
 }
 
 .slide .title {
   text-align: center;
-  font-size: 40px;
+  font-size: var(--font-size-title);
   overflow-wrap: anywhere;
-}
-
-@media screen and (max-width: 480px) {
-  .slide .title {
-    font-size: 30px;
-  }
 }
 
 .slide .description {
   max-width: 60%;
   text-align: center;
   margin: 10px 0;
-  font-weight: 300;
-}
-
-@media screen and (max-width: 480px) {
-  .slide .description {
-    max-width: 100%;
-  }
+  font-size: var(--font-size-description);
+  font-weight: var(--font-weight-light);
 }
 
 .slide .languages {
@@ -230,21 +162,15 @@ a {
   display: block;
   text-align: center;
   background: none;
-  color: #FFF;
+  color: var(--color-font);
   border-radius: 4px;
   text-transform: uppercase;
   padding: 6px 2px;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: var(--font-size-description);
+  font-weight: var(--font-weight-medium);
   position: relative;
   z-index: 1;
   transition: color 0.5s 0.2s, padding 0.2s;
-}
-
-@media screen and (max-width: 480px) {
-  .button {
-    font-size: 15px;
-  }
 }
 
 .button:before {
@@ -257,12 +183,6 @@ a {
   left: 0;
   z-index: -1;
   transition: height 0.5s 0.2s;
-}
-
-@media screen and (max-width: 480px) {
-  .button:before {
-    height: 2px;
-  }
 }
 
 .button:hover {
