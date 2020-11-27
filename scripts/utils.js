@@ -22,7 +22,7 @@ export const isConnected = (response) => {
   return response.status === RESPONSE_STATUS.OK;
 }
 
-export const createRequest = async (url) => {
+const request = async (url) => {
   const response = {
     status: RESPONSE_STATUS.ERROR,
     data: undefined,
@@ -54,6 +54,11 @@ export const createRequest = async (url) => {
       status: RESPONSE_STATUS.ERROR
     }
   }
+}
+
+export const createRequest = (url) => {
+  const isDevMode = true;
+  return request(isDevMode ? '/' : url);
 }
 
 export const getRepos = async () => {
