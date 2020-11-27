@@ -57,7 +57,7 @@ const request = async (url) => {
 }
 
 export const createRequest = (url) => {
-  const isDevMode = true;
+  const isDevMode = false;
   return request(isDevMode ? '/' : url);
 }
 
