@@ -8,19 +8,14 @@ export class Slider {
     this._slides = slides;
     this._slider = slider;
     this._pos = 0;
-    this._canvas = new Canvas('triangles');
     this._count = 3;
-    this.animation = new CustomAnimation(this._slider);
+    this._canvas = new Canvas('triangles');
+    this._animation = new CustomAnimation(this._slider);
 
     this.#render();
 
     this.slideChangingEvent = new Event('slideChanging');
     this.slideChangedEvent = new Event('slideChanged');
-  }
-
-  set count(number) {
-    if (number <= 0) return;
-    this._count = number;
   }
 
   get slides() {
@@ -29,6 +24,44 @@ export class Slider {
       slides.push(this._slides[this.#getSlide(this._pos - Math.trunc(this._count / 2) + i)])
     }
     return slides;
+  }
+
+  next() {
+    this.#onSlideChanging();
+    this._animation.run(
+      {
+        initial: {
+          transform: `translate(${CONSTS.CENTER_SLIDE_POS})`
+        },
+        becoming: {
+          transform: `translate(${CONSTS.RIGHT_SLIDE_POS})`
+        }
+      },
+      null,
+      () => {
+        this._pos = this.#getSlide(++this._pos);
+        this.#onSlideChanged();
+      }
+    )
+  }
+
+  prev() {
+    this.#onSlideChanging();
+    this._animation.run(
+      {
+        initial: {
+          transform: `translate(${CONSTS.CENTER_SLIDE_POS})`
+        },
+        becoming: {
+          transform: `translate(${CONSTS.LEFT_SLIDE_POS})`
+        }
+      },
+      null,
+      () => {
+        this._pos = this.#getSlide(--this._pos);
+        this.#onSlideChanged();
+      }
+    )
   }
 
   #getSlide(pos) {
@@ -102,43 +135,5 @@ export class Slider {
   #onSlideChanged() {
     window.dispatchEvent(this.slideChangedEvent);
     this.#render();
-  }
-
-  next() {
-    this.#onSlideChanging();
-    this.animation.run(
-      {
-        initial: {
-          transform: `translate(${CONSTS.CENTER_SLIDE_POS})`
-        },
-        becoming: {
-          transform: `translate(${CONSTS.RIGHT_SLIDE_POS})`
-        }
-      },
-      null,
-      () => {
-        this._pos = this.#getSlide(++this._pos);
-        this.#onSlideChanged();
-      }
-    )
-  }
-
-  prev() {
-    this.#onSlideChanging();
-    this.animation.run(
-      {
-        initial: {
-          transform: `translate(${CONSTS.CENTER_SLIDE_POS})`
-        },
-        becoming: {
-          transform: `translate(${CONSTS.LEFT_SLIDE_POS})`
-        }
-      },
-      null,
-      () => {
-        this._pos = this.#getSlide(--this._pos);
-        this.#onSlideChanged();
-      }
-    )
   }
 }

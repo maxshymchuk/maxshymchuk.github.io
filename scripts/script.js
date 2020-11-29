@@ -44,5 +44,10 @@ document.body.onload = async () => {
   arrowLeft.addEventListener('click', sliderEngine.prev.bind(sliderEngine));
   arrowRight.addEventListener('click', sliderEngine.next.bind(sliderEngine));
 
+  window.addEventListener('resize', () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  });
+
   Preloader.hide();
 }
