@@ -12,11 +12,25 @@ export class Canvas {
 
     this.animation = new CustomAnimation(this.canvas);
 
-    this.redraw();
+    this.recreate();
 
     window.addEventListener('slideChanging', this.#onBackgroundChanging.bind(this));
     window.addEventListener('slideChanged', this.#onBackgroundChanged.bind(this))
     window.addEventListener('resize', this.redraw.bind(this))
+  }
+
+  recreate() {
+    this.color = rand(50, 330);
+    this.redraw();
+  }
+
+  redraw() {
+    this.#scale();
+    this.#update();
+    // for smooth display
+    for (let i = 0; i < 5; i++) {
+      this.#draw();
+    }
   }
 
   #onBackgroundChanging() {
@@ -33,7 +47,7 @@ export class Canvas {
         transitionTime: CONSTS.TRANSITION_TIME / 2,
         fill: 'forwards'
       },
-      this.redraw.bind(this)
+      this.recreate.bind(this)
     )
   }
 
@@ -53,15 +67,10 @@ export class Canvas {
     )
   }
 
-  redraw() {
+  #scale() {
     const rect = document.body.getBoundingClientRect();
     this.canvas.width = rect.width;
     this.canvas.height = rect.height;
-    this.#update();
-    // for smooth display
-    for (let i = 0; i < 5; i++) {
-      this.#draw();
-    }
   }
 
   #draw() {
@@ -141,6 +150,5 @@ export class Canvas {
 
     const dots = getDots.call(this, dps);
     this.triangles = getTriangles(dots);
-    this.color = rand(50, 330);
   }
 }
