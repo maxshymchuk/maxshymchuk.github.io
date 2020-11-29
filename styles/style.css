@@ -105,7 +105,8 @@ a {
   align-items: center;
   justify-content: center;
   min-width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   flex-direction: column;
   padding: var(--width-arrow-block);
   box-sizing: border-box;

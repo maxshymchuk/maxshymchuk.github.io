@@ -13,6 +13,8 @@
 }
 
 :root {
+  --vh: 1vh;
+
   --color-background: #000;
   --color-font: #FFF;
 
