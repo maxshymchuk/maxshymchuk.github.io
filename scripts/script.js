@@ -4,7 +4,7 @@ import Preloader from './classes/Preloader.js';
 import { contributorsMock, languagesMock, repositoriesMock } from './mocks.js';
 import { API } from './consts.js';
 
-window.DEV_MODE = true;
+window.DEV_MODE = false;
 window.USERNAME = 'maxshymchuk';
 window.INIT = initialize;
 
