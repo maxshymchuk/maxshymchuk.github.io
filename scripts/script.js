@@ -1,53 +1,55 @@
-import CONSTS from './consts.js';
-import { shuffle, getRepos, getRepoProperty, Preloader } from "./utils.js";
-import { Slider } from "./Slider.js";
+import { get, shuffle } from './utils.js';
+import Slider from './classes/Slider.js';
+import Preloader from './classes/Preloader.js';
+import { contributorsMock, languagesMock, repositoriesMock } from './mocks.js';
+import { API } from './consts.js';
 
-document.body.onload = async () => {
-  Preloader.show();
+window.DEV_MODE = true;
+window.USERNAME = 'maxshymchuk';
+window.INIT = initialize;
 
-  const initialList = await getRepos();
+async function initialize() {
+    Preloader.show();
 
-  if (!initialList) return;
+    const initialRepositories = await get(API.getReposByUsername(USERNAME), repositoriesMock);
 
-  const repos = initialList.filter(repo => repo.name !== CONSTS.SELF);
+    const repos = initialRepositories.filter(repo => repo.name !== `${USERNAME}.github.io`);
 
-  const slides = await Promise.all(
-    repos.map(async (repo) => {
-      const languages = await getRepoProperty(repo.languages_url);
-      const contributors = await getRepoProperty(repo.contributors_url);
-      const contributorsArray = contributors && contributors.map(contributor => {
-        return {
-          login: contributor.login,
-          avatar: contributor.avatar_url,
-          url: contributor.html_url,
-          contributions: contributor.contributions
-        }
-      });
-      return {
-        name: repo.name,
-        description: repo.description,
-        languages: languages ? Object.keys(languages) : {},
-        contributors: contributors ? contributorsArray : [],
-        site: repo.homepage,
-        page: repo.html_url
-      }
-    })
-  )
+    const slides = await Promise.all(
+        repos.map(async (repo) => {
+            const languages = await get(repo.languages_url, languagesMock);
+            const contributors = await get(repo.contributors_url, contributorsMock);
+            return {
+                name: repo.name,
+                description: repo.description,
+                updatedAt: new Date(repo.updated_at),
+                languages: Object.keys(languages),
+                contributors: contributors ?? [],
+                site: repo.homepage,
+                page: repo.html_url
+            };
+        })
+    );
 
-  const shuffled = shuffle(slides);
+    const shuffled = shuffle(slides);
 
-  const slider = document.getElementById('slider');
-  const sliderEngine = new Slider(shuffled, 'template__project', slider);
+    const slider = new Slider(
+        shuffled,
+        document.getElementById('template__project'),
+        document.getElementById('slider-entry')
+    );
 
-  const arrowLeft = document.getElementById('arrow__left');
-  const arrowRight = document.getElementById('arrow__right');
-  arrowLeft.addEventListener('click', sliderEngine.prev.bind(sliderEngine));
-  arrowRight.addEventListener('click', sliderEngine.next.bind(sliderEngine));
+    const arrowLeft = document.getElementById('arrow__left');
+    const arrowRight = document.getElementById('arrow__right');
+    arrowLeft.addEventListener('click', slider.prev.bind(slider));
+    arrowRight.addEventListener('click', slider.next.bind(slider));
 
-  window.addEventListener('resize', () => {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  });
+    window.addEventListener('resize', () => {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    });
 
-  Preloader.hide();
+    Preloader.hide();
 }
+
+document.body.onload = initialize;
