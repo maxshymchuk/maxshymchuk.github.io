@@ -1,26 +1,17 @@
-@keyframes blinking {
-  from {
-    background-size: 100% 100%;
-  }
-  to {
-    background-size: 200% 200%;
-  }
-}
-
 @keyframes rotating-left {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(-360deg);
-  }
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
 }
 
 @keyframes rotating-right {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

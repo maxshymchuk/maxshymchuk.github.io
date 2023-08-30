@@ -1,58 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" content="#000000">
-  <link href="styles/global.css" rel="stylesheet">
-  <link href="styles/style.css" rel="stylesheet">
-  <link href="styles/media.css" rel="stylesheet">
-  <link href="styles/animations.css" rel="stylesheet">
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-  <title>Max Shymchuk</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#000000">
+    <link href="styles/fonts.css" rel="stylesheet">
+    <link href="styles/variables.css" rel="stylesheet">
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/slider.css" rel="stylesheet">
+    <link href="styles/preloader.css" rel="stylesheet">
+    <link href="styles/media.css" rel="stylesheet">
+    <link href="styles/animations.css" rel="stylesheet">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <title>Max Shymchuk</title>
+    <script>
+        DEV_MODE = true;
+        USERNAME = 'maxshymchuk';
+    </script>
 </head>
 <body>
-  <div class="preloader" id="preloader"></div>
-  <canvas class="triangles" id="triangles"></canvas>
-  <main>
-    <section class="slider" id="slider"></section>
-    <div class="arrow left" id="arrow__left">
-      <svg class="arrow__img_left" fill="none" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 492.004 492.004" xml:space="preserve">
-        <g>
-          <path d="M382.678,226.804L163.73,7.86C158.666,2.792,151.906,0,144.698,0s-13.968,2.792-19.032,7.86l-16.124,16.12
-            c-10.492,10.504-10.492,27.576,0,38.064L293.398,245.9l-184.06,184.06c-5.064,5.068-7.86,11.824-7.86,19.028
-            c0,7.212,2.796,13.968,7.86,19.04l16.124,16.116c5.068,5.068,11.824,7.86,19.032,7.86s13.968-2.792,19.032-7.86L382.678,265
-            c5.076-5.084,7.864-11.872,7.848-19.088C390.542,238.668,387.754,231.884,382.678,226.804z"/>
-        </g>
-      </svg>
-    </div>
-    <div class="arrow right" id="arrow__right">
-      <svg class="arrow__img_right" fill="none" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 492.004 492.004" xml:space="preserve">
-        <g>
-          <path d="M382.678,226.804L163.73,7.86C158.666,2.792,151.906,0,144.698,0s-13.968,2.792-19.032,7.86l-16.124,16.12
-            c-10.492,10.504-10.492,27.576,0,38.064L293.398,245.9l-184.06,184.06c-5.064,5.068-7.86,11.824-7.86,19.028
-            c0,7.212,2.796,13.968,7.86,19.04l16.124,16.116c5.068,5.068,11.824,7.86,19.032,7.86s13.968-2.792,19.032-7.86L382.678,265
-            c5.076-5.084,7.864-11.872,7.848-19.088C390.542,238.668,387.754,231.884,382.678,226.804z"/>
-        </g>
-      </svg>
-    </div>
-    <template id="template__project">
-      <section class="slide">
-        <span class="title"></span>
-        <section class="languages"></section>
-        <p class="description"></p>
-        <section class="buttons"></section>
-        <section class="contributors"></section>
-      </section>
-    </template>
-    <template id="template__contributor">
-      <a class="contributor"><img src="" alt=""/></a>
-    </template>
-    <template id="template__button">
-      <a class="button"></a>
-    </template>
-  </main>
-  <script type="module" src="scripts/script.js"></script>
+    <div class="preloader" id="preloader"></div>
+    <canvas class="triangles" id="triangles"></canvas>
+    <main>
+        <section class="slider">
+            <div class="slider-entry" id="slider-entry"></div>
+            <div class="arrow-section left" id="arrow__left">
+                <img class="arrow__img" src="assets/arrow.svg" alt="Previous" />
+            </div>
+            <div class="arrow-section right" id="arrow__right">
+                <img class="arrow__img" src="assets/arrow.svg" alt="Next" />
+            </div>
+        </section>
+        <template id="template__project">
+            <section class="slide">
+                <section class="title-section">
+                    <span class="title"></span>
+                    <span class="updated-at"></span>
+                </section>
+                <section class="languages"></section>
+                <p class="description"></p>
+                <section class="buttons"></section>
+                <section class="contributors"></section>
+            </section>
+        </template>
+        <template id="template__contributor">
+            <a class="contributor"><img src="" alt="" /></a>
+        </template>
+        <template id="template__button">
+            <a class="button"></a>
+        </template>
+    </main>
+    <script type="module" src="scripts/script.js"></script>
 </body>
 </html>
