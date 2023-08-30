@@ -4,7 +4,11 @@ import Preloader from './classes/Preloader.js';
 import { contributorsMock, languagesMock, repositoriesMock } from './mocks.js';
 import { API } from './consts.js';
 
-document.body.onload = async () => {
+window.DEV_MODE = true;
+window.USERNAME = 'maxshymchuk';
+window.INIT = initialize;
+
+async function initialize() {
     Preloader.show();
 
     const initialRepositories = await get(API.getReposByUsername(USERNAME), repositoriesMock);
@@ -46,4 +50,6 @@ document.body.onload = async () => {
     });
 
     Preloader.hide();
-};
+}
+
+document.body.onload = initialize;
