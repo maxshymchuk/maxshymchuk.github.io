@@ -116,8 +116,9 @@ export default class Slider {
     }
 
     #renderButtons(target, links) {
-        if (links && links.length > 0) {
-            links.forEach((link, i) => {
+        const filteredLinks = links.filter(Boolean);
+        if (filteredLinks.length > 0) {
+            filteredLinks.forEach((link, i) => {
                 const buttonDOM = document.getElementById('template__button').content.cloneNode(true);
                 const button = buttonDOM.querySelector('.button');
                 button.href = link;

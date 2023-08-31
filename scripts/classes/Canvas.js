@@ -16,7 +16,7 @@ export default class Canvas {
 
         window.addEventListener('slideChanging', this.#onBackgroundChanging.bind(this));
         window.addEventListener('slideChanged', this.#onBackgroundChanged.bind(this));
-        // window.addEventListener('resize', this.redraw.bind(this));
+        window.addEventListener('resize', this.redraw.bind(this));
     }
 
     recreate() {
