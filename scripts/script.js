@@ -1,10 +1,9 @@
-import { get, shuffle } from './utils.js';
-import Slider from './classes/Slider.js';
+import { get, place, shuffle } from './utils.js';
 import Preloader from './classes/Preloader.js';
 import { contributorsMock, languagesMock, repositoriesMock } from './mocks.js';
-import { API } from './consts.js';
+import { API } from './api.js';
 
-window.DEV_MODE = false;
+window.DEV_MODE = true;
 window.USERNAME = 'maxshymchuk';
 window.INIT = initialize;
 
@@ -15,11 +14,12 @@ async function initialize() {
 
     const repos = initialRepositories.filter(repo => repo.name !== `${USERNAME}.github.io`);
 
-    const slides = await Promise.all(
+    const projects = await Promise.all(
         repos.map(async (repo) => {
             const languages = await get(repo.languages_url, languagesMock);
             const contributors = await get(repo.contributors_url, contributorsMock);
             return {
+                id: repo.id,
                 name: repo.name,
                 description: repo.description,
                 updatedAt: new Date(repo.updated_at),
@@ -31,21 +31,32 @@ async function initialize() {
         })
     );
 
-    const shuffled = shuffle(slides);
+    const shuffled = shuffle(projects);
 
-    const slider = new Slider(
-        shuffled,
-        document.getElementById('template__project'),
-        document.getElementById('slider-entry')
-    );
+    const placement = place(shuffled);
+    console.log(placement)
 
-    const arrowLeft = document.getElementById('arrow__left');
-    const arrowRight = document.getElementById('arrow__right');
-    arrowLeft.addEventListener('click', slider.prev.bind(slider));
-    arrowRight.addEventListener('click', slider.next.bind(slider));
+    const table = document.getElementById('table');
+    const circleTemplate = document.getElementById('template-circle');
+    const fragment = document.createDocumentFragment();
+    const dims = table.getBoundingClientRect();
+    placement.forEach(project => {
+        const circleNode = circleTemplate.content.cloneNode(true).querySelector('.circle');
+        circleNode.style.left = `calc(${project.x * 11}vh + ${dims.width / 2}px)`;
+        circleNode.style.top = `calc(${project.y * 11}vh + ${dims.height / 2}px)`;
+        circleNode.innerText = project.id;
+        fragment.append(circleNode);
+    });
+    table.innerHTML = '';
+    table.append(fragment);
+
+    // const arrowLeft = document.getElementById('arrow__left');
+    // const arrowRight = document.getElementById('arrow__right');
+    // arrowLeft.addEventListener('click', slider.prev.bind(slider));
+    // arrowRight.addEventListener('click', slider.next.bind(slider));
 
     window.addEventListener('resize', () => {
-        const vh = window.innerHeight * 0.01;
+        let vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
     });
 

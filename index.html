@@ -8,45 +8,49 @@
     <link href="styles/fonts.css" rel="stylesheet">
     <link href="styles/variables.css" rel="stylesheet">
     <link href="styles/style.css" rel="stylesheet">
-    <link href="styles/slider.css" rel="stylesheet">
     <link href="styles/preloader.css" rel="stylesheet">
-    <link href="styles/media.css" rel="stylesheet">
     <link href="styles/animations.css" rel="stylesheet">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <title>Max Shymchuk</title>
 </head>
 <body>
     <div class="preloader" id="preloader"></div>
-    <canvas class="triangles" id="triangles"></canvas>
-    <main>
-        <section class="slider">
-            <div class="slider-entry" id="slider-entry"></div>
-            <div class="arrow-section left" id="arrow__left">
-                <img class="arrow__img" src="assets/arrow.svg" alt="Previous" />
-            </div>
-            <div class="arrow-section right" id="arrow__right">
-                <img class="arrow__img" src="assets/arrow.svg" alt="Next" />
-            </div>
-        </section>
-        <template id="template__project">
-            <section class="slide">
-                <section class="title-section">
-                    <span class="title"></span>
-                    <span class="updated-at"></span>
-                </section>
-                <section class="languages"></section>
-                <p class="description"></p>
-                <section class="buttons"></section>
-                <section class="contributors"></section>
-            </section>
-        </template>
-        <template id="template__contributor">
-            <a class="contributor"><img src="" alt="" /></a>
-        </template>
-        <template id="template__button">
-            <a class="button"></a>
-        </template>
-    </main>
+<!--    <section class="layer" id="pointer-layer">-->
+<!--        <div class="circle" id="pointer"></div>-->
+<!--    </section>-->
+    <section class="layer" id="table-layer">
+        <div class="table" id="table"></div>
+    </section>
+    <template id="template-circle">
+        <div class="circle"></div>
+    </template>
+<!--        <section class="slider">-->
+<!--            <div class="slider-entry" id="slider-entry"></div>-->
+<!--            <div class="arrow-section left" id="arrow__left">-->
+<!--                <img class="arrow__img" src="assets/arrow.svg" alt="Previous" />-->
+<!--            </div>-->
+<!--            <div class="arrow-section right" id="arrow__right">-->
+<!--                <img class="arrow__img" src="assets/arrow.svg" alt="Next" />-->
+<!--            </div>-->
+<!--        </section>-->
+<!--        <template id="template__project">-->
+<!--            <section class="slide">-->
+<!--                <section class="title-section">-->
+<!--                    <span class="title"></span>-->
+<!--                    <span class="updated-at"></span>-->
+<!--                </section>-->
+<!--                <section class="languages"></section>-->
+<!--                <p class="description"></p>-->
+<!--                <section class="buttons"></section>-->
+<!--                <section class="contributors"></section>-->
+<!--            </section>-->
+<!--        </template>-->
+<!--        <template id="template__contributor">-->
+<!--            <a class="contributor"><img src="" alt="" /></a>-->
+<!--        </template>-->
+<!--        <template id="template__button">-->
+<!--            <a class="button"></a>-->
+<!--        </template>-->
     <script type="module" src="scripts/script.js"></script>
 </body>
 </html>

@@ -6,6 +6,36 @@ export function shuffle(arr) {
     return arr;
 }
 
+function check(list, coords) {
+    if (coords.x === 0 && coords.y === 0) return false;
+    return list.reduce((result, item) => result && (item.x !== coords.x || item.y !== coords.y), true);
+}
+
+export function place(projects, placement = [], base = -1) {
+    let removed = 0;
+    const basedPlacement = placement[base] ?? { x: 0, y: 0 };
+    const shifts = [
+        { x: -1, y: 0 },
+        { x: 0, y: -1 },
+        { x: 1, y: 0 },
+        { x: 0, y: 1 },
+    ];
+    const newPlacement = [];
+    for (let i = 0; i < 4; i++) {
+        const coords = { x: basedPlacement.x + shifts[i].x, y: basedPlacement.y + shifts[i].y };
+        if (projects[removed] && check(placement, coords)) {
+            newPlacement.push({ ...projects[removed], ...coords });
+            removed++;
+        }
+    }
+    const newProjects = projects.slice(removed - 1, -1);
+    if (newProjects.length === 0) {
+        return newPlacement;
+    } else {
+        return [...newPlacement, ...place(newProjects, [...placement, ...newPlacement], ++base)];
+    }
+}
+
 export function rand(a, b) {
     return Math.trunc(Math.random() * (b - a)) + a;
 }

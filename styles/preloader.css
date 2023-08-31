@@ -13,20 +13,20 @@
 .preloader:before,
 .preloader:after {
     position: absolute;
-    content: "";
+    content: '';
     display: block;
     width: 100px;
     height: 100px;
 }
 
 .preloader:before {
-    background: url("../assets/preloader_outer.svg") center center no-repeat;
+    background: url('../assets/preloader_outer.svg') center center no-repeat;
     background-size: cover;
     animation: rotating-left infinite 1.5s;
 }
 
 .preloader:after {
-    background: url("../assets/preloader_inner.svg") center center no-repeat;
+    background: url('../assets/preloader_inner.svg') center center no-repeat;
     background-size: cover;
     animation: rotating-right infinite 1.5s;
 }
