@@ -4,8 +4,6 @@
     user-select: none;
 }
 
-/* tags */
-
 body {
     margin: 0;
     width: 100%;
@@ -24,25 +22,46 @@ body {
     pointer-events: none;
 }
 
+.layer.pointer {
+    z-index: 1;
+}
+
+.layer.table {
+    z-index: 0;
+}
+
 .layer .table {
-    background-color: red;
     position: relative;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: calc(var(--vh, 1vh) * 30);
-    height: calc(var(--vh, 1vh) * 30);
+    animation-name: test-moving1, test-moving2, test-moving3, test-moving4;
+    animation-delay: 0s, 1s, 2s, 3s;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+    /*animation-iteration-count: 1;*/
 }
 
-.circle {
+.layer .circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    width: calc(var(--vh, 1vh) * 10);
-    height: calc(var(--vh, 1vh) * 10);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    background-color: var(--circle-color);
     border-radius: 50%;
-    background-color: #FFF;
-    font-size: 10px;
-    text-align: center;
-    line-height: calc(var(--vh, 1vh) * 10);
+    font-size: var(--font-size);
     color: #000;
     transform: translate(-50%, -50%);
+}
+
+.layer .circle.pointer {
+    left: 50%;
+    top: 50%;
+    width: var(--circle-pointer-size);
+    height: var(--circle-pointer-size);
+    background-color: transparent;
+    border: var(--border-width) solid var(--circle-color);
 }

@@ -15,3 +15,46 @@
         transform: rotate(360deg);
     }
 }
+
+@keyframes test-moving1 {
+    0% {
+        left: 50%;
+        top: 50%;
+    }
+    100% {
+        left: calc(50% - var(--unit));
+    }
+}
+
+@keyframes test-moving2 {
+    0% {
+        left: calc(50% - var(--unit));
+        top: 50%;
+    }
+    100% {
+        left: calc(50% - var(--unit));
+        top: calc(50% - var(--unit));
+    }
+}
+
+@keyframes test-moving3 {
+    0% {
+        left: calc(50% - var(--unit));
+        top: calc(50% - var(--unit));
+    }
+    100% {
+        left: 50%;
+        top: calc(50% - var(--unit));
+    }
+}
+
+@keyframes test-moving4 {
+    0% {
+        left: 50%;
+        top: calc(50% - var(--unit));
+    }
+    100% {
+        left: 50%;
+        top: 50%;
+    }
+}

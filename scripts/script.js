@@ -39,11 +39,10 @@ async function initialize() {
     const table = document.getElementById('table');
     const circleTemplate = document.getElementById('template-circle');
     const fragment = document.createDocumentFragment();
-    const dims = table.getBoundingClientRect();
     placement.forEach(project => {
         const circleNode = circleTemplate.content.cloneNode(true).querySelector('.circle');
-        circleNode.style.left = `calc(${project.x * 11}vh + ${dims.width / 2}px)`;
-        circleNode.style.top = `calc(${project.y * 11}vh + ${dims.height / 2}px)`;
+        circleNode.style.left = `calc(${project.x} * var(--unit) + 50%)`;
+        circleNode.style.top = `calc(${project.y} * var(--unit) + 50%)`;
         circleNode.innerText = project.id;
         fragment.append(circleNode);
     });

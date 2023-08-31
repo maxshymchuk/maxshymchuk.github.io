@@ -1,11 +1,24 @@
 :root {
     --vh: 1vh;
 
+    --font: 3;
+    --size: 20;
+    --gap: 10;
+    --padding: 5;
+    --border: 0.5;
+
+    --circle-color: #FFF;
+    --circle-size: calc(var(--vh) * var(--size));
+    --circle-pointer-size: calc(var(--vh) * (var(--size) + var(--padding)));
+
+    --unit: calc(var(--vh) * (var(--size) + var(--gap)));
+
+    --border-width: calc(var(--vh) * var(--border));
+    --font-size: calc(var(--vh) * var(--font));
+
     --color-background: #000;
     --color-font: #FFF;
 
     --font-weight-light: 300;
     --font-weight-medium: 500;
-
-    --width-arrow-block: 80px;
 }
