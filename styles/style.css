@@ -35,12 +35,6 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    animation-name: test-moving1, test-moving2, test-moving3, test-moving4;
-    animation-delay: 0s, 1s, 2s, 3s;
-    animation-duration: 1s;
-    animation-direction: alternate;
-    animation-timing-function: ease-in-out;
-    /*animation-iteration-count: 1;*/
 }
 
 .layer .circle {

@@ -12,7 +12,6 @@ function check(list, coords) {
 }
 
 export function place(projects, placement = [], base = -1) {
-    let removed = 0;
     const basedPlacement = placement[base] ?? { x: 0, y: 0 };
     const shifts = [
         { x: -1, y: 0 },
@@ -21,23 +20,21 @@ export function place(projects, placement = [], base = -1) {
         { x: 0, y: 1 },
     ];
     const newPlacement = [];
+    const placedIds = [];
     for (let i = 0; i < 4; i++) {
+        if (!projects[i]) continue;
         const coords = { x: basedPlacement.x + shifts[i].x, y: basedPlacement.y + shifts[i].y };
-        if (projects[removed] && check(placement, coords)) {
-            newPlacement.push({ ...projects[removed], ...coords });
-            removed++;
+        if (check(placement, coords)) {
+            newPlacement.push({ ...projects[i], ...coords });
+            placedIds.push(projects[i].id);
         }
     }
-    const newProjects = projects.slice(removed - 1, -1);
+    const newProjects = projects.filter(project => !placedIds.includes(project.id));
     if (newProjects.length === 0) {
         return newPlacement;
     } else {
         return [...newPlacement, ...place(newProjects, [...placement, ...newPlacement], ++base)];
     }
-}
-
-export function rand(a, b) {
-    return Math.trunc(Math.random() * (b - a)) + a;
 }
 
 async function fetchData(url) {

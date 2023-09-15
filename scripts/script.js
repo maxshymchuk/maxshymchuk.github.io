@@ -1,7 +1,8 @@
-import { get, place, shuffle } from './utils.js';
+import { get } from './utils.js';
 import Preloader from './classes/Preloader.js';
 import { contributorsMock, languagesMock, repositoriesMock } from './mocks.js';
 import { API } from './api.js';
+import Collection from './classes/Collection.js';
 
 window.DEV_MODE = true;
 window.USERNAME = 'maxshymchuk';
@@ -31,23 +32,8 @@ async function initialize() {
         })
     );
 
-    const shuffled = shuffle(projects);
-
-    const placement = place(shuffled);
-    console.log(placement)
-
-    const table = document.getElementById('table');
-    const circleTemplate = document.getElementById('template-circle');
-    const fragment = document.createDocumentFragment();
-    placement.forEach(project => {
-        const circleNode = circleTemplate.content.cloneNode(true).querySelector('.circle');
-        circleNode.style.left = `calc(${project.x} * var(--unit) + 50%)`;
-        circleNode.style.top = `calc(${project.y} * var(--unit) + 50%)`;
-        circleNode.innerText = project.id;
-        fragment.append(circleNode);
-    });
-    table.innerHTML = '';
-    table.append(fragment);
+    const collection = new Collection('table', projects);
+    collection.renderAll();
 
     // const arrowLeft = document.getElementById('arrow__left');
     // const arrowRight = document.getElementById('arrow__right');
