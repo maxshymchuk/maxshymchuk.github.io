@@ -1,0 +1,9 @@
+:root {
+    --unit: 20px;
+
+    --color-background: #FFF;
+    --color-font: #000;
+    --color-link: #0040ba;
+
+    --font-size: 16px;
+}

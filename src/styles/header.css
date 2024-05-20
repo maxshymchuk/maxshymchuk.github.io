@@ -1,0 +1,42 @@
+@import './vars.css';
+
+.header {
+    width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+    scrollbar-gutter: stable;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: var(--unit);
+    gap: var(--unit);
+}
+
+.header .header-wrapper .header-title {
+    margin: 0;
+    font-size:  max(min(10vw, 4rem), 2rem);
+}
+
+.header .header-wrapper .header-subtitle {
+    margin: 0;
+    font-size: max(min(4vw, 1.5rem), 1rem);
+}
+
+.header .header-wrapper .header-links {
+    display: flex;
+    gap: var(--unit);
+}
+
+.header .header-wrapper .header-links a {
+    width: 30px;
+    height: 30px;
+    opacity: .2;
+}
+
+.header .header-wrapper .header-links a:hover {
+    opacity: .3;
+}

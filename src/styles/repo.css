@@ -1,0 +1,44 @@
+@import 'vars.css';
+
+.repos {
+    height: 100%;
+}
+
+.repo {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--unit) / 2);
+    padding: var(--unit);
+}
+
+.repo:hover {
+    background-color: #00000011;
+}
+
+.repo .repo-title {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--unit) / 2);
+}
+
+.repo .repo-title .repo-name {
+    margin: 0;
+}
+
+.repo .repo-title .repo-stars {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--unit) / 4);
+}
+
+.repo .repo-title .repo-button {
+    margin-left: auto;
+}
+
+.repo .repo-description {
+    display: -webkit-box;
+    line-clamp: 4;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

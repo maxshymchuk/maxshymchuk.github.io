@@ -1,0 +1,22 @@
+@import 'vars.css';
+@import 'reset.css';
+@import 'header.css';
+@import 'repo.css';
+@import 'media.css';
+@import 'mods.css';
+
+.content {
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.loader {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -3,50 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="theme-color" content="#000000">
-    <link href="styles/fonts.css" rel="stylesheet">
-    <link href="styles/variables.css" rel="stylesheet">
-    <link href="styles/style.css" rel="stylesheet">
-    <link href="styles/slider.css" rel="stylesheet">
-    <link href="styles/preloader.css" rel="stylesheet">
-    <link href="styles/media.css" rel="stylesheet">
-    <link href="styles/animations.css" rel="stylesheet">
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link href="src/styles/index.css" rel="stylesheet">
+    <link rel="icon" href="public/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>Max Shymchuk</title>
 </head>
 <body>
-    <div class="preloader" id="preloader"></div>
-    <canvas class="triangles" id="triangles"></canvas>
-    <main>
-        <section class="slider">
-            <div class="slider-entry" id="slider-entry"></div>
-            <div class="arrow-section left" id="arrow__left">
-                <img class="arrow__img" src="assets/arrow.svg" alt="Previous" />
-            </div>
-            <div class="arrow-section right" id="arrow__right">
-                <img class="arrow__img" src="assets/arrow.svg" alt="Next" />
-            </div>
-        </section>
-        <template id="template__project">
-            <section class="slide">
-                <section class="title-section">
-                    <span class="title"></span>
-                    <span class="updated-at"></span>
+    <div class="content">
+        <header class="header">
+            <section class="header-wrapper limited">
+                <article>
+                    <h1 class="header-title">Max Shymchuk</h1>
+                    <h2 class="header-subtitle">Frontend Developer since 2019</h2>
+                </article>
+                <section class="header-links">
+                    <a href="https://www.linkedin.com/in/max-shymchuk/" target="_blank">
+                        <img src="public/linkedin.svg" alt="Linkedin" />
+                    </a>
+                    <a href="https://t.me/mshymchuk" target="_blank">
+                        <img src="public/telegram.svg" alt="Telegram" />
+                    </a>
+                    <a href="https://github.com/maxshymchuk" target="_blank">
+                        <img src="public/github.svg" alt="Github" />
+                    </a>
                 </section>
-                <section class="languages"></section>
-                <p class="description"></p>
-                <section class="buttons"></section>
-                <section class="contributors"></section>
             </section>
-        </template>
-        <template id="template__contributor">
-            <a class="contributor"><img src="" alt="" /></a>
-        </template>
-        <template id="template__button">
-            <a class="button"></a>
-        </template>
-    </main>
-    <script type="module" src="scripts/script.js"></script>
+        </header>
+        <main>
+            <template id="template-repo">
+                <section class="repo">
+                    <article class="repo-title">
+                        <h3 class="repo-name">Name</h3>
+                        <div class="repo-links">Links</div>
+                        <div class="repo-stars">
+                            <img class="repo-stars-icon" src="public/star.svg" alt="Stars" />
+                            <span>Stars</span>
+                        </div>
+                    </article>
+                    <p class="repo-description">Description</p>
+                </section>
+            </template>
+            <section class="repos limited" id="repositories-list">
+                <div class="loader">
+                    Loading
+                </div>
+            </section>
+        </main>
+    </div>
+    <script type="module" src="src/index.js"></script>
 </body>
 </html>
