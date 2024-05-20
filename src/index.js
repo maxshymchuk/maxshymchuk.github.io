@@ -1,12 +1,17 @@
 import { get } from './utils.js';
-import { repositoriesMock } from './mocks.js';
-import { API } from './api.js';
+import { repositoriesMock, userMock } from './mocks.js';
 
 window.DEV_MODE = false;
-window.USERNAME = 'maxshymchuk';
+window.INIT = initialize;
+
+const loader = document.getElementById('loader');
+const content = document.getElementById('content');
 
 const repositoriesList = document.getElementById('repositories-list');
 const templateRepo = document.getElementById('template-repo')
+
+const headerName = document.getElementById('header-name');
+const headerBio = document.getElementById('header-bio');
 
 function mapper(raw) {
     return raw.map(repo => ({
@@ -46,10 +51,26 @@ function render(repo) {
     return clonedRepo;
 }
 
-async function initialize() {
-    const response = await get(API.getReposByUsername(USERNAME), repositoriesMock);
-    const repositories = await mapper(response.filter(repo => repo.name !== `${USERNAME}.github.io`))
-    repositoriesList.replaceChildren(...repositories.map(repo => render(repo)));
+async function initialize(username = 'maxshymchuk') {
+    loader.classList.remove('invisible');
+    content.classList.add('invisible');
+
+    const user = await get(`https://api.github.com/users/${username}`, username, userMock);
+    if (user.name) {
+        headerName.innerText = user.name;
+    } else {
+        headerName.innerText = user.login;
+    }
+    if (user.bio) {
+        headerBio.innerText = user.bio;
+    } else {
+        headerBio.remove();
+    }
+    const repositories = await get(`${user.repos_url}?type=all`, username, repositoriesMock);
+    repositoriesList.replaceChildren(...mapper(repositories.filter(repo => repo.name !== `${username}.github.io`)).map(repo => render(repo)));
+
+    loader.classList.add('invisible');
+    content.classList.remove('invisible');
 }
 
-document.body.onload = initialize;
+window.addEventListener('load', async () => await initialize());

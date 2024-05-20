@@ -10,12 +10,13 @@
     <title>Max Shymchuk</title>
 </head>
 <body>
-    <div class="content">
+    <div class="loader" id="loader">Loading...</div>
+    <div class="content invisible" id="content">
         <header class="header">
             <section class="header-wrapper limited">
                 <article>
-                    <h1 class="header-title">Max Shymchuk</h1>
-                    <h2 class="header-subtitle">Frontend Developer since 2019</h2>
+                    <h1 class="header-title" id="header-name">Name</h1>
+                    <h2 class="header-subtitle" id="header-bio">Bio</h2>
                 </article>
                 <section class="header-links">
                     <a href="https://www.linkedin.com/in/max-shymchuk/" target="_blank">
@@ -44,11 +45,7 @@
                     <p class="repo-description">Description</p>
                 </section>
             </template>
-            <section class="repos limited" id="repositories-list">
-                <div class="loader">
-                    Loading
-                </div>
-            </section>
+            <section class="repos limited" id="repositories-list"></section>
         </main>
     </div>
     <script type="module" src="src/index.js"></script>

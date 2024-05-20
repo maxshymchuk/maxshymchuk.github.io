@@ -1,7 +1,7 @@
-async function fetchData(url) {
+async function fetchData(url, username) {
     const result = await fetch(url, {
         method: 'GET',
-        username: USERNAME,
+        username,
         headers: {
             Accept: 'application/vnd.github+json'
         }
@@ -12,10 +12,10 @@ async function fetchData(url) {
     throw new Error(parsed.message);
 }
 
-export async function get(url, fallback) {
+export async function get(url, username, fallback) {
     if (DEV_MODE) return fallback;
     try {
-        return await fetchData(url);
+        return await fetchData(url, username);
     } catch {
         return fallback;
     }
