@@ -66,8 +66,12 @@ async function initialize(username = 'maxshymchuk') {
     } else {
         headerBio.remove();
     }
-    const repositories = await get(`${user.repos_url}?type=all`, username, repositoriesMock);
-    repositoriesList.replaceChildren(...mapper(repositories.filter(repo => repo.name !== `${username}.github.io`)).map(repo => render(repo)));
+    const repositories = await get(user.repos_url, username, repositoriesMock);
+    if (repositories.length > 0) {
+        const filtered = repositories.filter(repo => repo.name !== `${username}.github.io`);
+        const rendered = mapper(filtered).map(repo => render(repo));
+        repositoriesList.replaceChildren(...rendered);
+    }
 
     loader.classList.add('invisible');
     content.classList.remove('invisible');

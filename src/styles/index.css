@@ -19,6 +19,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: auto;
     font-size: min(10vw, 10vh);
     font-weight: bold;
     user-select: none;
