@@ -21,7 +21,7 @@ const userMock = {
     "company": "Sunmait Technologies",
     "blog": "",
     "location": "Krakow, Poland",
-    "email": null,
+    "email": "octorix@mail.ru",
     "hireable": null,
     "bio": "Frontend Developer since 2019",
     "twitter_username": null,

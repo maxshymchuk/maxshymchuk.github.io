@@ -4,6 +4,8 @@ import { repositoriesMock, userMock } from './mocks.js';
 window.DEV_MODE = false;
 window.INIT = initialize;
 
+const DEFAULT_USERNAME = 'maxshymchuk';
+
 const loader = document.getElementById('loader');
 const content = document.getElementById('content');
 
@@ -12,6 +14,38 @@ const templateRepo = document.getElementById('template-repo')
 
 const headerName = document.getElementById('header-name');
 const headerBio = document.getElementById('header-bio');
+
+const headerEmail = document.getElementById('header-links-email');
+const linksOwn = document.querySelectorAll('.header-links-own');
+
+function showOwnLinks(flag) {
+    linksOwn.forEach(link => flag ? link.classList.remove('invisible') : link.classList.add('invisible'));
+}
+
+function updateHeaderByUser(user) {
+
+    if (user.name) {
+        headerName.innerText = user.name;
+    } else {
+        headerName.innerText = user.login;
+    }
+    if (user.bio) {
+        headerBio.innerText = user.bio;
+    } else {
+        headerBio.remove();
+    }
+    if (user.email) {
+        headerEmail.href = `mailto:${user.email}`;
+    } else {
+        headerEmail.remove();
+    }
+}
+
+function updateListByRepos(repositories) {
+    if (repositories.length === 0) return;
+    const rendered = mapper(repositories).map(repo => render(repo));
+    repositoriesList.replaceChildren(...rendered);
+}
 
 function mapper(raw) {
     return raw.map(repo => ({
@@ -51,27 +85,16 @@ function render(repo) {
     return clonedRepo;
 }
 
-async function initialize(username = 'maxshymchuk') {
+async function initialize(username = DEFAULT_USERNAME) {
     loader.classList.remove('invisible');
     content.classList.add('invisible');
 
     const user = await get(`https://api.github.com/users/${username}`, username, userMock);
-    if (user.name) {
-        headerName.innerText = user.name;
-    } else {
-        headerName.innerText = user.login;
-    }
-    if (user.bio) {
-        headerBio.innerText = user.bio;
-    } else {
-        headerBio.remove();
-    }
     const repositories = await get(user.repos_url, username, repositoriesMock);
-    if (repositories.length > 0) {
-        const filtered = repositories.filter(repo => repo.name !== `${username}.github.io`);
-        const rendered = mapper(filtered).map(repo => render(repo));
-        repositoriesList.replaceChildren(...rendered);
-    }
+
+    showOwnLinks(username === DEFAULT_USERNAME);
+    updateHeaderByUser(user);
+    updateListByRepos(repositories.filter(repo => repo.name !== `${username}.github.io`));
 
     loader.classList.add('invisible');
     content.classList.remove('invisible');
