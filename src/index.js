@@ -1,7 +1,7 @@
 import { get } from './utils.js';
 import { repositoriesMock, userMock } from './mocks.js';
 
-window.DEV_MODE = false;
+window.DEV_MODE = true;
 window.INIT = initialize;
 
 const DEFAULT_USERNAME = 'maxshymchuk';
@@ -16,11 +16,6 @@ const headerName = document.getElementById('header-name');
 const headerBio = document.getElementById('header-bio');
 
 const headerEmail = document.getElementById('header-links-email');
-const linksOwn = document.querySelectorAll('.header-links-own');
-
-function showOwnLinks(flag) {
-    linksOwn.forEach(link => flag ? link.classList.remove('invisible') : link.classList.add('invisible'));
-}
 
 function updateHeaderByUser(user) {
 
@@ -92,7 +87,6 @@ async function initialize(username = DEFAULT_USERNAME) {
     const user = await get(`https://api.github.com/users/${username}`, username, userMock);
     const repositories = await get(user.repos_url, username, repositoriesMock);
 
-    showOwnLinks(username === DEFAULT_USERNAME);
     updateHeaderByUser(user);
     updateListByRepos(repositories.filter(repo => repo.name !== `${username}.github.io`));
 
