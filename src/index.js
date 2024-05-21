@@ -1,7 +1,7 @@
 import { get } from './utils.js';
 import { repositoriesMock, userMock } from './mocks.js';
 
-window.DEV_MODE = true;
+window.DEV_MODE = false;
 window.INIT = initialize;
 
 const DEFAULT_USERNAME = 'maxshymchuk';
