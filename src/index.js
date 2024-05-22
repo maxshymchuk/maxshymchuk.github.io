@@ -48,7 +48,8 @@ function mapper(raw) {
         description: repo.description,
         stars: repo.stargazers_count,
         site: repo.homepage,
-        page: repo.html_url
+        page: repo.html_url,
+        archived: repo.archived
     }))
 }
 
@@ -62,11 +63,15 @@ function render(repo) {
     const clonedRepo = templateRepo.content.querySelector('.repo').cloneNode(true);
     const repoName = clonedRepo.querySelector('.repo-name');
     const repoLinks = clonedRepo.querySelector('.repo-links');
-    const repoStars = clonedRepo.querySelector('.repo-stars');
+    const repoStars = clonedRepo.querySelector('.repo-marker.stars');
     const repoStarsSpan = repoStars.querySelector('span');
+    const repoArchived = clonedRepo.querySelector('.repo-marker.archived');
     const repoDescription = clonedRepo.querySelector('.repo-description');
     repoName.innerText = repo.name;
     repoLinks.innerHTML = renderLinks(repo);
+    if (!repo.archived) {
+        repoArchived.remove();
+    }
     if (repo.stars > 0) {
         repoStarsSpan.innerText = repo.stars;
     } else {
