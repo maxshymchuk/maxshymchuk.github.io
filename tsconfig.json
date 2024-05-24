@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "isolatedModules": true,
+        "strict": true,
+        "sourceMap": true,
+        "allowImportingTsExtensions": true
+    },
+}

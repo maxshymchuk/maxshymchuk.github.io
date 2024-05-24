@@ -1,0 +1,7 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "types": ["vite/client", "../global.d.ts"],
+        "lib": ["dom", "esnext"]
+    }
+}
