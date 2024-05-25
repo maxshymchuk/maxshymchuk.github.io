@@ -19,6 +19,7 @@ const REQUEST_INTERVAL = 3600000;
 async function init() {
     const result = await readFile(dataPath);
     const { meta } = JSON.parse(result.toString()) as Data;
+    console.clear();
     console.log('Check interval:'.padEnd(25), `${CHECK_INTERVAL}ms (~${Math.round(CHECK_INTERVAL / 1000)}s)`);
     console.log('Request interval:'.padEnd(25), `${REQUEST_INTERVAL}ms (~${Math.round(REQUEST_INTERVAL / 3600000)}h)`);
     console.log('Last time updated at:'.padEnd(25), `${timestampToDate(meta.last_updated)}`);

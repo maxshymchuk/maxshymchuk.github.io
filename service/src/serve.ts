@@ -9,13 +9,17 @@ import uploadToGit from './git.ts';
 async function serve(checker: Checker): Promise<void> {
     if (!process.env.USER) throw Error('.env USER is missing');
 
-    console.log(`[${timestampToDate(Date.now())}] Checking`);
+    process.stdout.clearLine(0);
+    process.stdout.cursorTo(0);
+    process.stdout.write(`[${timestampToDate(Date.now())}] Checking`);
 
     if (checker.compareTimestamps(REQUEST_INTERVAL)) return;
 
     checker.timestamp = Date.now();
 
-    console.log(`[${checker.formattedDate}] Request attempt`);
+    process.stdout.clearLine(0);
+    process.stdout.cursorTo(0);
+    process.stdout.write(`[${checker.formattedDate}] Request attempt`);
 
     try {
         const user = await UserLoader.get(`https://api.github.com/users/${process.env.USER}`);
@@ -23,9 +27,9 @@ async function serve(checker: Checker): Promise<void> {
         const filtered = repositories.filter(repo => repo.name !== process.env.USER && repo.name !== `${process.env.USER}.github.io`);
         const newSnapshot = serialize(filtered);
         if (checker.compareSnapshots(newSnapshot)) {
-            console.log('Snapshots are equal');
+            process.stdout.write(' - Snapshots are equal\n');
         } else {
-            console.log('Snapshots are different, updating the file');
+            process.stdout.write(' - Snapshots are different\n');
             checker.snapshot = newSnapshot;
             const newData: Data = {
                 meta: { last_updated: checker.timestamp, snapshot: checker.snapshot },
