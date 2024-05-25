@@ -3,7 +3,7 @@ function serialize(obj: unknown): string {
 }
 
 function timestampToDate(timestamp: Nullable<number>): string {
-    if (!timestamp) return '';
+    if (!timestamp) return 'Unknown';
     const date = new Date(timestamp);
     return `${date.toLocaleString(undefined, { timeZoneName: 'shortOffset', hourCycle: 'h23' })}`;
 }
