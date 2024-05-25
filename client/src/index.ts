@@ -85,8 +85,10 @@ async function initialize() {
         updateHeaderByUser(data.user);
         updateListByRepos(data.repositories);
 
-        loader.classList.add('invisible');
-        content.classList.remove('invisible');
+        setTimeout(() => {
+            loader.classList.add('invisible');
+            content.classList.remove('invisible');
+        }, 500);
     } else {
         loader.innerText = 'Error :('
     }
