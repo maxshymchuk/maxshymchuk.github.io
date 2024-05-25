@@ -12,8 +12,8 @@ const logPath = resolve(`${rootPath}/service/log.txt`);
 
 let interval = null;
 
-const CHECK_INTERVAL = +(process.env.CHECK_INTERVAL ?? 30000);
-const REQUEST_INTERVAL = +(process.env.REQUEST_INTERVAL ?? 3600000);
+const CHECK_INTERVAL = 30000;
+const REQUEST_INTERVAL = 3600000;
 
 async function init() {
     const result = await readFile(dataPath);

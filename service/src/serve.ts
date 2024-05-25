@@ -4,9 +4,10 @@ import { dataPath, logPath, REQUEST_INTERVAL } from '../index.ts';
 import Checker from './classes/Checker.ts';
 import UserLoader from './classes/UserLoader.ts';
 import RepoLoader from './classes/RepoLoader.ts';
+import uploadToGit from './git.ts';
 
 async function serve(checker: Checker): Promise<void> {
-    if (!process.env.USERNAME) return;
+    if (!process.env.USER) throw Error('.env USER is missing');
 
     console.log(`[${timestampToDate(Date.now())}] Checking`);
 
@@ -17,9 +18,9 @@ async function serve(checker: Checker): Promise<void> {
     console.log(`[${checker.formattedDate}] Request attempt`);
 
     try {
-        const user = await UserLoader.get(`https://api.github.com/users/${process.env.USERNAME}`);
+        const user = await UserLoader.get(`https://api.github.com/users/${process.env.USER}`);
         const repositories = await RepoLoader.get(user.repos_url);
-        const filtered = repositories.filter(repo => repo.name !== process.env.USERNAME && repo.name !== `${process.env.USERNAME}.github.io`);
+        const filtered = repositories.filter(repo => repo.name !== process.env.USER && repo.name !== `${process.env.USER}.github.io`);
         const newSnapshot = serialize(filtered);
         if (checker.compareSnapshots(newSnapshot)) {
             console.log('Snapshots are equal');
@@ -31,6 +32,7 @@ async function serve(checker: Checker): Promise<void> {
                 data: { user, repositories: filtered }
             }
             await writeFile(dataPath, JSON.stringify(newData, null, '    '));
+            await uploadToGit(checker, dataPath);
             await appendFile(logPath, `[${checker.formattedDate}] ${checker.snapshot}\n`);
         }
     } catch (error) {
