@@ -1,9 +1,11 @@
 {
     "extends": "../tsconfig.json",
+    "include": ["src/**/*"],
     "compilerOptions": {
+        "outDir": "dist",
         "module": "esnext",
         "esModuleInterop": true,
         "moduleResolution": "node",
-        "types": ["../global.d.ts"]
+        "types": ["../global.d.ts", "./types/global.d.ts"]
     }
 }

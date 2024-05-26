@@ -17,9 +17,4 @@ async function get(url: string): Promise<Response> {
     });
 }
 
-function logKeyValue(key: string, value: string, newLine = false, padding = 25) {
-    console.log(key.padEnd(padding), value);
-    if (newLine) console.log();
-}
-
-export { get, serialize, timestampToDate, logKeyValue };
+export { get, serialize, timestampToDate };

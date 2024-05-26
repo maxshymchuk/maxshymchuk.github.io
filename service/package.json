@@ -1,11 +1,15 @@
 {
     "type": "module",
     "scripts": {
-        "start": "ts-node-esm index.ts"
+        "build": "tsc",
+        "serve": "npm run build && npm start",
+        "start": "node dist/index.js"
     },
     "devDependencies": {
         "dotenv": "^16.4.5",
-        "simple-git": "^3.24.0",
-        "ts-node": "^10.9.2"
+        "simple-git": "^3.24.0"
+    },
+    "dependencies": {
+        "commander": "^12.1.0"
     }
 }

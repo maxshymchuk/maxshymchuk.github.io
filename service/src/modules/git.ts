@@ -1,5 +1,5 @@
 import { simpleGit, SimpleGit } from 'simple-git';
-import Checker from './classes/Checker.ts';
+import Checker from '../classes/Checker.js';
 
 const git: SimpleGit = simpleGit();
 

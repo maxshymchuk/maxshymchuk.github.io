@@ -1,4 +1,4 @@
-import { get } from '../utils.ts';
+import { get } from '../utils.js';
 
 export default class RepoLoader {
     static async get(url: string): Promise<Array<MappedRepo>> {

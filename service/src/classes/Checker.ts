@@ -1,4 +1,4 @@
-import { timestampToDate } from '../utils.ts';
+import { timestampToDate } from '../utils.js';
 
 export default class Checker {
     private _timestamp: Nullable<number> = null;

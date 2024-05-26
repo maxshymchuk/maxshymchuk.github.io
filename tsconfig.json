@@ -2,7 +2,7 @@
     "compilerOptions": {
         "isolatedModules": true,
         "strict": true,
-        "sourceMap": true,
-        "allowImportingTsExtensions": true
+        "sourceMap": false,
+        "declaration": true
     },
 }
