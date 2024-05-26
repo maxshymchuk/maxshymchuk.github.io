@@ -1,5 +1,5 @@
 import { config } from 'dotenv';
-import readline from 'readline/promises';
+import { createInterface } from 'node:readline/promises';
 import { readFile } from 'fs/promises';
 import { serve } from './modules/serve.js';
 import { parseCLI } from './modules/cli.js';
@@ -10,7 +10,7 @@ config({ override: true });
 
 let interval: Nullable<NodeJS.Timeout> = null;
 
-const rl = readline.createInterface({
+const rl = createInterface({
     input: process.stdin,
     output: process.stdout,
 });

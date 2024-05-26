@@ -1,5 +1,6 @@
 {
     "extends": "../tsconfig.json",
+    "exclude": ["node_modules"],
     "compilerOptions": {
         "types": ["vite/client", "../global.d.ts"],
         "lib": ["dom", "esnext"]
