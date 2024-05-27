@@ -1,10 +1,10 @@
-import { appendFile, writeFile } from 'fs/promises';
-import { serialize, timestampToDate } from '../utils.js';
-import { logInline } from './logging.js';
+import { writeFile } from 'fs/promises';
+import { serialize, stringify, timestampToDate } from '../utils.js';
+import { logInline, logToFile } from './logging.js';
 import Checker from '../classes/Checker.js';
 import UserLoader from '../classes/UserLoader.js';
 import RepoLoader from '../classes/RepoLoader.js';
-import uploadToGit from './git.js';
+import commitAndPush from './git.js';
 
 async function serve(checker: Checker): Promise<void> {
     if (!process.env.USER) throw Error('.env USER is missing');
@@ -31,9 +31,9 @@ async function serve(checker: Checker): Promise<void> {
                 meta: { last_updated: checker.timestamp, snapshot: checker.snapshot },
                 data: { user, repositories: filtered }
             }
-            await writeFile(globalThis.dataPath, JSON.stringify(newData, null, '    '));
-            await uploadToGit(checker, globalThis.dataPath);
-            await appendFile(globalThis.logPath, `[${checker.formattedDate}] ${checker.snapshot}\n`);
+            await writeFile(globalThis.dataPath, stringify(newData, true));
+            await commitAndPush(`Update static data. Timestamp: ${checker.timestamp}`);
+            await logToFile(`[${checker.formattedDate}] ${stringify(newData)}\n`);
         }
     } catch (error) {
         console.error(error);

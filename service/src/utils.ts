@@ -1,8 +1,12 @@
 import { createHash } from 'crypto';
 
+function stringify(obj: unknown, pretty = false): string {
+    return JSON.stringify(obj, null, pretty ? '    ' : undefined);
+}
+
 function serialize(obj: unknown): string {
     const hash = createHash('md5');
-    return hash.update(JSON.stringify(obj)).digest('hex');
+    return hash.update(stringify(obj)).digest('hex');
 }
 
 function timestampToDate(timestamp: Nullable<number>): string {
@@ -20,4 +24,4 @@ async function get(url: string): Promise<Response> {
     });
 }
 
-export { get, serialize, timestampToDate };
+export { get, serialize, stringify, timestampToDate };

@@ -1,3 +1,5 @@
+import { appendFile } from 'fs/promises';
+
 function logKeyValue(key: string, value: string, newLine = false, padding = 25) {
     console.log(key.padEnd(padding), value);
     if (newLine) console.log();
@@ -19,4 +21,8 @@ function logWelcome(clearScreen = true) {
     logKeyValue('Log file path:', globalThis.logPath, true);
 }
 
-export { logWelcome, logKeyValue, logInline };
+async function logToFile(text: string) {
+    await appendFile(globalThis.logPath, text);
+}
+
+export { logWelcome, logKeyValue, logInline, logToFile };
