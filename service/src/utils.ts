@@ -1,5 +1,8 @@
+import { createHash } from 'crypto';
+
 function serialize(obj: unknown): string {
-    return JSON.stringify(obj);
+    const hash = createHash('md5');
+    return hash.update(JSON.stringify(obj)).digest('hex');
 }
 
 function timestampToDate(timestamp: Nullable<number>): string {
