@@ -16,17 +16,19 @@ program
     .option('-d, --data-path <string>', 'path to data.json', DEFAULT_DATA_PATH)
     .option('-l, --log-path <string>', 'path to log.txt', DEFAULT_LOG_PATH)
     .option('-r, --request-interval <number>', 'interval between requests to a server (s)', DEFAULT_REQUEST_INTERVAL)
-    .option('-c, --check-interval <number>', 'interval to check if request time has come (s)', DEFAULT_CHECK_INTERVAL);
+    .option('-c, --check-interval <number>', 'interval to check if request time has come (s)', DEFAULT_CHECK_INTERVAL)
+    .option('-y, --yes', 'pass this flag to start immediately');
 
 function parseCLI() {
     program.parse();
 
-    const { dataPath, logPath, checkInterval, requestInterval } = program.opts();
+    const { dataPath, logPath, checkInterval, requestInterval, yes } = program.opts();
 
     globalThis.dataPath = dataPath;
     globalThis.logPath = logPath;
     globalThis.checkInterval = +checkInterval * 1000;
     globalThis.requestInterval = +requestInterval * 1000;
+    globalThis.autoStart = !!yes;
 
     program.outputHelp();
 }

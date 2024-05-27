@@ -36,14 +36,16 @@ async function main() {
 async function init() {
     console.clear();
     parseCLI();
-    console.log('\nCurrent settings:\n')
-    logWelcome(false);
-    let answer = -1;
-    while (answer === -1) {
-        answer = await askToContinue();
+    if (!globalThis.autoStart) {
+        console.log('\nCurrent settings:\n')
+        logWelcome(false);
+        let answer = -1;
+        while (answer === -1) {
+            answer = await askToContinue();
+        }
+        rl.close();
+        if (answer === 0) process.exit(0);
     }
-    rl.close();
-    if (answer === 0) process.exit(0);
     main();
 }
 
