@@ -35,9 +35,12 @@ function updateListByRepos(repositories: Array<MappedRepo>): void {
 }
 
 function renderLinks(repo: MappedRepo): string {
-    const names = ['repo', 'site'];
-    const links = repo.site ? [repo.page, repo.site] : [repo.page];
-    return `(${links.map((link, i) => `<a href="${link}" target="_blank">${names[i]}</a>`).join(' / ')})`;
+    const links = [
+        { title: 'repo', url: repo.page },
+        { title: 'site', url: repo.site },
+        { title: 'release', url: repo.release },
+    ].filter(link => link.url);
+    return `(${links.map(link => `<a href="${link.url}" target="_blank">${link.title}</a>`).join(' / ')})`;
 }
 
 function render(repo: MappedRepo): Node | null {

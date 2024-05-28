@@ -15,13 +15,4 @@ function timestampToDate(timestamp: Nullable<number>): string {
     return `${date.toLocaleString(undefined, { timeZoneName: 'shortOffset', hourCycle: 'h23' })}`;
 }
 
-async function get(url: string): Promise<Response> {
-    return fetch(url, {
-        method: 'GET',
-        headers: {
-            Accept: 'application/vnd.github+json'
-        }
-    });
-}
-
-export { get, serialize, stringify, timestampToDate };
+export { serialize, stringify, timestampToDate };
