@@ -1,7 +1,7 @@
 {
     "meta": {
-        "last_updated": 1716858110113,
-        "snapshot": "22694b527e5966a5d00ff3f74c7a5886"
+        "last_updated": 1716892094152,
+        "snapshot": "a94884e1b743e16fe19bcddcc6450054"
     },
     "data": {
         "user": {
@@ -17,6 +17,7 @@
                 "description": "Implementation of some encryption algorithms",
                 "stars": 0,
                 "site": "https://maxshymchuk.github.io/Crypto/",
+                "release": null,
                 "page": "https://github.com/maxshymchuk/Crypto",
                 "archived": true
             },
@@ -25,6 +26,7 @@
                 "description": "Desktop Windows notepad application with tabs and autosaving",
                 "stars": 0,
                 "site": null,
+                "release": null,
                 "page": "https://github.com/maxshymchuk/EasyNote",
                 "archived": true
             },
@@ -33,6 +35,7 @@
                 "description": "Application for viewing all fonts in subdirectories",
                 "stars": 1,
                 "site": null,
+                "release": null,
                 "page": "https://github.com/maxshymchuk/Font-Viewer",
                 "archived": true
             },
@@ -41,6 +44,7 @@
                 "description": "Desktop application of Conway's cellular automaton \"Game of Life\"",
                 "stars": 0,
                 "site": null,
+                "release": null,
                 "page": "https://github.com/maxshymchuk/Game-of-Life",
                 "archived": true
             },
@@ -49,6 +53,7 @@
                 "description": "Chrome extension to hide ratings from Kinopoisk platform",
                 "stars": 0,
                 "site": "https://chromewebstore.google.com/detail/impartial-kp/bbkgheiacojglaiojdghhfgplfcjbhjb",
+                "release": null,
                 "page": "https://github.com/maxshymchuk/Impartial-KP",
                 "archived": false
             },
@@ -57,6 +62,7 @@
                 "description": "Simple test application for placing geometric shapes using drag'n'drop",
                 "stars": 0,
                 "site": "https://maxshymchuk.github.io/Kanva/",
+                "release": null,
                 "page": "https://github.com/maxshymchuk/Kanva",
                 "archived": true
             },
@@ -65,6 +71,7 @@
                 "description": "Application to test intersection algorithm between rectangles/lines",
                 "stars": 0,
                 "site": "https://maxshymchuk.github.io/Rectosector/",
+                "release": null,
                 "page": "https://github.com/maxshymchuk/Rectosector",
                 "archived": true
             },
@@ -73,6 +80,7 @@
                 "description": "Simple test application for reminding important notes",
                 "stars": 0,
                 "site": "https://maxshymchuk.github.io/Remme/",
+                "release": null,
                 "page": "https://github.com/maxshymchuk/Remme",
                 "archived": true
             },
@@ -81,6 +89,7 @@
                 "description": "Application for University to solve problems by Random Search Optimization Algorithm",
                 "stars": 0,
                 "site": "https://maxshymchuk.github.io/RSOA/",
+                "release": null,
                 "page": "https://github.com/maxshymchuk/RSOA",
                 "archived": true
             },
@@ -89,6 +98,7 @@
                 "description": "Full-stack project of fictional transport company. Course work",
                 "stars": 0,
                 "site": null,
+                "release": null,
                 "page": "https://github.com/maxshymchuk/Shuttle",
                 "archived": true
             },
@@ -97,6 +107,7 @@
                 "description": "Simple game with simple 2D collision detection",
                 "stars": 0,
                 "site": "https://maxshymchuk.github.io/Statter/",
+                "release": null,
                 "page": "https://github.com/maxshymchuk/Statter",
                 "archived": false
             },
@@ -105,6 +116,7 @@
                 "description": "Project that can solve problems with hashtags sorting and filtering, for those who use social networks a lot",
                 "stars": 0,
                 "site": "https://maxshymchuk.github.io/Tagger/",
+                "release": null,
                 "page": "https://github.com/maxshymchuk/Tagger",
                 "archived": false
             },
@@ -113,6 +125,7 @@
                 "description": "Application for generating themes for pictures",
                 "stars": 0,
                 "site": "https://maxshymchuk.github.io/Tematichka/",
+                "release": null,
                 "page": "https://github.com/maxshymchuk/Tematichka",
                 "archived": true
             },
@@ -121,6 +134,7 @@
                 "description": "Simple test application for TODO tasks with pretty \"folders\" interface",
                 "stars": 0,
                 "site": "https://maxshymchuk.github.io/Tudushka/",
+                "release": null,
                 "page": "https://github.com/maxshymchuk/Tudushka",
                 "archived": true
             },
@@ -129,6 +143,7 @@
                 "description": "Application to transfer data from Telegram chat with bot to Arduino's display module",
                 "stars": 0,
                 "site": null,
+                "release": null,
                 "page": "https://github.com/maxshymchuk/UnoRetranslator",
                 "archived": true
             },
@@ -137,6 +152,7 @@
                 "description": "Arduino-based sound spectrum visualizer. University course work",
                 "stars": 0,
                 "site": null,
+                "release": null,
                 "page": "https://github.com/maxshymchuk/UnoSpectrum",
                 "archived": true
             },
@@ -145,6 +161,7 @@
                 "description": "Application for storing data (passwords) with additional functions such as showing/hiding or copying protected information without revealing it",
                 "stars": 0,
                 "site": "https://maxshymchuk.github.io/Vault/",
+                "release": null,
                 "page": "https://github.com/maxshymchuk/Vault",
                 "archived": false
             },
@@ -153,6 +170,7 @@
                 "description": "Desktop Windows application to store passwords or any other pair of key-value. Deprecated",
                 "stars": 0,
                 "site": null,
+                "release": null,
                 "page": "https://github.com/maxshymchuk/Vault-Desktop",
                 "archived": true
             }
