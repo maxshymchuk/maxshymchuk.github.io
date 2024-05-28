@@ -1,7 +1,7 @@
 {
     "meta": {
-        "last_updated": 1716807623351,
-        "snapshot": "9c2365916194a41a7ba748ab096dc2b3"
+        "last_updated": 1716858110113,
+        "snapshot": "22694b527e5966a5d00ff3f74c7a5886"
     },
     "data": {
         "user": {
@@ -38,7 +38,7 @@
             },
             {
                 "name": "Game-of-Life",
-                "description": "Desktop Windows application of Conway's cellular automaton \"Game of Life\"",
+                "description": "Desktop application of Conway's cellular automaton \"Game of Life\"",
                 "stars": 0,
                 "site": null,
                 "page": "https://github.com/maxshymchuk/Game-of-Life",
