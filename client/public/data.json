@@ -1,7 +1,7 @@
 {
     "meta": {
-        "last_updated": 1716892094152,
-        "snapshot": "a94884e1b743e16fe19bcddcc6450054"
+        "last_updated": 1716894869736,
+        "snapshot": "b62882bf92d409b2719d0d05b09fea18"
     },
     "data": {
         "user": {
@@ -35,7 +35,7 @@
                 "description": "Application for viewing all fonts in subdirectories",
                 "stars": 1,
                 "site": null,
-                "release": null,
+                "release": "https://github.com/maxshymchuk/Font-Viewer/releases/tag/1.0.0",
                 "page": "https://github.com/maxshymchuk/Font-Viewer",
                 "archived": true
             },
@@ -44,7 +44,7 @@
                 "description": "Desktop application of Conway's cellular automaton \"Game of Life\"",
                 "stars": 0,
                 "site": null,
-                "release": null,
+                "release": "https://github.com/maxshymchuk/Game-of-Life/releases/tag/1.0.0",
                 "page": "https://github.com/maxshymchuk/Game-of-Life",
                 "archived": true
             },
