@@ -1,7 +1,7 @@
 {
     "meta": {
-        "last_updated": 1716919045210,
-        "snapshot": "b62882bf92d409b2719d0d05b09fea18"
+        "last_updated": 1716919373972,
+        "snapshot": "d28e359d1d75d88be7c0f3ca5bb1cb8b"
     },
     "data": {
         "user": {
@@ -172,7 +172,7 @@
                 "site": null,
                 "release": null,
                 "page": "https://github.com/maxshymchuk/Vault-Desktop",
-                "archived": true
+                "archived": false
             }
         ]
     }
