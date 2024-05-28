@@ -8,36 +8,53 @@ import { getRepos, getUser } from './api';
 async function serve(checker: Checker): Promise<void> {
     if (!process.env.USER) throw Error('.env USER is missing');
 
-    logInline(`[${timestampToDate(Date.now())}] Checking`);
+    logInline(`[${timestampToDate(Date.now())}] Checking`, true);
 
     if (checker.compareTimestamps(globalThis.requestInterval)) return;
 
     checker.timestamp = Date.now();
 
-    logInline(`[${checker.formattedDate}] Request attempt`)
+    logInline(`[${checker.formattedDate}] Request attempt`, true)
 
-    try {
-        const user = await getUser(`https://api.github.com/users/${process.env.USER}`);
-        const repositories = await getRepos(user.repos_url);
-        const filtered = repositories.filter(repo => repo.name !== process.env.USER && repo.name !== `${process.env.USER}.github.io`);
-        const newSnapshot = serialize(filtered);
-        if (checker.compareSnapshots(newSnapshot)) {
-            logInline(' - Snapshots are equal\n', false);
-        } else {
-            logInline(' - Snapshots are different\n', false);
-            checker.snapshot = newSnapshot;
-            const newData: Data = {
-                meta: { last_updated: checker.timestamp, snapshot: checker.snapshot },
-                data: { user, repositories: filtered }
-            }
-            await writeFile(globalThis.dataPath, stringify(newData, true));
-            await commitAndPush(`Update static data. Timestamp: ${checker.timestamp}`);
-            await logToFile(`[${checker.formattedDate}] ${stringify(newData)}\n`);
+    const user = await getUser(`https://api.github.com/users/${process.env.USER}`);
+    if (!user) return;
+    const repositories = await getRepos(user.repos_url);
+    if (!repositories) return;
+    const filtered = repositories.filter(repo => repo.name !== process.env.USER && repo.name !== `${process.env.USER}.github.io`);
+    const newSnapshot = serialize(filtered);
+    if (checker.compareSnapshots(newSnapshot)) {
+        logInline(' -> equal');
+    } else {
+        logInline(' -> different');
+        checker.snapshot = newSnapshot;
+        const newData: Data = {
+            meta: { last_updated: checker.timestamp, snapshot: checker.snapshot },
+            data: { user, repositories: filtered }
         }
-    } catch (error) {
-        process.stdout.write(`\n${error}`);
-        return;
+        try {
+            logInline('\n' + 'Update phase:'.padEnd(25));
+            await writeFile(globalThis.dataPath, stringify(newData, true));
+            logInline('Success');
+        } catch (error) {
+            logInline(`${error}\n`);
+            return;
+        }
+        try {
+            logInline('\n' + 'Commit phase:'.padEnd(25));
+            await commitAndPush(`Update static data. Timestamp: ${checker.timestamp}`);
+            logInline('Success');
+        } catch (error) {
+            logInline(`${error}`);
+        }
+        try {
+            logInline('\n' + 'Log phase:'.padEnd(25));
+            await logToFile(`[${checker.formattedDate}] ${stringify(newData)}\n`);
+            logInline('Success');
+        } catch (error) {
+            logInline(`${error}`);
+        }
     }
+    logInline('\n');
 }
 
 export { serve };

@@ -1,11 +1,11 @@
 import { appendFile } from 'fs/promises';
 
 function logKeyValue(key: string, value: string, newLine = false, padding = 25) {
-    console.log(key.padEnd(padding), value);
+    console.log(key.padEnd(padding) + value);
     if (newLine) console.log();
 }
 
-function logInline(text: string, fromStart = true) {
+function logInline(text: string, fromStart = false) {
     if (fromStart) {
         process.stdout.clearLine(0);
         process.stdout.cursorTo(0);

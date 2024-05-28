@@ -29,7 +29,7 @@ async function main() {
     const result = await readFile(globalThis.dataPath);
     const { meta } = JSON.parse(result.toString()) as Data;
     const checker = new Checker(meta.last_updated, meta.snapshot);
-    serve(checker);
+    await serve(checker);
     interval = setInterval(() => serve(checker), globalThis.checkInterval);
 }
 
