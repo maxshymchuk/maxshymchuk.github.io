@@ -3,9 +3,9 @@ name: Deploy to Github Pages
 on:
   push:
     branches:
-    - master
+      - master
     paths:
-    - client
+      - ./client
 
   workflow_dispatch:
 
