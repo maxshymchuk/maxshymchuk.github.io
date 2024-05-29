@@ -1,5 +1,3 @@
-import { logInline } from './logging';
-
 async function get(url: string): Promise<Response> {
     return fetch(url, {
         method: 'GET',
@@ -10,7 +8,7 @@ async function get(url: string): Promise<Response> {
     });
 }
 
-async function getUser(url: string): Promise<Nullable<MappedUser>> {
+async function getUser(url: string, onError: (err: unknown) => void): Promise<Nullable<MappedUser>> {
     try {
         const userResponse = await get(url);
         const user = await userResponse.json() as User;
@@ -22,28 +20,33 @@ async function getUser(url: string): Promise<Nullable<MappedUser>> {
             repos_url: user.repos_url
         };
     } catch (error) {
-        logInline(` -> ${error}\n`);
+        onError(error);
         return null;
     }
 }
 
-async function getLatestRelease(url: string): Promise<Nullable<Release>> {
+async function getLatestRelease(url: string, onError: (err: unknown) => void): Promise<Nullable<Release>> {
     try {
         const releasesResponse = await get(url);
         const releases = await releasesResponse.json() as Array<Release>;
         return releases.length > 0 ? releases[0] : null;
     } catch (error) {
-        logInline(` -> ${error}\n`);
+        onError(error);
         return null;
     }
 }
 
-async function getRepos(url: string): Promise<Nullable<Array<MappedRepo>>> {
+async function getRepos(url: string, onError: (err: unknown) => void): Promise<Nullable<Array<MappedRepo>>> {
     try {
         const reposResponse = await get(url);
         const repos = await reposResponse.json() as Array<Repo>;
-        return Promise.all(repos.map(async (repo) => {
-            const latestRelease = await getLatestRelease(repo.releases_url.replace('{/id}', ''));
+        const errors = new Set();
+        const errorRepos: Array<string> = [];
+        const result = Promise.all(repos.map(async (repo) => {
+            const latestRelease = await getLatestRelease(repo.releases_url.replace('{/id}', ''), error => {
+                errors.add(error);
+                errorRepos.push(repo.name);
+            });
             return {
                 name: repo.name,
                 description: repo.description,
@@ -54,8 +57,10 @@ async function getRepos(url: string): Promise<Nullable<Array<MappedRepo>>> {
                 archived: repo.archived
             };
         }));
+        if (errors.size > 0) onError(`${[...errors].join(', ')} while loading releases for ${errorRepos.join(', ')}`);
+        return result;
     } catch (error) {
-        logInline(` -> ${error}\n`);
+        onError(error);
         return null;
     }
 }

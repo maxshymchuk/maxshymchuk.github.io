@@ -1,5 +1,3 @@
-import { timestampToDate } from '../utils.js';
-
 export default class Checker {
     private _timestamp: Nullable<number> = null;
     private _snapshot: Nullable<string> = null;
@@ -9,11 +7,7 @@ export default class Checker {
         this.snapshot = snapshot;
     }
 
-    get formattedDate() {
-        return timestampToDate(this.timestamp);
-    }
-
-    get timestamp() {
+    get timestamp(): Nullable<number> {
         return this._timestamp;
     }
 
@@ -21,7 +15,7 @@ export default class Checker {
         this._timestamp = value;
     }
 
-    get snapshot() {
+    get snapshot(): Nullable<string> {
         return this._snapshot;
     }
 
@@ -29,12 +23,12 @@ export default class Checker {
         this._snapshot = value;
     }
 
-    public compareTimestamps(error: number) {
+    public compareTimestamps(error: number): boolean {
         if (!this.timestamp) return false;
         return Date.now() - this.timestamp < error
     }
 
-    public compareSnapshots(otherSnapshot: string) {
+    public compareSnapshots(otherSnapshot: string): boolean {
         return this.snapshot === otherSnapshot;
     }
 }

@@ -1,4 +1,23 @@
 import { createHash } from 'crypto';
+import { logger } from './classes/Logger';
+
+function welcome(clearScreen = false) {
+    if (clearScreen) logger().clearScreen();
+    logger().logKeyValueScreen([{
+            key: 'Check interval:',
+            value: `${globalThis.checkInterval}ms (~${Math.round(globalThis.checkInterval / 1000)}s)`
+        }, {
+            key: 'Request interval:',
+            value: `${globalThis.requestInterval}ms (~${Math.round(globalThis.requestInterval / 3600000)}h)`
+        }, {
+            key: 'Data file path:',
+            value: globalThis.dataPath
+        }, {
+            key: 'Log file path:',
+            value: globalThis.logPath
+        }
+    ]);
+}
 
 function stringify(obj: unknown, pretty = false): string {
     return JSON.stringify(obj, null, pretty ? '    ' : undefined);
@@ -15,4 +34,4 @@ function timestampToDate(timestamp: Nullable<number>): string {
     return `${date.toLocaleString(undefined, { timeZoneName: 'shortOffset', hourCycle: 'h23' })}`;
 }
 
-export { serialize, stringify, timestampToDate };
+export { serialize, stringify, timestampToDate, welcome };
