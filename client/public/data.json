@@ -1,7 +1,7 @@
 {
     "meta": {
-        "last_updated": 1716939457910,
-        "snapshot": "9ab1e387966f64d954b0a168fd505ed8"
+        "last_updated": 1716943062185,
+        "snapshot": "f51cf33dacd51d5f45abc3806fb65906"
     },
     "data": {
         "user": {
@@ -28,14 +28,14 @@
                 "site": null,
                 "release": null,
                 "page": "https://github.com/maxshymchuk/EasyNote",
-                "archived": true
+                "archived": false
             },
             {
                 "name": "Font-Viewer",
                 "description": "Application for viewing all fonts in subdirectories",
                 "stars": 1,
                 "site": null,
-                "release": null,
+                "release": "https://github.com/maxshymchuk/Font-Viewer/releases/tag/1.0.0",
                 "page": "https://github.com/maxshymchuk/Font-Viewer",
                 "archived": true
             },
@@ -44,7 +44,7 @@
                 "description": "Desktop application of Conway's cellular automaton \"Game of Life\"",
                 "stars": 0,
                 "site": null,
-                "release": null,
+                "release": "https://github.com/maxshymchuk/Game-of-Life/releases/tag/1.0.0",
                 "page": "https://github.com/maxshymchuk/Game-of-Life",
                 "archived": true
             },
