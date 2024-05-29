@@ -1,7 +1,7 @@
 {
     "meta": {
-        "last_updated": 1716954973494,
-        "snapshot": "1dd2b62dc4e4ef20af1ebedacbe24754"
+        "last_updated": 1716983796236,
+        "snapshot": "afed6dba1ce696c70eefa387baa9f1df"
     },
     "data": {
         "user": {
@@ -47,6 +47,15 @@
                 "release": "https://github.com/maxshymchuk/Game-of-Life/releases/tag/1.0.0",
                 "page": "https://github.com/maxshymchuk/Game-of-Life",
                 "archived": true
+            },
+            {
+                "name": "github-aggregator",
+                "description": null,
+                "stars": 0,
+                "site": null,
+                "release": null,
+                "page": "https://github.com/maxshymchuk/github-aggregator",
+                "archived": false
             },
             {
                 "name": "Impartial-KP",
