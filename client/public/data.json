@@ -1,7 +1,7 @@
 {
     "meta": {
-        "last_updated": 1716943062185,
-        "snapshot": "f51cf33dacd51d5f45abc3806fb65906"
+        "last_updated": 1716954973494,
+        "snapshot": "1dd2b62dc4e4ef20af1ebedacbe24754"
     },
     "data": {
         "user": {
@@ -23,12 +23,12 @@
             },
             {
                 "name": "EasyNote",
-                "description": "Desktop Windows notepad application with tabs and autosaving",
+                "description": "Desktop .NET notepad application with tabs and autosaving",
                 "stars": 0,
                 "site": null,
-                "release": null,
+                "release": "https://github.com/maxshymchuk/EasyNote/releases/tag/1.0.0",
                 "page": "https://github.com/maxshymchuk/EasyNote",
-                "archived": false
+                "archived": true
             },
             {
                 "name": "Font-Viewer",
