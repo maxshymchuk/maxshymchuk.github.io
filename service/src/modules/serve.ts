@@ -30,9 +30,9 @@ async function serve(checker: Checker): Promise<void> {
     const newSnapshot = serialize(filtered);
 
     if (checker.compareSnapshots(newSnapshot)) {
-        logInline(' -> equal').newLine();
+        logInline('equal').newLine();
     } else {
-        logInline(' -> different').newLine();
+        logInline('different').newLine();
         checker.snapshot = newSnapshot;
         const newData: Data = {
             meta: { last_updated: checker.timestamp, snapshot: checker.snapshot },
@@ -53,7 +53,7 @@ async function serve(checker: Checker): Promise<void> {
         } catch (error) {
             logger().log(`Git upload failed: ${error}`).newLine();
         }
-        logger().log(` ${stringify(newData)}`, { toScreen: false }).newLine()
+        logger().log(`${stringify(newData)}`, { toScreen: false }).newLine()
     }
 }
 
