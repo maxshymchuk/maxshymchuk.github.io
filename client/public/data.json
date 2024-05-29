@@ -1,7 +1,7 @@
 {
     "meta": {
-        "last_updated": 1716988530559,
-        "snapshot": "1dd2b62dc4e4ef20af1ebedacbe24754"
+        "last_updated": 1716992137497,
+        "snapshot": "1dd75f66e26681a22358d124e056be9a"
     },
     "data": {
         "user": {
@@ -167,12 +167,12 @@
             },
             {
                 "name": "Vault-Desktop",
-                "description": "Desktop Windows application to store passwords or any other pair of key-value. Deprecated",
+                "description": "Desktop .NET Windows application to store passwords or any other pair of key-value",
                 "stars": 0,
                 "site": null,
-                "release": null,
+                "release": "https://github.com/maxshymchuk/Vault-Desktop/releases/tag/1.0.0",
                 "page": "https://github.com/maxshymchuk/Vault-Desktop",
-                "archived": false
+                "archived": true
             }
         ]
     }
