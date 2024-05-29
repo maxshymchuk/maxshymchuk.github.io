@@ -6,7 +6,7 @@ import { getRepos, getUser } from './api';
 import { logger } from '../classes/Logger';
 
 function logInline(text: unknown) {
-    return logger().log(` -> ${text}`, { withTimestamp: false });
+    return logger().log(` -> ${text}`, { withTimestamp: false }).newLine();
 }
 
 async function serve(checker: Checker): Promise<void> {
@@ -30,9 +30,9 @@ async function serve(checker: Checker): Promise<void> {
     const newSnapshot = serialize(filtered);
 
     if (checker.compareSnapshots(newSnapshot)) {
-        logInline('equal').newLine();
+        logInline('equal');
     } else {
-        logInline('different').newLine();
+        logInline('different');
         checker.snapshot = newSnapshot;
         const newData: Data = {
             meta: { last_updated: checker.timestamp, snapshot: checker.snapshot },

@@ -48,11 +48,16 @@ async function askToStart() {
 async function main() {
     welcome(true);
     logger().newLine({ toFile: false });
-    const result = await readFile(globalThis.dataPath);
-    const { meta } = JSON.parse(result.toString()) as Data;
-    const checker = new Checker(meta.last_updated, meta.snapshot);
-    await serve(checker);
-    interval = setInterval(async () => await serve(checker), globalThis.checkInterval);
+    try {
+        const result = await readFile(globalThis.dataPath);
+        const { meta } = JSON.parse(result.toString()) as Data;
+        const checker = new Checker(meta.last_updated, meta.snapshot);
+        await serve(checker);
+        interval = setInterval(async () => await serve(checker), globalThis.checkInterval);
+    } catch (error) {
+        logger().log(`${error}`).newLine();
+        return;
+    }
 }
 
 async function init() {

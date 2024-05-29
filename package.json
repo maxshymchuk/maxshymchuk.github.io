@@ -1,7 +1,10 @@
 {
   "name": "maxshymchuk.github.io",
   "scripts": {
+      "client:dev": "cd ./client && npm run dev",
       "client:build": "cd ./client && npm run build",
+      "service:build": "cd ./service && npm run build",
+      "service:serve": "cd ./service && npm run serve",
       "service:start": "cd ./service && npm run start"
   },
   "devDependencies": {
