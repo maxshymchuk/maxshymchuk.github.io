@@ -8,4 +8,10 @@ namespace Constants {
     export const defaultRequestInterval = '3600';
 }
 
-export { Constants };
+namespace Errors {
+    export const envUser = '.env USER not found';
+    export const envToken = '.env TOKEN not found';
+    export const envRepo = '.env REPO not found';
+}
+
+export { Constants, Errors };

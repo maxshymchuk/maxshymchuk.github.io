@@ -4,13 +4,14 @@ import Checker from '../classes/Checker';
 import commitAndPush from './git';
 import { getRepos, getUser } from './api';
 import { logger } from '../classes/Logger';
+import { Errors } from '../constants';
 
 function logInline(text: unknown) {
     return logger().log(` -> ${text}`, { withTimestamp: false }).newLine();
 }
 
 async function serve(checker: Checker): Promise<void> {
-    if (!process.env.USER) throw Error('.env USER is missing');
+    if (!process.env.USER) throw Error(Errors.envUser);
 
     logger().fromStartScreen().log('Checking', { toFile: false });
 
