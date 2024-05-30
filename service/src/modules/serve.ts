@@ -27,7 +27,6 @@ async function serve(checker: Checker): Promise<void> {
                 data: { user, repositories }
             }
             try {
-                logger().log('Data update started').newLine();
                 await writeFile(Checker.path, stringify(newData, true));
                 logger().log('Data update succeed').newLine();
             } catch (error) {
@@ -35,7 +34,6 @@ async function serve(checker: Checker): Promise<void> {
                 return;
             }
             // try {
-            //     logger().log('Git upload started').newLine();
             //     await commitAndPush(`Update static data. Timestamp: ${checker.timestamp}`);
             //     logger().log('Git upload succeed').newLine();
             // } catch (error) {
