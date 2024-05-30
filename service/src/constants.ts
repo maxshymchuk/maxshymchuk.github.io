@@ -1,11 +1,16 @@
-import { join, resolve } from 'path';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+namespace Global {
+    export const __filename = fileURLToPath(import.meta.url);
+    export const __dirname = dirname(__filename);
+}
 
 namespace Constants {
-    export const rootPath = resolve(join('..'));
-    export const defaultDataPath = resolve(`${rootPath}/client/public/data.json`);
-    export const defaultLogPath = resolve(`${rootPath}/service/log.txt`);
-    export const defaultCheckInterval = '10';
-    export const defaultRequestInterval = '3600';
+    export const defaultDataPath = 'data.json';
+    export const defaultLogPath = 'history.log';
+    export const defaultCheckIntervalMs = 1000; // 1 sec
+    export const defaultRequestIntervalMs = 3600000; // 1 hour
 }
 
 namespace Errors {
@@ -14,4 +19,4 @@ namespace Errors {
     export const envRepo = '.env REPO not found';
 }
 
-export { Constants, Errors };
+export { Constants, Errors, Global };

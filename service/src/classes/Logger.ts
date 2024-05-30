@@ -1,4 +1,6 @@
 import { appendFileSync } from 'fs';
+import { Constants, Global } from '../constants';
+import { resolve } from 'path';
 
 type Options = {
     toFile: boolean;
@@ -7,7 +9,8 @@ type Options = {
 }
 
 class Logger {
-    private _padding = 25;
+    public static path = resolve(Global.__dirname, Constants.defaultLogPath);
+
     private _toScreen = true;
     private _toFile = true;
     private _withTimestamp = true;
@@ -23,21 +26,17 @@ class Logger {
     }
 
     private _appendToFile(text: string): void {
-        appendFileSync(globalThis.logPath, text);
+        try {
+            appendFileSync(Logger.path, text);
+        } catch (error) {
+            this.log(`${error}`, { toFile: false });
+        }
     }
 
     private _updateFromOptions(options?: Partial<Options>): void {
         this._toScreen = options?.toScreen ?? this._toScreen;
         this._toFile = options?.toFile ?? this._toFile;
         this._withTimestamp = options?.withTimestamp ?? this._withTimestamp;
-    }
-
-    get padding(): number {
-        return this._padding;
-    }
-
-    set padding(value: number) {
-        this._padding = value;
     }
 
     public fromStartScreen(): Logger {
@@ -68,14 +67,15 @@ class Logger {
         return this;
     }
 
-    public logKeyValueScreen(dictionary: Array<{ key: string; value: string }>, padding?: number): Logger {
-        const currentPadding = padding ?? this.padding;
+    public logKeyValueScreen(dictionary: Array<{ key: string; value: string }>, padding = 25): Logger {
         for (let item of dictionary) {
-            const key = item.key.slice(0, currentPadding - 1);
-            this._log(key.padEnd(currentPadding) + item.value + '\n');
+            const key = item.key.slice(0, padding - 1);
+            this._log(key.padEnd(padding) + item.value + '\n');
         }
         return this;
     }
 }
 
-export const logger = (...args: ConstructorParameters<typeof Logger>) => new Logger(...args);
+const logger = (...args: ConstructorParameters<typeof Logger>) => new Logger(...args);
+
+export { Logger, logger };

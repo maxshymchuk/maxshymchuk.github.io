@@ -1,4 +1,10 @@
-export default class Checker {
+import { Constants, Global } from '../constants';
+import { resolve } from 'path';
+
+class Checker {
+    public static path = resolve(Global.__dirname, Constants.defaultDataPath);
+    public static requestInterval = Constants.defaultRequestIntervalMs;
+
     private _timestamp: Nullable<number> = null;
     private _snapshot: Nullable<string> = null;
 
@@ -32,3 +38,5 @@ export default class Checker {
         return this.snapshot === otherSnapshot;
     }
 }
+
+export { Checker };

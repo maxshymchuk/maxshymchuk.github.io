@@ -4,7 +4,7 @@
     "scripts": {
         "build": "node esbuild.js",
         "serve": "npm run build && npm start",
-        "start": "node dist/service.js"
+        "start": "node dist/service.js -d ../client/public/data.json -l ./history.log"
     },
     "devDependencies": {
         "dotenv": "^16.4.5",

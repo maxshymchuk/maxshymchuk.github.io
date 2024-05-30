@@ -6,6 +6,6 @@
         "outDir": "dist",
         "esModuleInterop": true,
         "moduleResolution": "node",
-        "types": ["../global.d.ts", "./global.d.ts"]
+        "types": ["../global.d.ts"]
     }
 }

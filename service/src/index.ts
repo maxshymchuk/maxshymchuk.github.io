@@ -2,26 +2,15 @@ import { config } from 'dotenv';
 import { createInterface } from 'node:readline/promises';
 import { readFile } from 'fs/promises';
 import { serve } from './modules/serve';
-import Checker from './classes/Checker';
+import { Checker } from './classes/Checker';
 import { logger } from './classes/Logger';
-import { Command } from 'commander';
 import { Constants } from './constants';
 import { welcome } from './utils';
+import { program, validateArgs } from './modules/cli';
 
 config({ override: true });
 
 let interval: Nullable<NodeJS.Timeout> = null;
-
-const program = new Command();
-
-program
-    .name('service')
-    .helpOption(false)
-    .option('-d, --data-path <string>', 'path to data.json', Constants.defaultDataPath)
-    .option('-l, --log-path <string>', 'path to log.txt', Constants.defaultLogPath)
-    .option('-r, --request-interval <number>', 'interval between requests to a server (s)', Constants.defaultRequestInterval)
-    .option('-c, --check-interval <number>', 'interval to check if request time has come (s)', Constants.defaultCheckInterval)
-    .option('-y, --yes', 'pass this flag to start immediately');
 
 const rl = createInterface({
     input: process.stdin,
@@ -49,11 +38,14 @@ async function main() {
     welcome(true);
     logger().newLine({ toFile: false });
     try {
-        const result = await readFile(globalThis.dataPath);
-        const { meta } = JSON.parse(result.toString()) as Data;
+        const result = await readFile(Checker.path);
+        const resultStr = result.toString();
+        if (!resultStr) throw Error('Data file is empty');
+        const { meta } = JSON.parse(resultStr) as Data;
+        if (!meta) throw Error('Data file has wrong structure');
         const checker = new Checker(meta.last_updated, meta.snapshot);
         await serve(checker);
-        interval = setInterval(async () => await serve(checker), globalThis.checkInterval);
+        interval = setInterval(async () => await serve(checker), Constants.defaultCheckIntervalMs);
     } catch (error) {
         logger().log(`${error}`).newLine();
         return;
@@ -62,15 +54,13 @@ async function main() {
 
 async function init() {
     logger().clearScreen();
-    program.parse();
 
-    const { dataPath, logPath, checkInterval, requestInterval, yes } = program.opts();
+    const isValid = await validateArgs();
+    if (!isValid) process.exit(0);
 
-    globalThis.dataPath = dataPath;
-    globalThis.logPath = logPath;
-    globalThis.checkInterval = +checkInterval * 1000;
-    globalThis.requestInterval = +requestInterval * 1000;
+    logger().newLine({ toFile: false });
 
+    const { yes } = program.opts();
     if (!yes) await askToStart();
 
     await main();

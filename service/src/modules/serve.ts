@@ -1,6 +1,6 @@
 import { writeFile } from 'fs/promises';
 import { serialize, stringify } from '../utils';
-import Checker from '../classes/Checker';
+import { Checker } from '../classes/Checker';
 import commitAndPush from './git';
 import { getRepos, getUser } from './api';
 import { logger } from '../classes/Logger';
@@ -15,7 +15,7 @@ async function serve(checker: Checker): Promise<void> {
 
     logger().fromStartScreen().log('Checking', { toFile: false });
 
-    if (checker.compareTimestamps(globalThis.requestInterval)) return;
+    if (checker.compareTimestamps(Checker.requestInterval)) return;
 
     checker.timestamp = Date.now();
 
@@ -41,7 +41,7 @@ async function serve(checker: Checker): Promise<void> {
         }
         try {
             logger().log('Data update started').newLine();
-            await writeFile(globalThis.dataPath, stringify(newData, true));
+            await writeFile(Checker.path, stringify(newData, true));
             logger().log('Data update succeed').newLine();
         } catch (error) {
             logger().log(`Data update failed: ${error}`).newLine();

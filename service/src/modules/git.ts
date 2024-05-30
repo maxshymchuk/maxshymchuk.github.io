@@ -1,5 +1,6 @@
 import { simpleGit, SimpleGit } from 'simple-git';
 import { Errors } from '../constants';
+import { Checker } from '../classes/Checker';
 
 const git: SimpleGit = simpleGit();
 
@@ -11,7 +12,7 @@ export default async function commitAndPush(message: string): Promise<void> {
     const userRepo = `${process.env.USER}/${process.env.REPO}`;
     git
         .pull('origin', 'master')
-        .add(globalThis.dataPath)
+        .add(Checker.path)
         .commit(message)
         .push(`https://${auth}@github.com/${userRepo}`, 'master');
 }

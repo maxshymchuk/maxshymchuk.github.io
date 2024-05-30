@@ -1,20 +1,18 @@
 import { createHash } from 'crypto';
-import { logger } from './classes/Logger';
+import { Logger, logger } from './classes/Logger';
+import { Checker } from './classes/Checker';
 
 function welcome(clearScreen = false) {
     if (clearScreen) logger().clearScreen();
     logger().logKeyValueScreen([{
-            key: 'Check interval:',
-            value: `${globalThis.checkInterval}ms (~${Math.round(globalThis.checkInterval / 1000)}s)`
-        }, {
             key: 'Request interval:',
-            value: `${globalThis.requestInterval}ms (~${Math.round(globalThis.requestInterval / 3600000)}h)`
+            value: `${Checker.requestInterval}ms (~${(Checker.requestInterval / 3600000).toFixed(2)}h)`
         }, {
             key: 'Data file path:',
-            value: globalThis.dataPath
+            value: Checker.path
         }, {
             key: 'Log file path:',
-            value: globalThis.logPath
+            value: Logger.path
         }
     ]);
 }
@@ -28,10 +26,4 @@ function serialize(obj: unknown): string {
     return hash.update(stringify(obj)).digest('hex');
 }
 
-function timestampToDate(timestamp: Nullable<number>): string {
-    if (!timestamp) return 'Unknown';
-    const date = new Date(timestamp);
-    return `${date.toLocaleString(undefined, { timeZoneName: 'shortOffset', hourCycle: 'h23' })}`;
-}
-
-export { serialize, stringify, timestampToDate, welcome };
+export { serialize, stringify, welcome };
