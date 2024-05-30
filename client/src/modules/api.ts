@@ -9,7 +9,6 @@ const sources = [
         url: 'https://api.github.com/gists/ec571ee4e7aa22601cf20c8084786924',
         headers: {
             Accept: 'application/vnd.github.raw+json',
-            Authorization: `Bearer ${Constants.publicKey}`,
             'X-GitHub-Api-Version': '2022-11-28'
         },
         extractor: parseGist
