@@ -2,59 +2,50 @@ import { writeFile } from 'fs/promises';
 import { serialize, stringify } from '../utils';
 import { Checker } from '../classes/Checker';
 import commitAndPush from './git';
-import { getRepos, getUser } from './api';
+import { getUserData } from './api';
 import { logger } from '../classes/Logger';
-import { Errors } from '../constants';
 
 function logInline(text: unknown) {
     return logger().log(` -> ${text}`, { withTimestamp: false }).newLine();
 }
 
 async function serve(checker: Checker): Promise<void> {
-    if (!process.env.USER) throw Error(Errors.envUser);
-
     logger().fromStartScreen().log('Checking', { toFile: false });
-
-    if (checker.compareTimestamps(Checker.requestInterval)) return;
-
+    if (checker.isUpToDate) return;
     checker.timestamp = Date.now();
-
     logger().fromStartScreen().log('Request attempt');
-
-    const user = await getUser(`https://api.github.com/users/${process.env.USER}`, logInline);
-    if (!user) return;
-
-    const repositories = await getRepos(user.repos_url, logInline);
-    if (!repositories) return;
-
-    const filtered = repositories.filter(repo => repo.name !== process.env.USER && repo.name !== `${process.env.USER}.github.io`);
-    const newSnapshot = serialize(filtered);
-
-    if (checker.compareSnapshots(newSnapshot)) {
-        logInline('equal');
-    } else {
-        logInline('different');
-        checker.snapshot = newSnapshot;
-        const newData: Data = {
-            meta: { last_updated: checker.timestamp, snapshot: checker.snapshot },
-            data: { user, repositories: filtered }
+    try {
+        const { user, repositories } = await getUserData();
+        const snapshot = serialize(repositories);
+        if (checker.isEqualSnapshot(snapshot)) {
+            logInline('equal');
+        } else {
+            logInline('different');
+            checker.snapshot = snapshot;
+            const newData: Data = {
+                meta: { timestamp: checker.timestamp, snapshot: checker.snapshot },
+                data: { user, repositories }
+            }
+            try {
+                logger().log('Data update started').newLine();
+                await writeFile(Checker.path, stringify(newData, true));
+                logger().log('Data update succeed').newLine();
+            } catch (error) {
+                logger().log(`Data update failed: ${error}`).newLine();
+                return;
+            }
+            // try {
+            //     logger().log('Git upload started').newLine();
+            //     await commitAndPush(`Update static data. Timestamp: ${checker.timestamp}`);
+            //     logger().log('Git upload succeed').newLine();
+            // } catch (error) {
+            //     logger().log(`Git upload failed: ${error}`).newLine();
+            // }
+            logger().log(`${stringify(newData)}`, { toScreen: false }).newLine()
         }
-        try {
-            logger().log('Data update started').newLine();
-            await writeFile(Checker.path, stringify(newData, true));
-            logger().log('Data update succeed').newLine();
-        } catch (error) {
-            logger().log(`Data update failed: ${error}`).newLine();
-            return;
-        }
-        try {
-            logger().log('Git upload started').newLine();
-            await commitAndPush(`Update static data. Timestamp: ${checker.timestamp}`);
-            logger().log('Git upload succeed').newLine();
-        } catch (error) {
-            logger().log(`Git upload failed: ${error}`).newLine();
-        }
-        logger().log(`${stringify(newData)}`, { toScreen: false }).newLine()
+    } catch (error) {
+        logInline(`${error}`);
+        return;
     }
 }
 

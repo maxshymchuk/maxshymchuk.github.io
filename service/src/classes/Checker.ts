@@ -8,11 +8,6 @@ class Checker {
     private _timestamp: Nullable<number> = null;
     private _snapshot: Nullable<string> = null;
 
-    constructor(timestamp: Nullable<number>, snapshot: Nullable<string>) {
-        this.timestamp = timestamp;
-        this.snapshot = snapshot;
-    }
-
     get timestamp(): Nullable<number> {
         return this._timestamp;
     }
@@ -29,13 +24,13 @@ class Checker {
         this._snapshot = value;
     }
 
-    public compareTimestamps(error: number): boolean {
+    get isUpToDate(): boolean {
         if (!this.timestamp) return false;
-        return Date.now() - this.timestamp < error
+        return Date.now() - this.timestamp < Checker.requestInterval
     }
 
-    public compareSnapshots(otherSnapshot: string): boolean {
-        return this.snapshot === otherSnapshot;
+    public isEqualSnapshot(snapshot: string): boolean {
+        return this.snapshot === snapshot;
     }
 }
 
