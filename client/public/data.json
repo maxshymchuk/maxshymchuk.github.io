@@ -1,7 +1,7 @@
 {
     "meta": {
-        "last_updated": 1717026667438,
-        "snapshot": "f38758dc2864e42453c1a4dc73c48b17"
+        "last_updated": 1717035046251,
+        "snapshot": "1dd75f66e26681a22358d124e056be9a"
     },
     "data": {
         "user": {
@@ -128,15 +128,6 @@
                 "release": null,
                 "page": "https://github.com/maxshymchuk/Tematichka",
                 "archived": true
-            },
-            {
-                "name": "test",
-                "description": null,
-                "stars": 0,
-                "site": null,
-                "release": null,
-                "page": "https://github.com/maxshymchuk/test",
-                "archived": false
             },
             {
                 "name": "Tudushka",
