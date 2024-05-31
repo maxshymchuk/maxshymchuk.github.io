@@ -1,8 +1,7 @@
 import { writeFile } from 'fs/promises';
 import { serialize, stringify } from '../utils';
 import { Checker } from '../classes/Checker';
-import commitAndPush from './git';
-import { getUserData } from './api';
+import { getUserData, updateGist } from './api';
 import { logger } from '../classes/Logger';
 
 function logInline(text: unknown) {
@@ -22,24 +21,24 @@ async function serve(checker: Checker): Promise<void> {
         } else {
             logInline('different');
             checker.snapshot = snapshot;
-            const newData: Data = {
+            const data = stringify({
                 meta: { timestamp: checker.timestamp, snapshot: checker.snapshot },
                 data: { user, repositories }
-            }
+            }, true);
             try {
-                await writeFile(Checker.path, stringify(newData, true));
+                await writeFile(Checker.path, data);
                 logger().log('Data update succeed').newLine();
             } catch (error) {
                 logger().log(`Data update failed: ${error}`).newLine();
                 return;
             }
-            // try {
-            //     await commitAndPush(`Update static data. Timestamp: ${checker.timestamp}`);
-            //     logger().log('Git upload succeed').newLine();
-            // } catch (error) {
-            //     logger().log(`Git upload failed: ${error}`).newLine();
-            // }
-            logger().log(`${stringify(newData)}`, { toScreen: false }).newLine()
+            try {
+                const { history } = await updateGist(data);
+                logger().log('Gist update succeed').newLine();
+                logger().log(`New version -> ${history[0].version}`, { toScreen: false }).newLine()
+            } catch (error) {
+                logger().log(`Gist update failed: ${error}`).newLine();
+            }
         }
     } catch (error) {
         logInline(`${error}`);

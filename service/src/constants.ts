@@ -16,7 +16,8 @@ namespace Constants {
 namespace Errors {
     export const envUser = '.env USER not found';
     export const envToken = '.env TOKEN not found';
-    export const envRepo = '.env REPO not found';
+    export const envGistId = '.env GIST_ID not found';
+    export const envGistFile = '.env GIST_FILE not found';
 }
 
 export { Constants, Errors, Global };

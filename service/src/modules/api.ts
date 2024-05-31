@@ -1,13 +1,17 @@
 import { Errors } from '../constants';
 
+const getHeaders = () => ({
+    Accept: 'application/vnd.github+json',
+    Authorization: process.env.TOKEN ? `Bearer ${process.env.TOKEN}` : '',
+    'X-GitHub-Api-Version': '2022-11-28'
+});
+
 async function get(url: string): Promise<Response> {
-    return fetch(url, {
-        method: 'GET',
-        headers: {
-            Accept: 'application/vnd.github+json',
-            Authorization: `Bearer ${process.env.TOKEN}`
-        }
-    });
+    return fetch(url, { method: 'GET', headers: getHeaders() });
+}
+
+async function patch(url: string, body?: Nullable<string>): Promise<Response> {
+    return fetch(url, { method: 'PATCH', body, headers: getHeaders() });
 }
 
 async function getUser(url: string): Promise<MappedUser> {
@@ -62,4 +66,12 @@ async function getUserData(): Promise<UserData> {
     return { user, repositories: filtered };
 }
 
-export { getUserData };
+async function updateGist(content: Nullable<string>): Promise<Gist> {
+    if (!process.env.GIST_ID) throw Error(Errors.envGistId);
+    if (!process.env.GIST_FILE) throw Error(Errors.envGistFile);
+    const body = JSON.stringify({ files: { [process.env.GIST_FILE]: { content } } });
+    const gistResponse = await patch(`https://api.github.com/gists/${process.env.GIST_ID}`, body);
+    return await gistResponse.json() as Gist;
+}
+
+export { getUserData, updateGist };
