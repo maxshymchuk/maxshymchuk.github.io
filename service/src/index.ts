@@ -10,8 +10,6 @@ import { getUserData } from './modules/api';
 
 config({ override: true });
 
-let interval: Nullable<NodeJS.Timeout> = null;
-
 async function main() {
     welcome(true);
     logger().newLine({ toFile: false });
@@ -32,8 +30,12 @@ async function main() {
         }
         const { meta } = JSON.parse(result) as Data;
         const checker = new Checker(meta.timestamp, meta.snapshot);
-        await serve(checker);
-        interval = setInterval(async () => await serve(checker), Constants.defaultCheckIntervalMs);
+        while (true) {
+            const before = Date.now();
+            await serve(checker);
+            const diff = Constants.defaultCheckIntervalMs - Date.now() + before;
+            await new Promise((resolve) => setTimeout(resolve, Math.max(0, diff)));
+        }
     } catch (error) {
         logger().log(`${error}`).newLine();
         return;
