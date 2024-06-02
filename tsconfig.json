@@ -4,7 +4,8 @@
         "module": "esnext",
         "isolatedModules": true,
         "strict": true,
-        "sourceMap": false,
-        "declaration": true
-    },
+        "sourceMap": true,
+        "declaration": true,
+        "allowJs": false
+    }
 }

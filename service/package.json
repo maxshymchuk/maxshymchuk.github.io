@@ -2,14 +2,12 @@
     "type": "module",
     "name": "aggregator-service",
     "scripts": {
-        "build": "node esbuild.js",
-        "serve": "npm run build && npm start",
-        "start": "node dist/service.js"
+        "build": "tsc",
+        "serve": "npm run build && npm run start",
+        "start": "node --experimental-specifier-resolution=node dist/index.js"
     },
     "devDependencies": {
-        "dotenv": "^16.4.5",
-        "esbuild": "^0.21.4",
-        "simple-git": "^3.24.0"
+        "dotenv": "^16.4.5"
     },
     "dependencies": {
         "commander": "^12.1.0"
