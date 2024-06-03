@@ -1,4 +1,4 @@
-import { Errors } from '../constants.js';
+import { Errors } from '../constants';
 
 const getHeaders = () => ({
     Accept: 'application/vnd.github+json',

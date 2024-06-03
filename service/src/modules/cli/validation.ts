@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 import { appendFile } from 'fs/promises';
-import { Options } from './types.js';
+import { Options } from './types';
 import { OptionValues } from 'commander';
 
 async function getValidPath(value: unknown): Promise<string> {

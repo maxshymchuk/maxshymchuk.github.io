@@ -1,5 +1,5 @@
 import { appendFileSync } from 'fs';
-import { Constants, Global } from '../constants.js';
+import { Constants, Global } from '../constants';
 import { resolve } from 'path';
 
 type Options = {

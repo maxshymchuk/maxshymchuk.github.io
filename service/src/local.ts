@@ -1,13 +1,23 @@
 import { config } from 'dotenv';
-import { serve } from './modules/serve.js';
-import { Checker } from './classes/Checker.js';
-import { Logger, logger } from './classes/Logger.js';
-import { Constants } from './constants.js';
-import { dialog, welcome } from './utils.js';
-import { parseOptions, showHelp } from './modules/cli/index.js';
+import { serve } from './modules/serve';
+import { Checker } from './classes/Checker';
+import { Logger, logger } from './classes/Logger';
+import { Constants } from './constants';
+import { dialog, welcome } from './utils';
+import { parseOptions, showHelp } from './modules/cli';
 import { readFile } from 'fs/promises';
+import EventEmitter from 'events';
 
 config({ override: true });
+
+const eventEmitter = new EventEmitter();
+
+eventEmitter.on('loop', async (checker: Checker) => {
+    const before = Date.now();
+    await serve(checker);
+    const diff = Constants.defaultCheckIntervalMs - Date.now() + before;
+    setTimeout(() => eventEmitter.emit('loop', checker), Math.max(0, diff));
+});
 
 async function main() {
     welcome(true);
@@ -20,12 +30,7 @@ async function main() {
         logger().log(`${error}`).newLine();
     } finally {
         const checker = new Checker(result ? JSON.parse(result) as Data : null);
-        while (true) {
-            const before = Date.now();
-            await serve(checker);
-            const diff = Constants.defaultCheckIntervalMs - Date.now() + before;
-            await new Promise((resolve) => setTimeout(resolve, Math.max(0, diff)));
-        }
+        eventEmitter.emit('loop', checker);
     }
 }
 
