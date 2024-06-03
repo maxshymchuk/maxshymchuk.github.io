@@ -1,12 +1,11 @@
 {
     "type": "module",
     "name": "aggregator-service",
-    "main": "dist/index.js",
     "scripts": {
         "build": "tsc",
-        "update": "npm run build && npm run start",
-        "start": "node --experimental-specifier-resolution=node dist/index.js",
-        "start:local": "node --experimental-specifier-resolution=node dist/local.js"
+        "start:local": "npm run build && node --experimental-specifier-resolution=node dist/local/index.js",
+        "start:server": "npm run build && node --experimental-specifier-resolution=node dist/server/index.js",
+        "start:serverless": "npm run build && node --experimental-specifier-resolution=node dist/serverless/index.js"
     },
     "devDependencies": {
         "@types/express": "^4.17.21",

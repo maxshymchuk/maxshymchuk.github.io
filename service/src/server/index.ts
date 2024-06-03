@@ -1,10 +1,10 @@
 import express from 'express';
 import { config } from 'dotenv';
-import { Checker } from './classes/Checker';
-import { serve } from './modules/serve';
+import { Checker } from '../common/classes/Checker';
+import { serve } from '../common/modules/handler/serve';
 import { readFile } from 'fs/promises';
-import { logger } from './classes/Logger';
-import { stringify } from './utils';
+import { logger } from '../common/classes/Logger';
+import { stringify } from '../common/utils';
 
 config({ override: true });
 

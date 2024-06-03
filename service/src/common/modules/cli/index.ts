@@ -22,7 +22,6 @@ async function parseOptions(): Promise<Options> {
 }
 
 function showHelp() {
-    // logger().newLine({ toFile: false });
     program.outputHelp();
     logger().newLine({ toFile: false });
     welcome();

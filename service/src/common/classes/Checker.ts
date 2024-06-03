@@ -1,7 +1,7 @@
 import { Constants, Global } from '../constants';
 import { resolve } from 'path';
-import { getUserData } from '../modules/api';
 import { serialize } from '../utils';
+import { getUserData } from '../api';
 
 type Check = {
     isEqual: boolean;

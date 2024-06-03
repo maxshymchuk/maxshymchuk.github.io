@@ -1,8 +1,8 @@
 import { writeFile } from 'fs/promises';
-import { Checker } from '../classes/Checker';
-import { updateGist } from './api';
-import { logger } from '../classes/Logger';
-import { stringify } from '../utils';
+import { Checker } from '../../classes/Checker';
+import { logger } from '../../classes/Logger';
+import { stringify } from '../../utils';
+import { patchGist } from '../../api';
 
 async function serve(checker: Checker): Promise<Nullable<Data>> {
     logger().fromStartScreen().log('Checking', { toFile: false });
@@ -25,7 +25,7 @@ async function serve(checker: Checker): Promise<Nullable<Data>> {
                 logger().log(`Data update failed: ${error}`).newLine();
             }
             try {
-                const { history } = await updateGist(stringify(data, true));
+                const { history } = await patchGist(stringify(data, true));
                 logger().log('Gist update succeed').newLine();
                 logger().log(`New version -> ${history[0].version}`, { toScreen: false }).newLine()
             } catch (error) {

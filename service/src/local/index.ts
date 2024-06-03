@@ -1,10 +1,10 @@
 import { config } from 'dotenv';
-import { serve } from './modules/serve';
-import { Checker } from './classes/Checker';
-import { Logger, logger } from './classes/Logger';
-import { Constants } from './constants';
-import { dialog, welcome } from './utils';
-import { parseOptions, showHelp } from './modules/cli';
+import { serve } from '../common/modules/handler/serve';
+import { Checker } from '../common/classes/Checker';
+import { Logger, logger } from '../common/classes/Logger';
+import { Constants } from '../common/constants';
+import { dialog, welcome } from '../common/utils';
+import { parseOptions, showHelp } from '../common/modules/cli';
 import { readFile } from 'fs/promises';
 import EventEmitter from 'events';
 

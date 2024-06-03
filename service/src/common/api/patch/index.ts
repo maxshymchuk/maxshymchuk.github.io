@@ -1,0 +1,1 @@
+export { patchGist } from './patchGist';
