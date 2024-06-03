@@ -3,16 +3,20 @@
     "name": "aggregator-service",
     "scripts": {
         "build": "tsc",
-        "serve": "npm run build && npm run start",
-        "start": "node --experimental-specifier-resolution=node dist/index.js"
+        "update:local": "npm run build && npm run start:local",
+        "update:server": "npm run build && npm run start:server",
+        "start:local": "node --experimental-specifier-resolution=node dist/local.js",
+        "start:server": "node --experimental-specifier-resolution=node dist/server.js"
     },
     "devDependencies": {
+        "@types/express": "^4.17.21",
         "@types/node": "^20.14.0",
         "dotenv": "^16.4.5",
         "typescript": "^5.4.5"
     },
     "dependencies": {
-        "commander": "^12.1.0"
+        "commander": "^12.1.0",
+        "express": "^4.19.2"
     },
     "engines": {
         "node": ">=18.0.0 <19.0.0"

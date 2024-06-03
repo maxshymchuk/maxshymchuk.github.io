@@ -1,32 +1,37 @@
 import { Constants, Global } from '../constants';
 import { resolve } from 'path';
+import { getUserData } from '../modules/api';
+import { serialize } from '../utils';
+
+type Check = {
+    isEqual: boolean;
+    data: Nullable<Data>;
+}
 
 class Checker {
     public static path = resolve(Global.__dirname, Constants.defaultDataPath);
     public static requestInterval = Constants.defaultRequestIntervalMs;
 
+    private _data: Nullable<Data> = null;
     private _timestamp: Nullable<number> = null;
     private _snapshot: Nullable<string> = null;
 
-    constructor(timestamp: Nullable<number>, snapshot: Nullable<string>) {
-        this.timestamp = timestamp;
-        this.snapshot = snapshot;
+    constructor(data?: Nullable<Data>) {
+        this._data = data ?? null;
+        this._timestamp = data ? data.meta.timestamp : null;
+        this._snapshot = data ? data.meta.snapshot : null;
+    }
+
+    get data(): Nullable<Data> {
+        return this._data;
     }
 
     get timestamp(): Nullable<number> {
         return this._timestamp;
     }
 
-    set timestamp(value: Nullable<number>) {
-        this._timestamp = value;
-    }
-
     get snapshot(): Nullable<string> {
         return this._snapshot;
-    }
-
-    set snapshot(value: Nullable<string>) {
-        this._snapshot = value;
     }
 
     get isUpToDate(): boolean {
@@ -34,8 +39,24 @@ class Checker {
         return Date.now() - this.timestamp < Checker.requestInterval
     }
 
-    public isEqualSnapshot(snapshot: string): boolean {
-        return this.snapshot === snapshot;
+    public async check(): Promise<Check> {
+        if (this.isUpToDate) return { isEqual: true, data: this._data };
+
+        this._timestamp = Date.now();
+
+        const { user, repositories } = await getUserData();
+        const snapshot = serialize(repositories);
+
+        if (this.snapshot === snapshot) return { isEqual: true, data: this._data };
+
+        this._snapshot = snapshot;
+
+        this._data = {
+            meta: { timestamp: this.timestamp as number, snapshot: this.snapshot as string },
+            data: { user, repositories }
+        };
+
+        return { isEqual: false, data: this._data };
     }
 }
 

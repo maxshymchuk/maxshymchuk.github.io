@@ -1,48 +1,42 @@
 import { writeFile } from 'fs/promises';
-import { serialize, stringify } from '../utils';
 import { Checker } from '../classes/Checker';
-import { getUserData, updateGist } from './api';
+import { updateGist } from './api';
 import { logger } from '../classes/Logger';
+import { stringify } from '../utils';
 
-function logInline(text: unknown) {
-    return logger().log(` -> ${text}`, { withTimestamp: false }).newLine();
-}
-
-async function serve(checker: Checker): Promise<void> {
+async function serve(checker: Checker): Promise<Nullable<Data>> {
     logger().fromStartScreen().log('Checking', { toFile: false });
-    if (checker.isUpToDate) return;
-    checker.timestamp = Date.now();
+
+    if (checker.isUpToDate) return checker.data;
+
     logger().fromStartScreen().log('Request attempt');
+
     try {
-        const { user, repositories } = await getUserData();
-        const snapshot = serialize(repositories);
-        if (checker.isEqualSnapshot(snapshot)) {
-            logInline('equal');
+        const { isEqual, data } = await checker.check();
+
+        if (isEqual) {
+            logger().log(' -> equal', { withTimestamp: false }).newLine();
         } else {
-            logInline('different');
-            checker.snapshot = snapshot;
-            const data = stringify({
-                meta: { timestamp: checker.timestamp, snapshot: checker.snapshot },
-                data: { user, repositories }
-            }, true);
+            logger().log(' -> different', { withTimestamp: false }).newLine();
             try {
-                await writeFile(Checker.path, data);
+                await writeFile(Checker.path, stringify(data, true));
                 logger().log('Data update succeed').newLine();
             } catch (error) {
                 logger().log(`Data update failed: ${error}`).newLine();
-                return;
             }
             try {
-                const { history } = await updateGist(data);
+                const { history } = await updateGist(stringify(data, true));
                 logger().log('Gist update succeed').newLine();
                 logger().log(`New version -> ${history[0].version}`, { toScreen: false }).newLine()
             } catch (error) {
                 logger().log(`Gist update failed: ${error}`).newLine();
             }
         }
+
+        return data;
     } catch (error) {
-        logInline(`${error}`);
-        return;
+        logger().log(`${error}`, { withTimestamp: false }).newLine();
+        return checker.data;
     }
 }
 
