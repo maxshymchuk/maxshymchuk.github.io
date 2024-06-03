@@ -1,10 +1,10 @@
 import { Command } from 'commander';
-import { Checker } from '../../classes/Checker';
-import { logger, Logger } from '../../classes/Logger';
-import { Constants } from '../../constants';
-import { getValidOpts } from './validation';
-import { Options } from './types';
-import { welcome } from '../../utils';
+import { Checker } from '../../classes/Checker.js';
+import { logger, Logger } from '../../classes/Logger.js';
+import { Constants } from '../../constants.js';
+import { getValidOpts } from './validation.js';
+import { Options } from './types.js';
+import { welcome } from '../../utils.js';
 
 const program = new Command();
 

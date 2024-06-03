@@ -1,7 +1,7 @@
-import { Constants, Global } from '../constants';
+import { Constants, Global } from '../constants.js';
 import { resolve } from 'path';
-import { getUserData } from '../modules/api';
-import { serialize } from '../utils';
+import { getUserData } from '../modules/api.js';
+import { serialize } from '../utils.js';
 
 type Check = {
     isEqual: boolean;

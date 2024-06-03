@@ -1,10 +1,10 @@
 import { config } from 'dotenv';
-import { serve } from './modules/serve';
-import { Checker } from './classes/Checker';
-import { Logger, logger } from './classes/Logger';
-import { Constants } from './constants';
-import { dialog, welcome } from './utils';
-import { parseOptions, showHelp } from './modules/cli';
+import { serve } from './modules/serve.js';
+import { Checker } from './classes/Checker.js';
+import { Logger, logger } from './classes/Logger.js';
+import { Constants } from './constants.js';
+import { dialog, welcome } from './utils.js';
+import { parseOptions, showHelp } from './modules/cli/index.js';
 import { readFile } from 'fs/promises';
 
 config({ override: true });

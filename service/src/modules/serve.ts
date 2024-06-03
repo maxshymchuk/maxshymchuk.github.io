@@ -1,8 +1,8 @@
 import { writeFile } from 'fs/promises';
-import { Checker } from '../classes/Checker';
-import { updateGist } from './api';
-import { logger } from '../classes/Logger';
-import { stringify } from '../utils';
+import { Checker } from '../classes/Checker.js';
+import { updateGist } from './api.js';
+import { logger } from '../classes/Logger.js';
+import { stringify } from '../utils.js';
 
 async function serve(checker: Checker): Promise<Nullable<Data>> {
     logger().fromStartScreen().log('Checking', { toFile: false });

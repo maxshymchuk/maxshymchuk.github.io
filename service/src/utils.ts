@@ -1,6 +1,6 @@
 import { createHash } from 'crypto';
-import { Logger, logger } from './classes/Logger';
-import { Checker } from './classes/Checker';
+import { Logger, logger } from './classes/Logger.js';
+import { Checker } from './classes/Checker.js';
 import { createInterface } from 'node:readline/promises';
 
 function welcome(clearScreen = false) {

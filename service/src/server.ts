@@ -1,16 +1,16 @@
 import express from 'express';
 import { config } from 'dotenv';
-import { Checker } from './classes/Checker';
-import { serve } from './modules/serve';
+import { Checker } from './classes/Checker.js';
+import { serve } from './modules/serve.js';
 import { readFile } from 'fs/promises';
-import { logger } from './classes/Logger';
-import { stringify } from './utils';
+import { logger } from './classes/Logger.js';
+import { stringify } from './utils.js';
 
 config({ override: true });
 
 const app = express();
 
-const port = 3000
+const port = process.env.PORT || 8000;
 
 app.get('/', async (req, res) => {
     let result: Nullable<string> = null;
