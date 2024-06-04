@@ -1,9 +1,22 @@
-import { getData } from './modules/api';
 import { createHeaderByUser } from './modules/createHeader';
 import { createReposFrom } from './modules/createRepos';
+import { createLoader, parseGist, getData } from './api';
+import { Sources } from './constants';
 
 const loader = document.getElementById('loader') as HTMLElement | null;
 const content = document.getElementById('content') as HTMLElement | null;
+
+const loaders = [
+    createLoader(Sources.vercelUrl),
+    createLoader({
+        url: Sources.gistUrl,
+        headers: {
+            Accept: 'application/vnd.github.raw+json',
+            'X-GitHub-Api-Version': '2022-11-28'
+        },
+        parser: parseGist
+    })
+]
 
 async function initialize() {
     if (!loader || !content) return;
@@ -12,7 +25,7 @@ async function initialize() {
     content.classList.add('invisible');
 
     try {
-        const { data } = await getData();
+        const { data } = await getData(loaders);
 
         createHeaderByUser(data.user);
         createReposFrom(data.repositories);
