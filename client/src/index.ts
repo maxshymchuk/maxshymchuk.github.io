@@ -30,10 +30,8 @@ async function initialize() {
         createHeaderByUser(data.user);
         createReposFrom(data.repositories);
 
-        setTimeout(() => {
-            loader.classList.add('invisible');
-            content.classList.remove('invisible');
-        }, 500);
+        loader.classList.add('invisible');
+        content.classList.remove('invisible');
     } catch (error) {
         console.error(error);
         loader.innerText = 'Error :('
