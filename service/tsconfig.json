@@ -5,7 +5,6 @@
     "compilerOptions": {
         "outDir": "dist",
         "esModuleInterop": true,
-        "moduleResolution": "node",
         "types": ["../global.d.ts", "./env.d.ts"]
     }
 }
