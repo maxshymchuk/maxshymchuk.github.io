@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { getGistLastUpdated, getUserData, patchGist } from '../common/api';
-import { serialize, stringify } from '../common/utils';
-import { Constants } from '../common/constants';
+import { getGistLastUpdated, getUserData, patchGist } from '../../common/api';
+import { serialize, stringify } from '../../common/utils';
+import { Constants } from '../../common/constants';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     const lastUpdated = await getGistLastUpdated(`https://api.github.com/gists/${process.env.GIST_ID}`);
