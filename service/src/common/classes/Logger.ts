@@ -1,5 +1,5 @@
 import { appendFileSync } from 'fs';
-import { Constants, Global } from '../constants';
+import { Constants } from '../constants';
 import { resolve } from 'path';
 
 type Options = {
@@ -9,7 +9,7 @@ type Options = {
 }
 
 class Logger {
-    public static path = resolve(Global.__dirname, Constants.defaultLogPath);
+    public static path = resolve(Constants.defaultLogPath);
 
     private _toScreen = true;
     private _toFile = true;

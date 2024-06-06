@@ -1,7 +1,0 @@
-{
-    "name": "aggregator-service-local",
-    "type": "module",
-    "dependencies": {
-        "commander": "^12.1.0"
-    }
-}

@@ -1,11 +1,3 @@
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-namespace Global {
-    export const __filename = fileURLToPath(import.meta.url);
-    export const __dirname = dirname(__filename);
-}
-
 namespace Constants {
     export const defaultDataPath = 'data.json';
     export const defaultLogPath = 'history.log';
@@ -20,4 +12,4 @@ namespace Errors {
     export const envGistFile = '.env GIST_FILE not found';
 }
 
-export { Constants, Errors, Global };
+export { Constants, Errors };

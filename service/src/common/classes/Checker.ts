@@ -1,4 +1,4 @@
-import { Constants, Global } from '../constants';
+import { Constants } from '../constants';
 import { resolve } from 'path';
 import { serialize } from '../utils';
 import { getUserData } from '../api';
@@ -9,7 +9,7 @@ type Check = {
 }
 
 class Checker {
-    public static path = resolve(Global.__dirname, Constants.defaultDataPath);
+    public static path = resolve(Constants.defaultDataPath);
     public static requestInterval = Constants.defaultRequestIntervalMs;
 
     private _data: Nullable<Data> = null;

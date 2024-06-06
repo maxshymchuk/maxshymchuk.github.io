@@ -1,8 +1,15 @@
 {
-    "extends": "../tsconfig.json",
     "include": ["src/**/*"],
     "exclude": ["node_modules"],
     "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "isolatedModules": true,
+        "strict": true,
+        "sourceMap": true,
+        "declaration": true,
+        "allowJs": false,
+        "moduleResolution": "node",
         "outDir": "dist",
         "esModuleInterop": true,
         "types": ["../global.d.ts", "./env.d.ts"]

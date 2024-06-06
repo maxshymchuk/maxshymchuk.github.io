@@ -3,7 +3,7 @@ import { getGistLastUpdated, getUserData, patchGist } from '../../common/api';
 import { serialize, stringify } from '../../common/utils';
 import { VercelRequest, VercelResponse } from '@vercel/node';
 
-async function getData(): Promise<Data> {
+async function data(): Promise<Data> {
     const timestamp = Date.now();
     const { user, repositories } = await getUserData();
     const snapshot = serialize(repositories);
@@ -19,6 +19,5 @@ async function getData(): Promise<Data> {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-    const data = await getData();
-    return res.json(data);
+    return res.json(await data());
 }
