@@ -1,7 +1,14 @@
 {
-    "extends": "../tsconfig.json",
     "exclude": ["node_modules"],
     "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "isolatedModules": true,
+        "strict": true,
+        "sourceMap": true,
+        "declaration": true,
+        "allowJs": false,
+        "moduleResolution": "node",
         "types": ["vite/client", "../global.d.ts"],
         "lib": ["dom", "esnext"]
     }
