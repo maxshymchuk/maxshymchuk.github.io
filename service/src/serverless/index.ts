@@ -38,7 +38,8 @@ async function createConfig(path: string) {
                 "continue": true
             },
             {
-                "handle": "filesystem"
+                "src": "/",
+                "dest": "/data"
             },
         ]
     }));
