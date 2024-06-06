@@ -8,4 +8,7 @@ await build({
     platform: 'node',
     target: 'esnext',
     outfile: 'api/build.js',
+    banner: {
+        js: 'import { createRequire } from \'module\'; const require = createRequire(import.meta.url);'
+    }
 });
