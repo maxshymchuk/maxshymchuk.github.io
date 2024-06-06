@@ -1,13 +1,13 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { Constants } from '../../common/constants';
 import { getGistLastUpdated, getUserData, patchGist } from '../../common/api';
 import { serialize, stringify } from '../../common/utils';
+import type { VercelRequest, VercelResponse } from '@vercel/node'
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     const timestamp = Date.now();
     const { user, repositories } = await getUserData();
     const snapshot = serialize(repositories);
-    const data = {
+    const data: Data = {
         meta: { timestamp, snapshot },
         data: { user, repositories }
     }

@@ -1,4 +1,5 @@
 {
+    "buildCommand": "node esbuild.js",
     "outputDirectory": "api",
     "headers": [
         {
