@@ -5,7 +5,7 @@ import { dirname } from 'path';
 export async function createServerlessFunction(path, name) {
     await ensureDirectoryExistence(path);
     return await writeFile(path, JSON.stringify({
-        runtime: 'nodejs20.x',
+        runtime: 'nodejs18.x',
         handler: name,
         launcherType: 'Nodejs',
         shouldAddHelpers: true,
@@ -37,7 +37,7 @@ async function asd(sourcePath) {
         const files = await readdir(sourcePath);
         for (const file of files) {
             const clean = file.split('.')[0];
-            const funcFolder = `../../../.vercel/output/functions/${clean}.func/api`;
+            const funcFolder = `../../../.vercel/output/functions/${clean}.func`;
             await createServerlessFunction(`${funcFolder}/.vc-config.json`, `${clean}.js`);
             await transform(`${sourcePath}/${file}`, `${funcFolder}`);
         }
