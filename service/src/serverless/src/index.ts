@@ -1,9 +1,8 @@
 import { Constants } from '../../common/constants';
 import { getGistLastUpdated, getUserData, patchGist } from '../../common/api';
 import { serialize, stringify } from '../../common/utils';
-import type { VercelRequest, VercelResponse } from '@vercel/node'
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+async function getData() {
     const timestamp = Date.now();
     const { user, repositories } = await getUserData();
     const snapshot = serialize(repositories);
@@ -15,5 +14,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (lastUpdated - Date.now() < Constants.defaultRequestIntervalMs) {
         await patchGist(stringify(data, true));
     }
-    return res.json(data);
+    return data;
 }
+
+export { getData };

@@ -1,6 +1,4 @@
 {
-    "buildCommand": "node esbuild.js",
-    "outputDirectory": "api",
     "headers": [
         {
             "source": "/(.*)",
@@ -13,6 +11,6 @@
         }
     ],
     "rewrites": [
-        { "source": "/", "destination": "api/data" }
+        { "source": "/", "destination": "api/" }
     ]
 }
