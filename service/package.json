@@ -1,22 +1,17 @@
 {
-    "type": "module",
     "name": "aggregator-service",
+    "type": "module",
     "scripts": {
         "build": "tsc",
         "start:local": "npm run build && node --experimental-specifier-resolution=node dist/local/index.js",
-        "start:server": "npm run build && node --experimental-specifier-resolution=node dist/server/index.js",
-        "start:serverless": "npm run build && node --experimental-specifier-resolution=node dist/serverless/index.js"
+        "start:server": "npm run build && node --experimental-specifier-resolution=node dist/server/index.js"
     },
     "devDependencies": {
-        "@types/express": "^4.17.21",
         "@types/node": "^20.14.0",
-        "@vercel/node": "^3.1.6",
         "typescript": "^5.4.5"
     },
     "dependencies": {
-        "commander": "^12.1.0",
-        "dotenv": "^16.4.5",
-        "express": "^4.19.2"
+        "dotenv": "^16.4.5"
     },
     "engines": {
         "node": "20.x"

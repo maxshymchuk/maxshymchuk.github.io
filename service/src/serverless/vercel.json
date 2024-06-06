@@ -1,4 +1,5 @@
 {
+    "outputDirectory": ".",
     "headers": [
         {
             "source": "/(.*)",
@@ -11,6 +12,6 @@
         }
     ],
     "rewrites": [
-        { "source": "/", "destination": "/api/data" }
+        { "source": "/", "destination": "api/data" }
     ]
 }
