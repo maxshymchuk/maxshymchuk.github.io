@@ -1,9 +1,6 @@
 {
     "name": "aggregator-service-serverless",
     "type": "module",
-    "scripts": {
-        "vercel-build": "node esbuild.js"
-    },
     "devDependencies": {
         "@vercel/node": "^3.1.6",
         "esbuild": "^0.21.4"
