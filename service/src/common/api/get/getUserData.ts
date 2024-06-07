@@ -12,7 +12,6 @@ async function getUserData(): Promise<UserData> {
     const filtered: Array<MappedRepo> = [];
     for (let repo of repositories) {
         if (repo.name === process.env.USER) continue;
-        if (repo.name === `${process.env.USER}.github.io`) continue;
         filtered.push(repo);
     }
 
