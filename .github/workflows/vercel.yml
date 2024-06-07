@@ -40,6 +40,7 @@ jobs:
         with:
           name: vercel-output
           path: ./service/.vercel
+          retention-days: 1
           
   deploy:
     runs-on: ubuntu-latest
