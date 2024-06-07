@@ -1,5 +1,5 @@
-import { createHeaderByUser } from './modules/createHeader';
-import { createReposFrom } from './modules/createRepos';
+import { createHeader } from './modules/createHeader';
+import { createRepos } from './modules/createRepos';
 import { createLoader, parseGist, getData } from './api';
 import { Sources } from './constants';
 
@@ -27,8 +27,8 @@ async function initialize() {
     try {
         const { data } = await getData(loaders);
 
-        createHeaderByUser(data.user);
-        createReposFrom(data.repositories);
+        createHeader(data.user);
+        createRepos(data.repositories);
 
         loader.classList.add('invisible');
         content.classList.remove('invisible');

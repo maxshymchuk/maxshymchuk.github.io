@@ -3,7 +3,7 @@ function renderLinks(repo: MappedRepo): string {
         { title: 'repo', url: repo.page },
         { title: 'site', url: repo.site },
         { title: 'release', url: repo.release },
-    ].filter(link => link.url);
+    ].filter(link => link.url && link.url !== `${window.location.origin}/`);
     return `(${links.map(link => `<a href="${link.url}" target="_blank">${link.title}</a>`).join(' / ')})`;
 }
 
@@ -36,7 +36,7 @@ function renderRepo(repo: MappedRepo): Node | null {
     return clonedRepo;
 }
 
-function createReposFrom(repositories: Array<MappedRepo>): void {
+function createRepos(repositories: Array<MappedRepo>): void {
     if (repositories.length === 0) return;
     const listElement = document.getElementById('repositories-list') as Nullable<HTMLElement>;
     const rendered: Array<Node> = [];
@@ -47,4 +47,4 @@ function createReposFrom(repositories: Array<MappedRepo>): void {
     listElement?.replaceChildren(...rendered);
 }
 
-export { createReposFrom };
+export { createRepos };
