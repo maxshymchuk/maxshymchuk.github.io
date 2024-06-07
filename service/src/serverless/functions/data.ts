@@ -12,7 +12,7 @@ async function data(): Promise<Data> {
         data: { user, repositories }
     }
     const lastUpdated = await getGistLastUpdated(`https://api.github.com/gists/${process.env.GIST_ID}`);
-    if (lastUpdated - Date.now() < Constants.defaultRequestIntervalMs) {
+    if (Date.now() - lastUpdated > Constants.defaultRequestIntervalMs) {
         await patchGist(stringify(data, true));
     }
     return data;
