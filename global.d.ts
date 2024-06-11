@@ -1,5 +1,7 @@
 type Nullable<T> = T | null;
 
+type ValueOf<T> = T[keyof T];
+
 type Person = {
     login: string;
     id: number;

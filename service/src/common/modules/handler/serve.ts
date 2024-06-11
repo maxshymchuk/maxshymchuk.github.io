@@ -25,7 +25,9 @@ async function serve(checker: Checker): Promise<Nullable<Data>> {
                 logger().log(`Data update failed: ${error}`).newLine();
             }
             try {
-                const { history } = await patchGist(stringify(data, true));
+                if (!process.env.GIST_ID) throw Error('.env GIST_ID not found');
+                if (!process.env.GIST_FILE) throw Error('.env GIST_FILE not found');
+                const { history } = await patchGist(stringify(data, true), process.env.GIST_ID, process.env.GIST_FILE);
                 logger().log('Gist update succeed').newLine();
                 logger().log(`New version -> ${history[0].version}`, { toScreen: false }).newLine()
             } catch (error) {
