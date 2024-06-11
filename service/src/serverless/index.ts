@@ -57,7 +57,7 @@ async function transform(from: string, where: string) {
     });
 }
 
-async function index(sourcePath: string) {
+async function createVercelOutput(sourcePath: string) {
     try {
         const files = await readdir(sourcePath);
 
@@ -91,4 +91,4 @@ async function index(sourcePath: string) {
     }
 }
 
-await index(resolve(__dirname, 'functions'));
+await createVercelOutput(resolve(__dirname, 'functions'));

@@ -1,9 +1,6 @@
 import { kv } from '@vercel/kv';
-import { config } from 'dotenv';
 import { Constants } from '../common/constants';
 import { stringify } from '../common/utils';
-
-config({ override: true });
 
 const keys = {
     data: 'data'

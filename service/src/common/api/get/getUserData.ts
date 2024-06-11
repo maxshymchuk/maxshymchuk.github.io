@@ -1,8 +1,9 @@
 import { getAllRepos } from './getAllRepos';
 import { getUser } from './getUser';
+import { Errors } from '../../constants';
 
 async function getUserData(): Promise<UserData> {
-    if (!process.env.USER) throw Error('.env USER not found');
+    if (!process.env.USER) throw Error(Errors.envUser);
 
     const user = await getUser(`https://api.github.com/users/${process.env.USER}`);
 
