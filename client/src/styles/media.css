@@ -11,9 +11,14 @@
 
     .repo {
         padding: calc(var(--unit) / 2) var(--unit);
+        gap: calc(var(--unit) / 4);
     }
 
     .repo:hover {
         background-color: inherit;
+    }
+
+    .repo .repo-title {
+        gap: calc(var(--unit) / 4) calc(var(--unit) / 2);
     }
 }

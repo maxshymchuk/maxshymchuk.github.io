@@ -26,16 +26,13 @@
 
 .repo .repo-title .repo-name {
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .repo .repo-title .repo-markers {
     display: flex;
     gap: calc(var(--unit) / 2);
-}
-
-.repo .repo-title .repo-markers .repo-icon {
-    display: block;
-    height: 20px;
 }
 
 .repo .repo-title .repo-markers .repo-marker {
@@ -45,8 +42,8 @@
 }
 
 .repo .repo-title .repo-markers .repo-marker.archived {
-    position: relative;
-    top: 1px;
+    font-weight: bold;
+    opacity: .2;
 }
 
 .repo .repo-title .repo-button {

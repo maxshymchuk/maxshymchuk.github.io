@@ -4,7 +4,7 @@ function renderLinks(repo: MappedRepo): string {
         { title: 'site', url: repo.site },
         { title: 'release', url: repo.release },
     ].filter(link => link.url && link.url !== `${window.location.origin}/`);
-    return `(${links.map(link => `<a href="${link.url}" target="_blank">${link.title}</a>`).join(' / ')})`;
+    return `[ ${links.map(link => `<a href="${link.url}" target="_blank">${link.title}</a>`).join(' | ')} ]`;
 }
 
 function renderRepo(repo: MappedRepo): Node | null {
