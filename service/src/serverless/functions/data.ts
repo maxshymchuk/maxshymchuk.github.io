@@ -2,7 +2,7 @@ import database from '../database';
 import { config } from 'dotenv';
 import { getUserData, patchGist } from '../../common/api';
 import { serialize, stringify } from '../../common/utils';
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { jsonHandler } from '../utils';
 
 config({ override: true });
 
@@ -41,6 +41,4 @@ async function data(): Promise<Nullable<Data>> {
     }
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-    return res.json(await data());
-}
+export default jsonHandler(data);
