@@ -30,6 +30,10 @@
     text-overflow: ellipsis;
 }
 
+.repo .repo-title .repo-links {
+    white-space: nowrap;
+}
+
 .repo .repo-title .repo-markers {
     display: flex;
     gap: calc(var(--unit) / 2);
