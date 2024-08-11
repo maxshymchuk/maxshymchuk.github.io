@@ -12,6 +12,6 @@
         "moduleResolution": "node",
         "outDir": "dist",
         "esModuleInterop": true,
-        "types": ["../global.d.ts", "./env.d.ts"]
+        "types": ["../global.d.ts"]
     }
 }
