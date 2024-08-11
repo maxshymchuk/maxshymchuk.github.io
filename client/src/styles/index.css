@@ -11,7 +11,6 @@
     height: inherit;
     margin: 0 auto;
     overflow: hidden;
-    user-select: none;
 }
 
 .loader {
