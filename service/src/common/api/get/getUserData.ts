@@ -1,6 +1,6 @@
 import { getAllRepos } from './getAllRepos';
 import { getUser } from './getUser';
-import { Errors } from '../../constants';
+import { Constants, Errors } from '../../constants';
 
 async function getUserData(): Promise<UserData> {
     if (!process.env.USER) throw Error(Errors.envUser);
@@ -12,6 +12,7 @@ async function getUserData(): Promise<UserData> {
     const filtered: Array<MappedRepo> = [];
     for (let repo of repositories) {
         if (repo.name === process.env.USER) continue;
+        if (repo.topics.includes(Constants.repoExcludeTopic)) continue;
         filtered.push(repo);
     }
 

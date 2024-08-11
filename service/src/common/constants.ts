@@ -1,4 +1,5 @@
 namespace Constants {
+    export const repoExcludeTopic = 'repo-exclude';
     export const defaultDataPath = 'data.json';
     export const defaultLogPath = 'history.log';
     export const defaultCheckIntervalMs = 1000; // 1 sec

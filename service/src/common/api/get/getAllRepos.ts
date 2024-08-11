@@ -9,6 +9,7 @@ function mapRepo(repo: Repo, release?: Nullable<Release>): MappedRepo {
         site: repo.homepage || null,
         release: release?.html_url || null,
         page: repo.html_url,
+        topics: repo.topics,
         archived: repo.archived
     };
 }

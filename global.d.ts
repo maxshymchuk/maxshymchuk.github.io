@@ -234,6 +234,7 @@ type MappedRepo = {
     site: Nullable<string>;
     release: Nullable<string>;
     page: string;
+    topics: Array<string>;
     archived: boolean;
 }
 
