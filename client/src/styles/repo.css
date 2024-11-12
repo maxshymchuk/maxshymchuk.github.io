@@ -1,5 +1,3 @@
-@import 'vars.css';
-
 .repos {
     display: flex;
     flex-direction: column;

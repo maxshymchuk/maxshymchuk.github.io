@@ -3,14 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="src/styles/index.css" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" as="style">
+    <link rel="preload" href="src/styles/index.css" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="src/styles/index.css" rel="stylesheet">
     <title>Max Shymchuk</title>
+    <style>
+        :root {
+            --unit: 20px;
+
+            --color-background: #FFF;
+            --color-font: #000;
+            --color-link: #0040ba;
+
+            --font-size: 16px;
+        }
+        .invisible {
+            display: none !important;
+        }
+        .blocker {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: var(--unit);
+            gap: var(--unit);
+            margin: auto;
+            user-select: none;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: var(--color-background);
+        }
+        .loader {
+            font-size: min(10vw, 10vh);
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <div class="loader" id="loader">Loading...</div>
+    <div id="loader" class="blocker loader">
+        Loading...
+    </div>
+    <noscript>
+        <div class="blocker">
+            Scripts are disabled in your browser
+            <a href="https://github.com/maxshymchuk">Visit my GitHub then</a>
+        </div>
+    </noscript>
     <div class="content invisible" id="content">
         <header class="header">
             <section class="header-wrapper limited">
