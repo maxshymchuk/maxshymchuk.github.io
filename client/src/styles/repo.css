@@ -1,7 +1,4 @@
 .repos {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
     padding-bottom: calc(4 * var(--unit));
 }
 
@@ -9,7 +6,6 @@
     display: flex;
     flex-direction: column;
     gap: calc(var(--unit) / 2);
-    padding: var(--unit);
 }
 
 .repo .repo-title {

@@ -9,6 +9,7 @@
     <link rel="preload" href="src/styles/index.css" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="src/styles/index.css" rel="stylesheet">
+    <script type="module" defer src="src/index.ts"></script>
     <title>Max Shymchuk</title>
     <style>
         :root {
@@ -57,50 +58,53 @@
         </div>
     </noscript>
     <div class="content invisible" id="content">
-        <header class="header">
-            <section class="header-wrapper limited">
-                <article>
-                    <h1 class="header-title" id="header-name">Name</h1>
-                    <h2 class="header-subtitle" id="header-bio">Bio</h2>
-                </article>
-                <section class="header-links">
-                    <a href="https://www.linkedin.com/in/max-shymchuk/" target="_blank">
-                        <img src="assets/linkedin.svg" alt="Linkedin" />
-                    </a>
-                    <a href="https://t.me/mshymchuk" target="_blank">
-                        <img src="assets/telegram.svg" alt="Telegram" />
-                    </a>
-                    <a href="https://github.com/maxshymchuk" target="_blank">
-                        <img src="assets/github.svg" alt="Github" />
-                    </a>
-                    <a href="#" target="_blank" id="header-links-email">
-                        <img src="assets/email.svg" alt="Email" />
-                    </a>
-                </section>
-            </section>
+        <header class="header margin-x-center margin-y padding-x max-width-1000">
+            <article>
+                <h1 class="header-title" id="header-name">Name</h1>
+                <h2 class="header-subtitle" id="header-bio">Bio</h2>
+            </article>
+            <div class="header-links">
+                <a href="https://www.linkedin.com/in/max-shymchuk/" target="_blank">
+                    <img src="assets/linkedin.svg" alt="Linkedin">
+                </a>
+                <a href="https://t.me/mshymchuk" target="_blank">
+                    <img src="assets/telegram.svg" alt="Telegram">
+                </a>
+                <a href="https://github.com/maxshymchuk" target="_blank">
+                    <img src="assets/github.svg" alt="Github">
+                </a>
+                <a href="#" target="_blank" id="header-links-email">
+                    <img src="assets/email.svg" alt="Email">
+                </a>
+            </div>
         </header>
         <main>
-            <template id="template-repo">
-                <section class="repo">
-                    <article class="repo-title">
-                        <h3 class="repo-name">Name</h3>
-                        <div class="repo-links">Links</div>
-                        <section class="repo-markers">
-                            <div class="repo-marker archived">
-                                archived
-                            </div>
-                        </section>
-                    </article>
-                    <p class="repo-description">Description</p>
-                </section>
-            </template>
-            <section class="repos limited" id="repositories-list">
+            <div class="current margin-y padding-y">
+                <div class="margin-x-center padding-x max-width-1000">
+                    Currently i'm working on my own Framework and UI library!
+                </div>
+            </div>
+            <div class="repos margin-x-center max-width-1000" id="repositories-list">
                 <div class="loader">
                     Empty
                 </div>
-            </section>
+            </div>
         </main>
     </div>
-    <script type="module" src="src/index.ts"></script>
+
+    <template id="template-repo">
+        <div class="repo margin-y padding-x">
+            <article class="repo-title">
+                <h3 class="repo-name">Name</h3>
+                <div class="repo-links">Links</div>
+                <div class="repo-markers">
+                    <div class="repo-marker archived">
+                        archived
+                    </div>
+                </div>
+            </article>
+            <p class="repo-description">Description</p>
+        </div>
+    </template>
 </body>
 </html>

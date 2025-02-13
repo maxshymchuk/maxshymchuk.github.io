@@ -36,7 +36,7 @@ function renderRepo(repo: MappedRepo): Node | null {
     return clonedRepo;
 }
 
-function createRepos(repositories: Array<MappedRepo>): void {
+function reposModule(repositories: Array<MappedRepo>): void {
     if (repositories.length === 0) return;
     const listElement = document.getElementById('repositories-list') as Nullable<HTMLElement>;
     const rendered: Array<Node> = [];
@@ -47,4 +47,4 @@ function createRepos(repositories: Array<MappedRepo>): void {
     listElement?.replaceChildren(...rendered);
 }
 
-export { createRepos };
+export { reposModule };

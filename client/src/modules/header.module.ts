@@ -1,4 +1,4 @@
-function createHeader(user: MappedUser): void {
+function headerModule(user: MappedUser): void {
     const headerName = document.getElementById('header-name') as Nullable<HTMLElement>;
     const headerBio = document.getElementById('header-bio') as Nullable<HTMLElement>;
     const headerEmail = document.getElementById('header-links-email') as Nullable<HTMLAnchorElement>;
@@ -21,4 +21,4 @@ function createHeader(user: MappedUser): void {
     }
 }
 
-export { createHeader };
+export { headerModule };

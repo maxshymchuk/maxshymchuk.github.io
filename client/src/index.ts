@@ -1,7 +1,7 @@
-import { createHeader } from './modules/createHeader';
-import { createRepos } from './modules/createRepos';
-import { createLoader, parseGist, getData } from './api';
+import { getData } from './api';
 import { Sources } from './constants';
+import { headerModule, reposModule } from './modules';
+import { createLoader, parseGist } from './utils';
 
 const loader = document.getElementById('loader') as HTMLElement | null;
 const content = document.getElementById('content') as HTMLElement | null;
@@ -27,8 +27,8 @@ async function initialize() {
     try {
         const { data } = await getData(loaders);
 
-        createHeader(data.user);
-        createRepos(data.repositories);
+        headerModule(data.user);
+        reposModule(data.repositories);
 
         loader.classList.add('invisible');
         content.classList.remove('invisible');

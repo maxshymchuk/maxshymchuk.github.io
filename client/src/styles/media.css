@@ -1,10 +1,10 @@
 @media screen and (max-width: 480px) {
-    .header .header-wrapper {
+    .header {
         gap: calc(var(--unit) / 2);
         padding: calc(var(--unit) / 2) var(--unit);
     }
 
-    .header .header-wrapper .header-links a {
+    .header .header-links a {
         width: 25px;
         height: 25px;
     }

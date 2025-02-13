@@ -1,4 +1,4 @@
-import type { Loader } from '../utils/createLoader';
+import type { Loader } from '../utils/loader';
 
 async function getData(loaders: Array<Loader>): Promise<Data> {
     for (let loader of loaders) {

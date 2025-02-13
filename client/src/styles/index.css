@@ -1,13 +1,12 @@
 @import 'reset.css';
 @import 'header.css';
+@import 'current.css';
 @import 'repo.css';
 @import 'media.css';
 @import 'mods.css';
 
 .content {
-    display: flex;
-    flex-direction: column;
     height: inherit;
     margin: 0 auto;
-    overflow: hidden;
+    overflow: auto;
 }
