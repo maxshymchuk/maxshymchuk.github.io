@@ -2,23 +2,19 @@
     .header {
         gap: calc(var(--unit) / 2);
         padding: calc(var(--unit) / 2) var(--unit);
-    }
 
-    .header .header-links a {
-        width: 25px;
-        height: 25px;
+        .header-links a {
+            width: 25px;
+            height: 25px;
+        }
     }
 
     .repo {
         padding: calc(var(--unit) / 2) var(--unit);
         gap: calc(var(--unit) / 4);
-    }
 
-    .repo:hover {
-        background-color: inherit;
-    }
-
-    .repo .repo-title {
-        gap: calc(var(--unit) / 4) calc(var(--unit) / 2);
+        .repo-title {
+            gap: calc(var(--unit) / 4) calc(var(--unit) / 2);
+        }
     }
 }

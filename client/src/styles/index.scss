@@ -1,0 +1,11 @@
+@use 'reset';
+@use 'header';
+@use 'current';
+@use 'repo';
+@use 'media';
+
+.content {
+    height: inherit;
+    margin: 0 auto;
+    overflow: auto;
+}

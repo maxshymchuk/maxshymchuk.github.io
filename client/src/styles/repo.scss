@@ -1,0 +1,61 @@
+@use 'spacing';
+
+.repos {
+    @include spacing.margin-center(x);
+    @include spacing.max-width;
+
+    padding-bottom: calc(4 * var(--unit));
+}
+
+.repo {
+    @include spacing.padding-x;
+    @include spacing.margin-y;
+
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--unit) / 2);
+
+    .repo-title {
+        display: flex;
+        flex-wrap: wrap;
+        gap: calc(var(--unit) / 2);
+
+        .repo-name {
+            margin: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .repo-links {
+            white-space: nowrap;
+        }
+
+        .repo-markers {
+            display: flex;
+            gap: calc(var(--unit) / 2);
+
+            .repo-marker {
+                display: flex;
+                align-items: center;
+                gap: calc(var(--unit) / 4);
+
+                &.archived {
+                    font-weight: bold;
+                    opacity: 0.2;
+                }
+            }
+        }
+
+        .repo-button {
+            margin-left: auto;
+        }
+    }
+
+    .repo-description {
+        display: -webkit-box;
+        line-clamp: 4;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}

@@ -1,0 +1,35 @@
+@mixin margin-x($ratio: 1) {
+    margin-left: calc(var(--unit) * $ratio);
+    margin-right: calc(var(--unit) * $ratio);
+}
+
+@mixin margin-y($ratio: 1) {
+    margin-top: calc(var(--unit) * $ratio);
+    margin-bottom: calc(var(--unit) * $ratio);
+}
+
+@mixin padding-x($ratio: 1) {
+    padding-left: calc(var(--unit) * $ratio);
+    padding-right: calc(var(--unit) * $ratio);
+}
+
+@mixin padding-y($ratio: 1) {
+    padding-top: calc(var(--unit) * $ratio);
+    padding-bottom: calc(var(--unit) * $ratio);
+}
+
+@mixin margin-center($dir) {
+    @if $dir == x {
+        margin-left: auto;
+        margin-right: auto;
+    } @else if $dir == y {
+        margin-top: auto;
+        margin-bottom: auto;
+    } @else {
+        margin: auto;
+    }
+}
+
+@mixin max-width {
+    max-width: 1000px;
+}

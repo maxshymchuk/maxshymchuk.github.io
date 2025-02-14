@@ -1,6 +1,6 @@
 function headerModule(user: MappedUser): void {
-    const headerName = document.getElementById('header-name') as Nullable<HTMLElement>;
-    const headerBio = document.getElementById('header-bio') as Nullable<HTMLElement>;
+    const headerName = document.getElementById('header-name');
+    const headerBio = document.getElementById('header-bio');
     const headerEmail = document.getElementById('header-links-email') as Nullable<HTMLAnchorElement>;
     if (headerName) {
         headerName.innerText = user.name ? user.name : user.login;

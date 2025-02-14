@@ -3,8 +3,8 @@ function renderLinks(repo: MappedRepo): string {
         { title: 'repo', url: repo.page },
         { title: 'site', url: repo.site },
         { title: 'release', url: repo.release },
-    ].filter(link => link.url && link.url !== `${window.location.origin}/`);
-    return `[ ${links.map(link => `<a href="${link.url}" target="_blank">${link.title}</a>`).join(' | ')} ]`;
+    ].filter((link) => link.url && link.url !== `${window.location.origin}/`);
+    return `[ ${links.map((link) => `<a href="${link.url}" target="_blank">${link.title}</a>`).join(' | ')} ]`;
 }
 
 function renderRepo(repo: MappedRepo): Node | null {
@@ -12,12 +12,12 @@ function renderRepo(repo: MappedRepo): Node | null {
 
     const clonedRepo = templateRepo?.content.querySelector('.repo')?.cloneNode(true) as Nullable<HTMLElement>;
 
-    const repoName = clonedRepo?.querySelector('.repo-name') as Nullable<HTMLElement>;
-    const repoDescription = clonedRepo?.querySelector('.repo-description') as Nullable<HTMLElement>;
-    const repoLinks = clonedRepo?.querySelector('.repo-links') as Nullable<HTMLElement>;
-    const repoStars = clonedRepo?.querySelector('.repo-marker.stars') as Nullable<HTMLElement>;
-    const repoStarsSpan = repoStars?.querySelector('span') as Nullable<HTMLElement>;
-    const repoArchived = clonedRepo?.querySelector('.repo-marker.archived') as Nullable<HTMLElement>;
+    const repoName = clonedRepo?.querySelector<HTMLElement>('.repo-name');
+    const repoDescription = clonedRepo?.querySelector<HTMLElement>('.repo-description');
+    const repoLinks = clonedRepo?.querySelector<HTMLElement>('.repo-links');
+    const repoStars = clonedRepo?.querySelector<HTMLElement>('.repo-marker.stars');
+    const repoStarsSpan = repoStars?.querySelector<HTMLElement>('span');
+    const repoArchived = clonedRepo?.querySelector<HTMLElement>('.repo-marker.archived');
 
     if (repoName) repoName.innerText = repo.name;
     if (repoLinks) repoLinks.innerHTML = renderLinks(repo);
@@ -38,9 +38,9 @@ function renderRepo(repo: MappedRepo): Node | null {
 
 function reposModule(repositories: Array<MappedRepo>): void {
     if (repositories.length === 0) return;
-    const listElement = document.getElementById('repositories-list') as Nullable<HTMLElement>;
+    const listElement = document.getElementById('repositories-list');
     const rendered: Array<Node> = [];
-    for (let repo of repositories) {
+    for (const repo of repositories) {
         const result = renderRepo(repo);
         if (result) rendered.push(result);
     }

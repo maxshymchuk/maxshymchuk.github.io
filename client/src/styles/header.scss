@@ -1,0 +1,40 @@
+@use 'spacing';
+
+.header {
+    @include spacing.padding-x;
+    @include spacing.margin-y;
+    @include spacing.margin-center(x);
+    @include spacing.max-width;
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--unit);
+
+    .header-title {
+        margin: 0;
+        font-size: max(min(10vw, 4rem), 2rem);
+    }
+
+    .header-subtitle {
+        margin: 0;
+        font-size: max(min(4vw, 1.5rem), 1rem);
+    }
+
+    .header-links {
+        display: flex;
+        gap: var(--unit);
+    }
+
+    .header-links a {
+        width: 30px;
+        height: 30px;
+        opacity: 0.2;
+    }
+
+    .header-links a:hover {
+        opacity: 0.3;
+    }
+}

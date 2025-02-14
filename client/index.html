@@ -1,110 +1,102 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" as="style">
-    <link rel="preload" href="src/styles/index.css" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="src/styles/index.css" rel="stylesheet">
-    <script type="module" defer src="src/index.ts"></script>
-    <title>Max Shymchuk</title>
-    <style>
-        :root {
-            --unit: 20px;
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" as="style">
+        <link rel="preload" href="src/styles/index.scss" as="style">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link href="src/styles/index.scss" rel="stylesheet">
+        <script type="module" defer src="src/index.ts"></script>
+        <title>Max Shymchuk</title>
+        <style>
+            :root {
+                --unit: 20px;
 
-            --color-background: #FFF;
-            --color-font: #000;
-            --color-link: #0040ba;
+                --color-background: #fff;
+                --color-font: #000;
+                --color-link: #0040ba;
 
-            --font-size: 16px;
-        }
-        .invisible {
-            display: none !important;
-        }
-        .blocker {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: var(--unit);
-            gap: var(--unit);
-            margin: auto;
-            user-select: none;
-            position: fixed;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            background-color: var(--color-background);
-        }
-        .loader {
-            font-size: min(10vw, 10vh);
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <div id="loader" class="blocker loader">
-        Loading...
-    </div>
-    <noscript>
-        <div class="blocker">
-            Scripts are disabled in your browser
-            <a href="https://github.com/maxshymchuk">Visit my GitHub then</a>
+                --font-size: 16px;
+            }
+            .invisible {
+                display: none !important;
+            }
+            .blocker {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                padding: var(--unit);
+                gap: var(--unit);
+                margin: auto;
+                user-select: none;
+                position: fixed;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background-color: var(--color-background);
+            }
+            .loader {
+                font-size: min(10vw, 10vh);
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="loader" class="blocker loader">Loading...</div>
+        <noscript>
+            <div class="blocker">
+                Scripts are disabled in your browser
+                <a href="https://github.com/maxshymchuk">Visit my GitHub then</a>
+            </div>
+        </noscript>
+        <div class="content invisible" id="content">
+            <header class="header">
+                <article>
+                    <h1 class="header-title" id="header-name">Name</h1>
+                    <h2 class="header-subtitle" id="header-bio">Bio</h2>
+                </article>
+                <div class="header-links">
+                    <a href="https://www.linkedin.com/in/max-shymchuk/" target="_blank">
+                        <img src="assets/linkedin.svg" alt="Linkedin">
+                    </a>
+                    <a href="https://t.me/mshymchuk" target="_blank">
+                        <img src="assets/telegram.svg" alt="Telegram">
+                    </a>
+                    <a href="https://github.com/maxshymchuk" target="_blank">
+                        <img src="assets/github.svg" alt="Github">
+                    </a>
+                    <a href="#" target="_blank" id="header-links-email">
+                        <img src="assets/email.svg" alt="Email">
+                    </a>
+                </div>
+            </header>
+            <main>
+                <div class="current">
+                    <div class="project">Currently i'm working on my own Framework and UI library!</div>
+                </div>
+                <div class="repos" id="repositories-list">
+                    <div class="loader">Empty</div>
+                </div>
+            </main>
         </div>
-    </noscript>
-    <div class="content invisible" id="content">
-        <header class="header margin-x-center margin-y padding-x max-width-1000">
-            <article>
-                <h1 class="header-title" id="header-name">Name</h1>
-                <h2 class="header-subtitle" id="header-bio">Bio</h2>
-            </article>
-            <div class="header-links">
-                <a href="https://www.linkedin.com/in/max-shymchuk/" target="_blank">
-                    <img src="assets/linkedin.svg" alt="Linkedin">
-                </a>
-                <a href="https://t.me/mshymchuk" target="_blank">
-                    <img src="assets/telegram.svg" alt="Telegram">
-                </a>
-                <a href="https://github.com/maxshymchuk" target="_blank">
-                    <img src="assets/github.svg" alt="Github">
-                </a>
-                <a href="#" target="_blank" id="header-links-email">
-                    <img src="assets/email.svg" alt="Email">
-                </a>
-            </div>
-        </header>
-        <main>
-            <div class="current margin-y padding-y">
-                <div class="margin-x-center padding-x max-width-1000">
-                    Currently i'm working on my own Framework and UI library!
-                </div>
-            </div>
-            <div class="repos margin-x-center max-width-1000" id="repositories-list">
-                <div class="loader">
-                    Empty
-                </div>
-            </div>
-        </main>
-    </div>
 
-    <template id="template-repo">
-        <div class="repo margin-y padding-x">
-            <article class="repo-title">
-                <h3 class="repo-name">Name</h3>
-                <div class="repo-links">Links</div>
-                <div class="repo-markers">
-                    <div class="repo-marker archived">
-                        archived
+        <template id="template-repo">
+            <div class="repo">
+                <article class="repo-title">
+                    <h3 class="repo-name">Name</h3>
+                    <div class="repo-links">Links</div>
+                    <div class="repo-markers">
+                        <div class="repo-marker archived">archived</div>
                     </div>
-                </div>
-            </article>
-            <p class="repo-description">Description</p>
-        </div>
-    </template>
-</body>
+                </article>
+                <p class="repo-description">Description</p>
+            </div>
+        </template>
+    </body>
 </html>

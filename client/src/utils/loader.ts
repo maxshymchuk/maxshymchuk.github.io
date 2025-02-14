@@ -2,7 +2,7 @@ type Source = {
     url: string;
     headers?: HeadersInit;
     parser?: (value: Response) => Promise<Data>;
-}
+};
 
 function createLoader(source: Source | string): () => Promise<Data> {
     return async () => {
@@ -10,9 +10,9 @@ function createLoader(source: Source | string): () => Promise<Data> {
         const headers = typeof source === 'string' ? undefined : source.headers;
         const parser = typeof source === 'string' ? undefined : source.parser;
         const response = await fetch(url, { method: 'GET', headers });
-        if (!response.ok) throw Error('Can\'t load data');
+        if (!response.ok) throw Error("Can't load data");
         return parser ? parser(response) : response.json();
-    }
+    };
 }
 
 export type Loader = ReturnType<typeof createLoader>;
