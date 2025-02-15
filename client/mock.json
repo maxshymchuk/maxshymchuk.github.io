@@ -1,0 +1,204 @@
+{
+    "meta": { "timestamp": 1739617002015, "snapshot": "da57d81fd0653745db91acc75910a23f" },
+    "data": {
+        "user": {
+            "login": "maxshymchuk",
+            "name": "Max Shymchuk",
+            "bio": "Frontend Developer since 2019",
+            "email": null,
+            "repos_url": "https://api.github.com/users/maxshymchuk/repos"
+        },
+        "repositories": [
+            {
+                "name": "Crypto",
+                "description": "Implementation of some encryption algorithms",
+                "stars": 0,
+                "site": "https://maxshymchuk.github.io/Crypto/",
+                "release": null,
+                "page": "https://github.com/maxshymchuk/Crypto",
+                "topics": [],
+                "archived": true
+            },
+            {
+                "name": "EasyNote",
+                "description": "Desktop .NET notepad application with tabs and autosaving",
+                "stars": 0,
+                "site": null,
+                "release": "https://github.com/maxshymchuk/EasyNote/releases/tag/1.0.0",
+                "page": "https://github.com/maxshymchuk/EasyNote",
+                "topics": [],
+                "archived": true
+            },
+            {
+                "name": "Font-Viewer",
+                "description": "Application for viewing all fonts in subdirectories",
+                "stars": 1,
+                "site": null,
+                "release": "https://github.com/maxshymchuk/Font-Viewer/releases/tag/1.0.0",
+                "page": "https://github.com/maxshymchuk/Font-Viewer",
+                "topics": [],
+                "archived": true
+            },
+            {
+                "name": "Game-of-Life",
+                "description": "Desktop application of Conway's cellular automaton \"Game of Life\"",
+                "stars": 0,
+                "site": null,
+                "release": "https://github.com/maxshymchuk/Game-of-Life/releases/tag/1.0.0",
+                "page": "https://github.com/maxshymchuk/Game-of-Life",
+                "topics": [],
+                "archived": true
+            },
+            {
+                "name": "Kanva",
+                "description": "Simple test application for placing geometric shapes using drag'n'drop",
+                "stars": 0,
+                "site": "https://maxshymchuk.github.io/Kanva/",
+                "release": null,
+                "page": "https://github.com/maxshymchuk/Kanva",
+                "topics": [],
+                "archived": true
+            },
+            {
+                "name": "maxshymchuk.github.io",
+                "description": "Monorepo to bring all my open-source projects together into one beautiful website. BE is based on Vercel serverless functions",
+                "stars": 0,
+                "site": "https://maxshymchuk.github.io/",
+                "release": null,
+                "page": "https://github.com/maxshymchuk/maxshymchuk.github.io",
+                "topics": [],
+                "archived": false
+            },
+            {
+                "name": "Pop",
+                "description": "Architectural solution to build a mini game engine and to control a state of the game",
+                "stars": 0,
+                "site": "https://maxshymchuk.github.io/Pop/",
+                "release": null,
+                "page": "https://github.com/maxshymchuk/Pop",
+                "topics": [],
+                "archived": false
+            },
+            {
+                "name": "Rectosector",
+                "description": "Application to test intersection algorithm between rectangles/lines",
+                "stars": 0,
+                "site": "https://maxshymchuk.github.io/Rectosector/",
+                "release": null,
+                "page": "https://github.com/maxshymchuk/Rectosector",
+                "topics": [],
+                "archived": true
+            },
+            {
+                "name": "Remme",
+                "description": "Simple test application for reminding important notes",
+                "stars": 0,
+                "site": "https://maxshymchuk.github.io/Remme/",
+                "release": null,
+                "page": "https://github.com/maxshymchuk/Remme",
+                "topics": [],
+                "archived": true
+            },
+            {
+                "name": "RSOA",
+                "description": "Application for University to solve problems by Random Search Optimization Algorithm",
+                "stars": 0,
+                "site": "https://maxshymchuk.github.io/RSOA/",
+                "release": null,
+                "page": "https://github.com/maxshymchuk/RSOA",
+                "topics": [],
+                "archived": true
+            },
+            {
+                "name": "Shuttle",
+                "description": "Full-stack project of fictional transport company. Course work",
+                "stars": 0,
+                "site": null,
+                "release": null,
+                "page": "https://github.com/maxshymchuk/Shuttle",
+                "topics": [],
+                "archived": true
+            },
+            {
+                "name": "Statter",
+                "description": "Simple test game with simple 2D collision detection",
+                "stars": 0,
+                "site": "https://maxshymchuk.github.io/Statter/",
+                "release": null,
+                "page": "https://github.com/maxshymchuk/Statter",
+                "topics": [],
+                "archived": false
+            },
+            {
+                "name": "Tagger",
+                "description": "Project that can solve problems with hashtags sorting and filtering, for those who use social networks a lot",
+                "stars": 0,
+                "site": "https://hashmash.vercel.app",
+                "release": null,
+                "page": "https://github.com/maxshymchuk/Tagger",
+                "topics": [],
+                "archived": false
+            },
+            {
+                "name": "Tematichka",
+                "description": "Application for generating themes for pictures",
+                "stars": 0,
+                "site": "https://maxshymchuk.github.io/Tematichka/",
+                "release": null,
+                "page": "https://github.com/maxshymchuk/Tematichka",
+                "topics": [],
+                "archived": true
+            },
+            {
+                "name": "Tudushka",
+                "description": "Simple test application for TODO tasks with pretty \"folders\" interface",
+                "stars": 0,
+                "site": "https://maxshymchuk.github.io/Tudushka/",
+                "release": null,
+                "page": "https://github.com/maxshymchuk/Tudushka",
+                "topics": [],
+                "archived": true
+            },
+            {
+                "name": "UnoRetranslator",
+                "description": "Application to transfer data from Telegram chat with bot to Arduino's display module",
+                "stars": 0,
+                "site": null,
+                "release": null,
+                "page": "https://github.com/maxshymchuk/UnoRetranslator",
+                "topics": [],
+                "archived": true
+            },
+            {
+                "name": "UnoSpectrum",
+                "description": "Arduino-based sound spectrum visualizer. University course work",
+                "stars": 0,
+                "site": null,
+                "release": null,
+                "page": "https://github.com/maxshymchuk/UnoSpectrum",
+                "topics": [],
+                "archived": true
+            },
+            {
+                "name": "Vault",
+                "description": "Application for storing data (passwords) with additional functions such as showing/hiding or copying protected information without revealing it",
+                "stars": 0,
+                "site": null,
+                "release": null,
+                "page": "https://github.com/maxshymchuk/Vault",
+                "topics": [],
+                "archived": false
+            },
+            {
+                "name": "Vault-Desktop",
+                "description": "Desktop .NET Windows application to store passwords or any other pair of key-value",
+                "stars": 0,
+                "site": null,
+                "release": "https://github.com/maxshymchuk/Vault-Desktop/releases/tag/1.0.0",
+                "page": "https://github.com/maxshymchuk/Vault-Desktop",
+                "topics": [],
+                "archived": true
+            }
+        ]
+    }
+}

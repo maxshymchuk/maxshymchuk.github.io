@@ -1,3 +1,4 @@
+@use 'breakpoints';
 @use 'spacing';
 
 .header {
@@ -11,7 +12,7 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: var(--unit);
+    gap: spacing.$unit;
 
     .header-title {
         margin: 0;
@@ -25,13 +26,18 @@
 
     .header-links {
         display: flex;
-        gap: var(--unit);
+        gap: spacing.$unit;
     }
 
     .header-links a {
         width: 30px;
         height: 30px;
         opacity: 0.2;
+
+        @media screen and (max-width: breakpoints.$sm) {
+            width: 25px;
+            height: 25px;
+        }
     }
 
     .header-links a:hover {

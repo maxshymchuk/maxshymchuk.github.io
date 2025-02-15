@@ -1,16 +1,19 @@
+@use 'colors';
+@use 'sizing';
+
 * {
     box-sizing: border-box;
     background-color: transparent;
     touch-action: manipulation;
     font-size: 1rem;
-    color: var(--color-font);
+    color: colors.$text;
 }
 
 html,
 body {
     height: 100%;
     overflow: hidden;
-    font-size: var(--font-size);
+    font-size: sizing.$text;
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
     font-family: 'Montserrat', sans-serif;
@@ -18,11 +21,11 @@ body {
 
 body {
     margin: 0;
-    background-color: var(--color-background);
+    background-color: colors.$background;
 }
 
 a {
-    color: var(--color-link);
+    color: colors.$link;
     text-decoration: none;
     flex-shrink: 0;
 }

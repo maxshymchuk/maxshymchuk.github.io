@@ -9,6 +9,8 @@
         "declaration": true,
         "allowJs": false,
         "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
         "types": ["vite/client", "../global.d.ts"],
         "lib": ["dom", "esnext"]
     }

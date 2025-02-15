@@ -1,21 +1,23 @@
+$unit: 20px;
+
 @mixin margin-x($ratio: 1) {
-    margin-left: calc(var(--unit) * $ratio);
-    margin-right: calc(var(--unit) * $ratio);
+    margin-left: calc($unit * $ratio);
+    margin-right: calc($unit * $ratio);
 }
 
 @mixin margin-y($ratio: 1) {
-    margin-top: calc(var(--unit) * $ratio);
-    margin-bottom: calc(var(--unit) * $ratio);
+    margin-top: calc($unit * $ratio);
+    margin-bottom: calc($unit * $ratio);
 }
 
 @mixin padding-x($ratio: 1) {
-    padding-left: calc(var(--unit) * $ratio);
-    padding-right: calc(var(--unit) * $ratio);
+    padding-left: calc($unit * $ratio);
+    padding-right: calc($unit * $ratio);
 }
 
 @mixin padding-y($ratio: 1) {
-    padding-top: calc(var(--unit) * $ratio);
-    padding-bottom: calc(var(--unit) * $ratio);
+    padding-top: calc($unit * $ratio);
+    padding-bottom: calc($unit * $ratio);
 }
 
 @mixin margin-center($dir) {

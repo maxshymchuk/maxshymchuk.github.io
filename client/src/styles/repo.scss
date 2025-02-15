@@ -1,24 +1,29 @@
+@use 'breakpoints';
 @use 'spacing';
 
 .repos {
     @include spacing.margin-center(x);
     @include spacing.max-width;
 
-    padding-bottom: calc(4 * var(--unit));
+    padding-bottom: calc(4 * spacing.$unit);
 }
 
 .repo {
     @include spacing.padding-x;
-    @include spacing.margin-y;
+    @include spacing.margin-y(1.5);
 
     display: flex;
     flex-direction: column;
-    gap: calc(var(--unit) / 2);
+    gap: calc(spacing.$unit / 2);
+
+    @media screen and (max-width: breakpoints.$sm) {
+        @include spacing.margin-y;
+    }
 
     .repo-title {
         display: flex;
         flex-wrap: wrap;
-        gap: calc(var(--unit) / 2);
+        gap: calc(spacing.$unit / 2);
 
         .repo-name {
             margin: 0;
@@ -32,12 +37,12 @@
 
         .repo-markers {
             display: flex;
-            gap: calc(var(--unit) / 2);
+            gap: calc(spacing.$unit / 2);
 
             .repo-marker {
                 display: flex;
                 align-items: center;
-                gap: calc(var(--unit) / 4);
+                gap: calc(spacing.$unit / 4);
 
                 &.archived {
                     font-weight: bold;
