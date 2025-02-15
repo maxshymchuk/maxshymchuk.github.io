@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import { Checker } from '../../classes/Checker';
 import { logger, Logger } from '../../classes/Logger';
-import { Constants } from '../../constants';
+import { Const } from '../../constants';
 import { getValidOpts } from './validation';
 import { Options } from './types';
 import { welcome } from '../../utils';
@@ -13,7 +13,11 @@ program
     .helpOption(false)
     .option('-d, --data-path <string>', 'path to data file', Checker.path)
     .option('-l, --log-path <string>', 'path to log file', Logger.path)
-    .option('-r, --request-interval <number>', 'interval between requests to a server (s)', `${Constants.defaultRequestIntervalMs}`)
+    .option(
+        '-r, --request-interval <number>',
+        'interval between requests to a server (s)',
+        `${Const.DefaultRequestIntervalMs}`,
+    )
     .option('-y, --yes', 'pass this flag to start immediately');
 
 async function parseOptions(): Promise<Options> {

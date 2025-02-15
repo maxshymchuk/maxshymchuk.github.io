@@ -1,4 +1,27 @@
 {
     "name": "maxshymchuk.github.io",
-    "description": "Monorepo for maxshymchuk.github.io aggregator"
+    "description": "Monorepo for maxshymchuk.github.io aggregator",
+    "lint-staged": {
+        "*.{ts,tsx}": [
+            "prettier --write",
+            "eslint --fix"
+        ],
+        "*.{json,scss,md}": "prettier --write"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.20.0",
+        "eslint": "^9.20.1",
+        "eslint-config-prettier": "^10.0.1",
+        "globals": "^15.15.0",
+        "husky": "^9.1.7",
+        "jiti": "^2.4.2",
+        "lint-staged": "^15.4.3",
+        "prettier": "3.5.1",
+        "typescript-eslint": "^8.24.0"
+    },
+    "scripts": {
+        "prettify": "prettier --write",
+        "lint": "eslint --fix",
+        "prepare": "husky"
+    }
 }

@@ -2,7 +2,7 @@ import { config } from 'dotenv';
 import { serve } from '../common/modules/handler/serve';
 import { Checker } from '../common/classes/Checker';
 import { Logger, logger } from '../common/classes/Logger';
-import { Constants } from '../common/constants';
+import { Const } from '../common/constants';
 import { dialog, welcome } from '../common/utils';
 import { parseOptions, showHelp } from '../common/modules/cli';
 import { readFile } from 'fs/promises';
@@ -15,7 +15,7 @@ const eventEmitter = new EventEmitter();
 eventEmitter.on('loop', async (checker: Checker) => {
     const before = Date.now();
     await serve(checker);
-    const diff = Constants.defaultCheckIntervalMs - Date.now() + before;
+    const diff = Const.DefaultCheckIntervalMs - Date.now() + before;
     setTimeout(() => eventEmitter.emit('loop', checker), Math.max(0, diff));
 });
 
@@ -29,7 +29,7 @@ async function main() {
     } catch (error) {
         logger().log(`${error}`).newLine();
     } finally {
-        const checker = new Checker(result ? JSON.parse(result) as Data : null);
+        const checker = new Checker(result ? (JSON.parse(result) as Data) : null);
         eventEmitter.emit('loop', checker);
     }
 }
@@ -40,9 +40,8 @@ async function init() {
         const { dataPath, logPath, requestInterval, skip } = await parseOptions();
 
         Checker.path = dataPath;
-        Checker.requestInterval = requestInterval < Constants.defaultRequestIntervalMs
-            ? Constants.defaultRequestIntervalMs
-            : requestInterval;
+        Checker.requestInterval =
+            requestInterval < Const.DefaultRequestIntervalMs ? Const.DefaultRequestIntervalMs : requestInterval;
         Logger.path = logPath;
 
         showHelp();

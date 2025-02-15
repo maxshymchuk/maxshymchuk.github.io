@@ -1,15 +1,15 @@
 import { appendFileSync } from 'fs';
-import { Constants } from '../constants';
+import { Const } from '../constants';
 import { resolve } from 'path';
 
 type Options = {
     toFile: boolean;
     toScreen: boolean;
     withTimestamp: boolean;
-}
+};
 
 class Logger {
-    public static path = resolve(Constants.defaultLogPath);
+    public static path = resolve(Const.DefaultLogPath);
 
     private _toScreen = true;
     private _toFile = true;
@@ -60,7 +60,7 @@ class Logger {
 
     public log(text: string, options?: Partial<Options>): Logger {
         this._updateFromOptions(options);
-        const timestamp = (options?.withTimestamp ?? this._withTimestamp) ? `[${(new Date()).toISOString()}] ` : '';
+        const timestamp = (options?.withTimestamp ?? this._withTimestamp) ? `[${new Date().toISOString()}] ` : '';
         const textLine = `${timestamp}${text}`;
         if (this._toScreen) this._log(textLine);
         if (this._toFile) this._appendToFile(textLine);
@@ -68,7 +68,7 @@ class Logger {
     }
 
     public logKeyValueScreen(dictionary: Array<{ key: string; value: string }>, padding = 25): Logger {
-        for (let item of dictionary) {
+        for (const item of dictionary) {
             const key = item.key.slice(0, padding - 1);
             this._log(key.padEnd(padding) + item.value + '\n');
         }

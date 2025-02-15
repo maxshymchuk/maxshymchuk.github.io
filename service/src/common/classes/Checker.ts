@@ -1,4 +1,4 @@
-import { Constants } from '../constants';
+import { Const } from '../constants';
 import { resolve } from 'path';
 import { serialize } from '../utils';
 import { getUserData } from '../api';
@@ -6,11 +6,11 @@ import { getUserData } from '../api';
 type Check = {
     isEqual: boolean;
     data: Nullable<Data>;
-}
+};
 
 class Checker {
-    public static path = resolve(Constants.defaultDataPath);
-    public static requestInterval = Constants.defaultRequestIntervalMs;
+    public static path = resolve(Const.DefaultDataPath);
+    public static requestInterval = Const.DefaultRequestIntervalMs;
 
     private _data: Nullable<Data> = null;
     private _timestamp: Nullable<number> = null;
@@ -36,7 +36,7 @@ class Checker {
 
     get isUpToDate(): boolean {
         if (!this.timestamp) return false;
-        return Date.now() - this.timestamp < Checker.requestInterval
+        return Date.now() - this.timestamp < Checker.requestInterval;
     }
 
     public async check(): Promise<Check> {
@@ -53,7 +53,7 @@ class Checker {
 
         this._data = {
             meta: { timestamp: this.timestamp as number, snapshot: this.snapshot as string },
-            data: { user, repositories }
+            data: { user, repositories },
         };
 
         return { isEqual: false, data: this._data };
