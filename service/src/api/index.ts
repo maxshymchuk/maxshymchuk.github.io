@@ -1,6 +1,2 @@
-export { getAllRepos } from './get.allRepos';
-export { getLatestRelease } from './get.latestRelease';
-export { getUser } from './get.user';
-export { getUserData } from './get.userData';
-
+export { getData } from './get.data';
 export { patchGist } from './patch.gist';

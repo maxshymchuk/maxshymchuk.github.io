@@ -1,4 +1,3 @@
-import { getLatestRelease } from './get.latestRelease';
 import { get } from './share';
 
 function mapRepo(repo: Repo, release?: Nullable<Release>): MappedRepo {
@@ -14,15 +13,16 @@ function mapRepo(repo: Repo, release?: Nullable<Release>): MappedRepo {
     };
 }
 
-async function getAllRepos(url: string): Promise<Array<MappedRepo>> {
+async function getRepos(url: string): Promise<Array<MappedRepo>> {
     const reposResponse = await get(url);
     const repos = (await reposResponse.json()) as Array<Repo>;
     return Promise.all(
         repos.map(async (repo) => {
-            const latestRelease = await getLatestRelease(repo.releases_url.replace('{/id}', ''));
-            return mapRepo(repo, latestRelease);
+            const releasesResponse = await get(repo.releases_url.replace('{/id}', ''));
+            const releases = (await releasesResponse.json()) as Array<Release>;
+            return mapRepo(repo, releases.length > 0 ? releases[0] : null);
         }),
     );
 }
 
-export { getAllRepos };
+export { getRepos };

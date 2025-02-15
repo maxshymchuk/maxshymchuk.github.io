@@ -1,6 +1,6 @@
 import database from '../database';
 import { config } from 'dotenv';
-import { getUserData, patchGist } from '../api';
+import { getData, patchGist } from '../api';
 import { serialize, stringify } from '../utils';
 import { jsonHandler } from '../utils';
 
@@ -12,7 +12,7 @@ async function data(): Promise<Nullable<Data>> {
     if (saved) return saved;
 
     try {
-        const { user, repositories } = await getUserData();
+        const { user, repositories } = await getData();
 
         const data: Data = {
             meta: { timestamp: Date.now(), snapshot: serialize(repositories) },
