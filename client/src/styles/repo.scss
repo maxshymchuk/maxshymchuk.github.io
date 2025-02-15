@@ -18,12 +18,13 @@
 
     @media screen and (max-width: breakpoints.$sm) {
         @include spacing.margin-y;
+        gap: calc(spacing.$unit / 4);
     }
 
     .repo-title {
         display: flex;
         flex-wrap: wrap;
-        gap: calc(spacing.$unit / 2);
+        gap: calc(spacing.$unit / 4) calc(spacing.$unit / 2);
 
         .repo-name {
             margin: 0;
