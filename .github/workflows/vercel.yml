@@ -40,6 +40,8 @@ jobs:
         with:
           name: vercel-output
           path: ./service/.vercel
+          if-no-files-found: error
+          include-hidden-files: true
           retention-days: 1
           
   deploy:
