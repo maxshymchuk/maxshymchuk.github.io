@@ -1,5 +1,5 @@
-import { patch } from '../share';
-import { Const } from '../../constants';
+import { patch } from './share';
+import { Const } from '../constants';
 
 async function patchGist(content: Nullable<string>): Promise<Gist> {
     if (!process.env.GIST_ID) throw Error(Const.Error.EnvGistId);

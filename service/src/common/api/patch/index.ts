@@ -1,1 +1,0 @@
-export { patchGist } from './patchGist';

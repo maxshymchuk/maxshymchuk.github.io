@@ -1,6 +1,6 @@
-import { getAllRepos } from './getAllRepos';
-import { getUser } from './getUser';
-import { Const } from '../../constants';
+import { getAllRepos } from './get.allRepos';
+import { getUser } from './get.user';
+import { Const } from '../constants';
 
 async function getUserData(): Promise<UserData> {
     if (!process.env.USER) throw Error(Const.Error.EnvUser);

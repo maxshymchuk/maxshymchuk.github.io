@@ -1,7 +1,7 @@
 const getHeaders = () => ({
     Accept: 'application/vnd.github+json',
     Authorization: process.env.TOKEN ? `Bearer ${process.env.TOKEN}` : '',
-    'X-GitHub-Api-Version': '2022-11-28'
+    'X-GitHub-Api-Version': '2022-11-28',
 });
 
 async function get(url: string): Promise<Response> {
