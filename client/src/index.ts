@@ -4,8 +4,8 @@ import { headerModule, reposModule } from './modules';
 import { createLoader, parseGist } from './utils';
 import mock from '../mock.json';
 
-const loader = document.getElementById('loader') as HTMLElement | null;
-const content = document.getElementById('content') as HTMLElement | null;
+const loader = document.getElementById('loader');
+const content = document.getElementById('content');
 
 const loaders = [
     createLoader(Const.Sources.Vercel),
