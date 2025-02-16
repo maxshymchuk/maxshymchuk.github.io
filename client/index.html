@@ -33,20 +33,23 @@
                 background-color: #fff;
             }
             .loader {
-                --size: min(10vw, 10vh);
+                font-size: min(10vw, 10vh);
+                font-weight: bold;
+            }
+            .loader-image {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 width: auto;
-                font-size: var(--size);
-                height: var(--size);
-                font-weight: bold;
+                height: min(10vw, 10vh);
+                font-size: inherit;
+                font-weight: inherit;
             }
         </style>
     </head>
     <body>
-        <div id="loader" class="blocker">
-            <img class="loader" src="assets/loading.svg" alt="Loading...">
+        <div id="loader" class="loader blocker">
+            <img class="loader-image" src="assets/loading.svg" alt="Loading...">
         </div>
         <noscript>
             <div class="blocker">
