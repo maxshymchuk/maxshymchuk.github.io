@@ -14,6 +14,7 @@
         "vite-node": "^3.0.5"
     },
     "dependencies": {
+        "@vercel/functions": "^2.0.0",
         "@vercel/kv": "^3.0.0",
         "dotenv": "^16.4.7",
         "express": "^4.21.2"
