@@ -1,13 +1,13 @@
 @use 'spacing';
 
-.current {
-    @include spacing.padding-y;
-    @include spacing.margin-y;
+@mixin attention($spacing: 1) {
+    @include spacing.padding-y($spacing);
+    @include spacing.margin-y($spacing);
 
     border-top: 2px dashed #000;
     border-bottom: 2px dashed #000;
 
-    .project {
+    & > * {
         @include spacing.padding-x;
         @include spacing.margin-center(x);
         @include spacing.max-width;

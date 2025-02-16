@@ -1,8 +1,7 @@
 function footerModule(meta: Meta): void {
-    const footer = document.getElementById('footer');
-    const lastUpdated = footer?.querySelector('.last-updated') as Nullable<HTMLSpanElement>;
+    const lastUpdated = document.getElementById('updated-at');
     if (lastUpdated) {
-        lastUpdated.innerText = `Last updated: ${new Date(meta.timestamp).toLocaleString()}`;
+        lastUpdated.innerText = `Updated at ${new Date(meta.timestamp).toLocaleString()}`;
     }
 }
 

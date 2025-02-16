@@ -1,9 +1,12 @@
 @use 'breakpoints';
 @use 'spacing';
+@use 'custom';
 
 footer {
-    @include spacing.padding-x;
-    @include spacing.margin-y;
-    @include spacing.margin-center(x);
-    @include spacing.max-width;
+    @include custom.attention;
+
+    & {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
 }

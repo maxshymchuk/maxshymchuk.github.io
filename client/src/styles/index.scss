@@ -1,6 +1,8 @@
+@use 'spacing';
+@use 'custom';
+
 @use 'reset';
 @use 'header';
-@use 'current';
 @use 'repo';
 @use 'footer';
 
@@ -8,4 +10,16 @@
     height: inherit;
     margin: 0 auto;
     overflow: auto;
+}
+
+.attention {
+    @include spacing.padding-y;
+    @include spacing.margin-y;
+
+    border-top: 2px dashed #000;
+    border-bottom: 2px dashed #000;
+}
+
+.project {
+    @include custom.attention;
 }
