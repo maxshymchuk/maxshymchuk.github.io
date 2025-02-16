@@ -1,0 +1,9 @@
+@use 'breakpoints';
+@use 'spacing';
+
+footer {
+    @include spacing.padding-x;
+    @include spacing.margin-y;
+    @include spacing.margin-center(x);
+    @include spacing.max-width;
+}

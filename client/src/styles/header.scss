@@ -1,7 +1,7 @@
 @use 'breakpoints';
 @use 'spacing';
 
-.header {
+header {
     @include spacing.padding-x;
     @include spacing.margin-y;
     @include spacing.margin-center(x);

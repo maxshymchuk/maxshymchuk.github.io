@@ -5,7 +5,7 @@
     @include spacing.margin-center(x);
     @include spacing.max-width;
 
-    padding-bottom: calc(4 * spacing.$unit);
+    // padding-bottom: calc(4 * spacing.$unit);
 }
 
 .repo {
