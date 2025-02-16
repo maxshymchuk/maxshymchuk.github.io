@@ -1,3 +1,4 @@
+import { Const } from '../constants';
 import { get } from './share';
 
 function mapRepo(repo: Repo, release?: Nullable<Release>): MappedRepo {
@@ -13,8 +14,13 @@ function mapRepo(repo: Repo, release?: Nullable<Release>): MappedRepo {
     };
 }
 
-async function getRepos(url: string): Promise<Array<MappedRepo>> {
-    const reposResponse = await get(url);
+async function getRepos(): Promise<Array<MappedRepo>> {
+    if (!process.env.USER && !process.env.TOKEN) throw Error(Const.Error.EnvUser);
+    const reposResponse = await get(
+        process.env.TOKEN
+            ? 'https://api.github.com/user/repos'
+            : `https://api.github.com/users/${process.env.USER}/repos`,
+    );
     const repos = (await reposResponse.json()) as Array<Repo>;
     return Promise.all(
         repos.map(async (repo) => {

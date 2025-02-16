@@ -3,11 +3,8 @@ import { getUser } from './get.user';
 import { Const } from '../constants';
 
 async function getData(): Promise<UserData> {
-    if (!process.env.USER) throw Error(Const.Error.EnvUser);
-
-    const user = await getUser(`https://api.github.com/users/${process.env.USER}`);
-
-    const repositories = await getRepos(user.repos_url);
+    const user = await getUser();
+    const repositories = await getRepos();
 
     const filtered: Array<MappedRepo> = [];
     for (const repo of repositories) {
