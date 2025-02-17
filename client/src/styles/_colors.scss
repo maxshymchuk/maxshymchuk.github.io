@@ -1,3 +1,45 @@
-$background: #fff;
-$text: #000;
-$link: #0040ba;
+@use 'sass:map';
+
+$background: 'background';
+$text: 'text';
+$text-muted: 'text-muted';
+$link: 'link';
+
+$theme-light: (
+    $background: var(--default-background-color),
+    $text: var(--default-color),
+    $text-muted: #c9c9c9,
+    $link: #0040ba,
+);
+
+$theme-dark: (
+    $background: var(--default-background-color-dark),
+    $text: var(--default-color-dark),
+    $text-muted: #707070,
+    $link: #5182df,
+);
+
+@mixin light-schema {
+    @media (prefers-color-scheme: light) {
+        @content;
+    }
+}
+
+@mixin dark-schema {
+    @media (prefers-color-scheme: dark) {
+        @content;
+    }
+}
+
+@mixin themeProperty($theme, $property, $color) {
+    #{$property}: map.get($theme, $color);
+}
+
+@mixin theme($property, $color) {
+    @include light-schema {
+        @include themeProperty($theme-light, $property, $color);
+    }
+    @include dark-schema {
+        @include themeProperty($theme-dark, $property, $color);
+    }
+}

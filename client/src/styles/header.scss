@@ -1,5 +1,6 @@
 @use 'breakpoints';
 @use 'spacing';
+@use 'colors';
 
 header {
     @include spacing.padding-x;
@@ -30,22 +31,28 @@ header {
         row-gap: calc(spacing.$unit / 2);
         flex-wrap: wrap;
 
-        a {
-            color: inherit;
-        }
-
         .header-link {
-            min-width: 30px;
-            height: 30px;
-            opacity: 0.2;
+            display: block;
+            color: inherit;
+
+            svg {
+                @include colors.theme('fill', colors.$text-muted);
+
+                & {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
 
             @media screen and (max-width: breakpoints.$sm) {
-                min-width: 25px;
-                height: 25px;
+                svg {
+                    width: 25px;
+                    height: 25px;
+                }
             }
 
             &:hover {
-                opacity: 0.3;
+                opacity: 0.8;
             }
         }
     }

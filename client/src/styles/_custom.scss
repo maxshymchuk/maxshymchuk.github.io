@@ -4,8 +4,8 @@
     @include spacing.padding-y($spacing);
     @include spacing.margin-y($spacing);
 
-    border-top: 2px dashed #000;
-    border-bottom: 2px dashed #000;
+    border-style: dashed none;
+    border-width: 2px 0;
 
     & > * {
         @include spacing.padding-x;

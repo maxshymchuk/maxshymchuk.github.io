@@ -3,31 +3,18 @@
 
 * {
     box-sizing: border-box;
-    background-color: transparent;
     touch-action: manipulation;
     font-size: 1rem;
-    color: colors.$text;
-}
-
-html,
-body {
-    height: 100%;
-    overflow: hidden;
-    font-size: sizing.$text;
-    -webkit-text-size-adjust: none;
-    text-size-adjust: none;
-    font-family: 'Montserrat', sans-serif;
-}
-
-body {
-    margin: 0;
-    background-color: colors.$background;
+    background-color: transparent;
 }
 
 a {
-    color: colors.$link;
-    text-decoration: none;
-    flex-shrink: 0;
+    @include colors.theme('color', colors.$link);
+
+    & {
+        text-decoration: none;
+        flex-shrink: 0;
+    }
 }
 
 p {

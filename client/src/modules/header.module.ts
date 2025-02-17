@@ -1,24 +1,16 @@
-const mapping: Record<LinkKeys, string> = {
-    github: 'assets/github.svg',
-    linkedin: 'assets/linkedin.svg',
-    telegram: 'assets/telegram.svg',
-    notion: 'assets/notion.svg',
-    email: 'assets/email.svg',
-};
-
-function renderLinks(templateLink: HTMLTemplateElement, link: Link): Node | null {
-    const clonedLink = templateLink.content.querySelector('.header-link')?.cloneNode(true) as Nullable<HTMLLinkElement>;
-    if (!clonedLink) return null;
-    clonedLink.href = link.url;
-    const linkImage = clonedLink?.querySelector<HTMLImageElement>('img');
-    if (linkImage) {
-        linkImage.src = mapping[link.key];
-        linkImage.alt = link.title;
-        linkImage.title = link.title;
-    } else {
-        clonedLink.innerText = link.title;
+async function renderLink({ key, title, url }: Link): Promise<Node> {
+    const link = document.createElement('a');
+    link.setAttribute('class', 'header-link');
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', url);
+    link.setAttribute('title', title);
+    try {
+        const content = await import(`../assets/${key}.svg?raw`);
+        link.innerHTML = content.default;
+    } catch {
+        link.innerText = title;
     }
-    return clonedLink;
+    return link;
 }
 
 function headerModule(user: MappedUser, custom: Custom): void {
@@ -37,15 +29,9 @@ function headerModule(user: MappedUser, custom: Custom): void {
     }
 
     const headerLinks = document.getElementById('header-links');
-    const templateLink = document.getElementById('template-header-link') as HTMLTemplateElement | null;
-    if (headerLinks && templateLink) {
-        const links: Array<Node> = [];
-        for (const link of custom.links) {
-            const result = renderLinks(templateLink, link);
-            if (result) links.push(result);
-        }
-        if (links.length > 0) {
-            headerLinks.replaceChildren(...links);
+    if (headerLinks) {
+        if (custom.links.length > 0) {
+            Promise.all(custom.links.map(renderLink)).then((links) => headerLinks.append(...links));
         } else {
             headerLinks.remove();
         }

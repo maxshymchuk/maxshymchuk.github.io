@@ -1,11 +1,10 @@
 @use 'breakpoints';
 @use 'spacing';
+@use 'colors';
 
 .repos {
     @include spacing.margin-center(x);
     @include spacing.max-width;
-
-    // padding-bottom: calc(4 * spacing.$unit);
 }
 
 .repo {
@@ -46,8 +45,11 @@
                 gap: calc(spacing.$unit / 4);
 
                 &.archived {
-                    font-weight: bold;
-                    opacity: 0.2;
+                    @include colors.theme('color', colors.$text-muted);
+
+                    & {
+                        font-weight: bold;
+                    }
                 }
             }
         }
