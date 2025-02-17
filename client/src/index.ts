@@ -37,7 +37,8 @@ async function initialize() {
     try {
         const { meta, payload } = await retrieve();
 
-        headerModule(payload.user, payload.custom);
+        await headerModule(payload.user, payload.custom);
+
         reposModule(payload.repositories);
         footerModule(meta);
 

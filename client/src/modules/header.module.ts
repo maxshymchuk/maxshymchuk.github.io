@@ -13,7 +13,7 @@ async function renderLink({ key, title, url }: Link): Promise<Node> {
     return link;
 }
 
-function headerModule(user: MappedUser, custom: Custom): void {
+async function headerModule(user: MappedUser, custom: Custom): Promise<void> {
     const headerName = document.getElementById('header-name');
     if (headerName) {
         headerName.innerText = user.name ? user.name : user.login;
@@ -31,7 +31,7 @@ function headerModule(user: MappedUser, custom: Custom): void {
     const headerLinks = document.getElementById('header-links');
     if (headerLinks) {
         if (custom.links.length > 0) {
-            Promise.all(custom.links.map(renderLink)).then((links) => headerLinks.append(...links));
+            return Promise.all(custom.links.map(renderLink)).then((links) => headerLinks.append(...links));
         } else {
             headerLinks.remove();
         }
