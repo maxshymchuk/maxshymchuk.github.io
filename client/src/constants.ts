@@ -1,4 +1,5 @@
 const Const = {
+    LocalStorage: 'maxshymchuk-data',
     FileName: 'maxshymchuk-backup.json',
 
     Sources: {

@@ -2,6 +2,7 @@ import { getData } from './api';
 import { Const } from './constants';
 import { headerModule, reposModule, footerModule } from './modules';
 import { createLoader, parseGist } from './utils';
+import { getCache, setCache } from './utils/cache';
 
 const loader = document.getElementById('loader');
 const content = document.getElementById('content');
@@ -18,6 +19,15 @@ const loaders = [
     }),
 ];
 
+async function retrieve(): Promise<Data> {
+    if (import.meta.env.DEV) return import('../mock.json') as Promise<Data>;
+    const cache = getCache();
+    if (cache && Date.now() < cache.meta.expired) return cache;
+    const data = await getData(loaders);
+    setCache(data);
+    return data;
+}
+
 async function initialize() {
     if (!loader || !content) return;
 
@@ -25,12 +35,10 @@ async function initialize() {
     content.classList.add('invisible');
 
     try {
-        const response = await (import.meta.env.DEV ? import('../mock.json') : getData(loaders));
+        const { meta, payload } = await retrieve();
 
-        const { meta, data } = response as Data;
-
-        headerModule(data.user, data.custom);
-        reposModule(data.repositories);
+        headerModule(payload.user, payload.custom);
+        reposModule(payload.repositories);
         footerModule(meta);
 
         loader.classList.add('invisible');

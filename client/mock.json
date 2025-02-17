@@ -1,6 +1,6 @@
 {
-    "meta": { "timestamp": 1739617002015, "snapshot": "da57d81fd0653745db91acc75910a23f" },
-    "data": {
+    "meta": { "timestamp": 1739617002015, "expired": 1749617002015, "snapshot": "da57d81fd0653745db91acc75910a23f" },
+    "payload": {
         "user": {
             "login": "maxshymchuk",
             "name": "Max Shymchuk",
