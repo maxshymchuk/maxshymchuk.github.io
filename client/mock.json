@@ -5,7 +5,6 @@
             "login": "maxshymchuk",
             "name": "Max Shymchuk",
             "bio": "Frontend Developer since 2019",
-            "email": null,
             "repos_url": "https://api.github.com/users/maxshymchuk/repos"
         },
         "repositories": [
@@ -199,6 +198,15 @@
                 "topics": [],
                 "archived": true
             }
-        ]
+        ],
+        "custom": {
+            "links": {
+                "github": "1",
+                "linkedin": "2",
+                "telegram": "3",
+                "notion": "4",
+                "email": "5"
+            }
+        }
     }
 }

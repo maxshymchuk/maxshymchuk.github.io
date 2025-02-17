@@ -2,7 +2,6 @@ import { getData } from './api';
 import { Const } from './constants';
 import { headerModule, reposModule, footerModule } from './modules';
 import { createLoader, parseGist } from './utils';
-import mock from '../mock.json';
 
 const loader = document.getElementById('loader');
 const content = document.getElementById('content');
@@ -26,9 +25,9 @@ async function initialize() {
     content.classList.add('invisible');
 
     try {
-        const { meta, data } = import.meta.env.DEV ? mock : await getData(loaders);
+        const { meta, data } = await (import.meta.env.DEV ? import('../mock.json') : getData(loaders));
 
-        headerModule(data.user);
+        headerModule(data.user, data.custom);
         reposModule(data.repositories);
         footerModule(meta);
 

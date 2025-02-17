@@ -26,21 +26,23 @@ header {
 
     .header-links {
         display: flex;
-        gap: spacing.$unit;
-    }
+        column-gap: spacing.$unit;
+        row-gap: calc(spacing.$unit / 2);
+        flex-wrap: wrap;
 
-    .header-links a {
-        width: 30px;
-        height: 30px;
-        opacity: 0.2;
+        & a {
+            min-width: 30px;
+            height: 30px;
+            opacity: 0.2;
 
-        @media screen and (max-width: breakpoints.$sm) {
-            width: 25px;
-            height: 25px;
+            @media screen and (max-width: breakpoints.$sm) {
+                min-width: 25px;
+                height: 25px;
+            }
+
+            &:hover {
+                opacity: 0.3;
+            }
         }
-    }
-
-    .header-links a:hover {
-        opacity: 0.3;
     }
 }
