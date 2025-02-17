@@ -25,7 +25,9 @@ async function initialize() {
     content.classList.add('invisible');
 
     try {
-        const { meta, data } = await (import.meta.env.DEV ? import('../mock.json') : getData(loaders));
+        const response = await (import.meta.env.DEV ? import('../mock.json') : getData(loaders));
+
+        const { meta, data } = response as Data;
 
         headerModule(data.user, data.custom);
         reposModule(data.repositories);

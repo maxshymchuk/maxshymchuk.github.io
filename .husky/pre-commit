@@ -1,1 +1,3 @@
+tsc -p client --noEmit
+tsc -p service --noEmit
 npx lint-staged
