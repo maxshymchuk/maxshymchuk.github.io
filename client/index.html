@@ -14,6 +14,10 @@
         <script type="module" defer src="src/index.ts"></script>
         <title>Max Shymchuk</title>
         <style>
+            @keyframes fade-in {
+                from { opacity: 0 }
+                to { opacity: 1 }
+            }
             :root {
                 color-scheme: light dark;
 
@@ -59,6 +63,8 @@
                 color: var(--default-color);
                 font-size: min(10vw, 10vh);
                 font-weight: bold;
+                opacity: 0;
+                animation: 0.1s linear 0.5s 1 forwards fade-in;
             }
             .loader-image {
                 fill: var(--default-color);
