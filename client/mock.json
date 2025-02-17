@@ -200,13 +200,13 @@
             }
         ],
         "custom": {
-            "links": {
-                "github": "1",
-                "linkedin": "2",
-                "telegram": "3",
-                "notion": "4",
-                "email": "5"
-            }
+            "links": [
+                { "key": "github", "title": "Github", "url": "1" },
+                { "key": "linkedin", "title": "LinkedIn", "url": "2" },
+                { "key": "telegram", "title": "Telegram", "url": "3" },
+                { "key": "notion", "title": "Notion", "url": "4" },
+                { "key": "email", "title": "Email", "url": "5" }
+            ]
         }
     }
 }

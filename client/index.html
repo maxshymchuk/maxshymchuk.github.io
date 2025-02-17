@@ -68,7 +68,11 @@
                     <h1 id="header-name" class="header-title"></h1>
                     <h2 id="header-bio" class="header-subtitle"></h2>
                 </article>
-                <div id="header-links" class="header-links"></div>
+                <div id="header-links" class="header-links">
+                    <template id="template-header-link">
+                        <a class="header-link" target="_blank"><img></a>
+                    </template>
+                </div>
             </header>
             <main>
                 <div class="project">
@@ -76,24 +80,23 @@
                 </div>
                 <div id="repositories-list" class="repos">
                     <div class="repo">Empty</div>
+                    <template id="template-repo">
+                        <div class="repo">
+                            <article class="repo-title">
+                                <h3 class="repo-name">Name</h3>
+                                <div class="repo-links">Links</div>
+                                <div class="repo-markers">
+                                    <div class="repo-marker archived">archived</div>
+                                </div>
+                            </article>
+                            <p class="repo-description">Description</p>
+                        </div>
+                    </template>
                 </div>
             </main>
             <footer>
                 <div id="updated-at"></div>
             </footer>
         </div>
-
-        <template id="template-repo">
-            <div class="repo">
-                <article class="repo-title">
-                    <h3 class="repo-name">Name</h3>
-                    <div class="repo-links">Links</div>
-                    <div class="repo-markers">
-                        <div class="repo-marker archived">archived</div>
-                    </div>
-                </article>
-                <p class="repo-description">Description</p>
-            </div>
-        </template>
     </body>
 </html>

@@ -1,4 +1,4 @@
-const mapping: Record<Links, string> = {
+const mapping: Record<LinkKeys, string> = {
     github: 'assets/github.svg',
     linkedin: 'assets/linkedin.svg',
     telegram: 'assets/telegram.svg',
@@ -6,17 +6,19 @@ const mapping: Record<Links, string> = {
     email: 'assets/email.svg',
 };
 
-function createLink(link: Links, url: string) {
-    const aDom = document.createElement('a');
-    const imgDom = document.createElement('img');
-    const capitalized = `${link[0].toUpperCase()}${link.slice(1)}`;
-    imgDom.setAttribute('src', mapping[link]);
-    imgDom.setAttribute('alt', capitalized);
-    imgDom.setAttribute('title', capitalized);
-    aDom.setAttribute('href', url);
-    aDom.setAttribute('target', '_blank');
-    aDom.append(imgDom);
-    return aDom;
+function renderLinks(templateLink: HTMLTemplateElement, link: Link): Node | null {
+    const clonedLink = templateLink.content.querySelector('.header-link')?.cloneNode(true) as Nullable<HTMLLinkElement>;
+    if (!clonedLink) return null;
+    clonedLink.href = link.url;
+    const linkImage = clonedLink?.querySelector<HTMLImageElement>('img');
+    if (linkImage) {
+        linkImage.src = mapping[link.key];
+        linkImage.alt = link.title;
+        linkImage.title = link.title;
+    } else {
+        clonedLink.innerText = link.title;
+    }
+    return clonedLink;
 }
 
 function headerModule(user: MappedUser, custom: Custom): void {
@@ -35,13 +37,15 @@ function headerModule(user: MappedUser, custom: Custom): void {
     }
 
     const headerLinks = document.getElementById('header-links');
-    if (headerLinks) {
-        if (Object.keys(custom.links).length > 0) {
-            for (const link in custom.links) {
-                const url = custom.links[link as Links];
-                if (!url) continue;
-                headerLinks.append(createLink(link as Links, url));
-            }
+    const templateLink = document.getElementById('template-header-link') as HTMLTemplateElement | null;
+    if (headerLinks && templateLink) {
+        const links: Array<Node> = [];
+        for (const link of custom.links) {
+            const result = renderLinks(templateLink, link);
+            if (result) links.push(result);
+        }
+        if (links.length > 0) {
+            headerLinks.replaceChildren(...links);
         } else {
             headerLinks.remove();
         }

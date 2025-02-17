@@ -7,10 +7,8 @@ function renderLinks(repo: MappedRepo): string {
     return `[ ${links.map((link) => `<a href="${link.url}" target="_blank">${link.title}</a>`).join(' | ')} ]`;
 }
 
-function renderRepo(repo: MappedRepo): Node | null {
-    const templateRepo = document.getElementById('template-repo') as HTMLTemplateElement | null;
-
-    const clonedRepo = templateRepo?.content.querySelector('.repo')?.cloneNode(true) as Nullable<HTMLElement>;
+function renderRepo(templateRepo: HTMLTemplateElement, repo: MappedRepo): Node | null {
+    const clonedRepo = templateRepo.content.querySelector('.repo')?.cloneNode(true) as Nullable<HTMLElement>;
 
     const repoName = clonedRepo?.querySelector<HTMLElement>('.repo-name');
     const repoDescription = clonedRepo?.querySelector<HTMLElement>('.repo-description');
@@ -39,12 +37,14 @@ function renderRepo(repo: MappedRepo): Node | null {
 function reposModule(repositories: Array<MappedRepo>): void {
     if (repositories.length === 0) return;
     const listElement = document.getElementById('repositories-list');
-    const rendered: Array<Node> = [];
+    const templateRepo = document.getElementById('template-repo') as HTMLTemplateElement | null;
+    if (!listElement || !templateRepo) return;
+    const repos: Array<Node> = [];
     for (const repo of repositories) {
-        const result = renderRepo(repo);
-        if (result) rendered.push(result);
+        const result = renderRepo(templateRepo, repo);
+        if (result) repos.push(result);
     }
-    listElement?.replaceChildren(...rendered);
+    listElement?.replaceChildren(...repos);
 }
 
 export { reposModule };

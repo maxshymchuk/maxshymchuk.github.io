@@ -30,7 +30,11 @@ header {
         row-gap: calc(spacing.$unit / 2);
         flex-wrap: wrap;
 
-        & a {
+        a {
+            color: inherit;
+        }
+
+        .header-link {
             min-width: 30px;
             height: 30px;
             opacity: 0.2;
