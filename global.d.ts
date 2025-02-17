@@ -224,6 +224,7 @@ type Gist = {
 
 type Meta = {
     timestamp: number;
+    expired: number;
     snapshot: string;
 };
 
@@ -265,5 +266,5 @@ type UserData = {
 
 type Data = {
     meta: Meta;
-    data: UserData;
+    payload: UserData;
 };

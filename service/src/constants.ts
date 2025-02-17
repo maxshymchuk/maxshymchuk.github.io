@@ -1,6 +1,7 @@
 const Const = {
     RepoExcludeTopic: 'repo-exclude',
-    DefaultRequestIntervalMs: 3600000, // 1 hour
+    RequestIntervalMs: 120000, // test 2 mins
+    //3600000, // 1 hour
 
     Error: {
         EnvUser: '.env USER not found',

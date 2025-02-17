@@ -6,12 +6,8 @@ const keys = {
     data: 'data',
 } as const;
 
-async function write<T>(
-    key: ValueOf<typeof keys>,
-    data: T,
-    expireSeconds?: number,
-): Promise<Nullable<'OK' | T | string>> {
-    return await kv.set(key, stringify(data), { ex: expireSeconds ?? Const.DefaultRequestIntervalMs / 1000 });
+async function write<T>(key: ValueOf<typeof keys>, data: T): Promise<Nullable<'OK' | T | string>> {
+    return await kv.set(key, stringify(data), { ex: Const.RequestIntervalMs / 1000 });
 }
 
 async function read<T>(key: ValueOf<typeof keys>): Promise<Nullable<T>> {

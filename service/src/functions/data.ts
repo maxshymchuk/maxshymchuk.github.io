@@ -4,6 +4,7 @@ import { getData, patchGist } from '../api';
 import { serialize, stringify } from '../utils';
 import { jsonHandler } from '../utils';
 import { waitUntil } from '@vercel/functions';
+import { Const } from '../constants';
 
 config({ override: true });
 
@@ -34,9 +35,15 @@ async function data(): Promise<Nullable<Data>> {
     try {
         const { user, repositories, custom } = await getData();
 
+        const current = Date.now();
+
         const data: Data = {
-            meta: { timestamp: Date.now(), snapshot: serialize(repositories) },
-            data: { user, repositories, custom },
+            meta: {
+                timestamp: current,
+                expired: current + Const.RequestIntervalMs,
+                snapshot: serialize(repositories),
+            },
+            payload: { user, repositories, custom },
         };
 
         waitUntil(Promise.all([updateDatabase(data), updateGist(data)]));
