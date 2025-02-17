@@ -6,7 +6,6 @@ function mapUser(user: User): MappedUser {
         login: user.login,
         name: user.name || null,
         bio: user.bio || null,
-        email: user.email || null,
         repos_url: user.repos_url,
     };
 }

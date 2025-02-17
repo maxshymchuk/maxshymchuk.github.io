@@ -3,8 +3,7 @@ import { getUser } from './get.user';
 import { Const } from '../constants';
 
 async function getData(): Promise<UserData> {
-    const user = await getUser();
-    const repositories = await getRepos();
+    const [user, repositories] = await Promise.all([getUser(), getRepos()]);
 
     const filtered: Array<MappedRepo> = [];
     for (const repo of repositories) {
@@ -13,7 +12,17 @@ async function getData(): Promise<UserData> {
         filtered.push(repo);
     }
 
-    return { user, repositories: filtered };
+    const custom: Custom = {
+        links: {
+            github: process.env.GITHUB,
+            linkedin: process.env.LINKEDIN,
+            telegram: process.env.TELEGRAM,
+            notion: process.env.NOTION,
+            email: process.env.EMAIL,
+        },
+    };
+
+    return { user, repositories: filtered, custom };
 }
 
 export { getData };

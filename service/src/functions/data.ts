@@ -32,11 +32,11 @@ async function data(): Promise<Nullable<Data>> {
     if (saved) return saved;
 
     try {
-        const { user, repositories } = await getData();
+        const { user, repositories, custom } = await getData();
 
         const data: Data = {
             meta: { timestamp: Date.now(), snapshot: serialize(repositories) },
-            data: { user, repositories },
+            data: { user, repositories, custom },
         };
 
         waitUntil(Promise.all([updateDatabase(data), updateGist(data)]));
