@@ -1,6 +1,7 @@
 @use 'breakpoints';
 @use 'spacing';
 @use 'colors';
+@use 'sizing';
 
 header {
     @include spacing.padding-x;
@@ -15,14 +16,15 @@ header {
     flex-wrap: wrap;
     gap: spacing.$unit;
 
-    .header-title {
+    .header-name {
         margin: 0;
-        font-size: max(min(10vw, 4rem), 2rem);
+        font-size: max(min(10vw, sizing.$h1), 2rem);
     }
 
-    .header-subtitle {
+    .header-bio {
         margin: 0;
-        font-size: max(min(4vw, 1.5rem), 1rem);
+        margin-top: calc(spacing.$unit / 4);
+        font-size: max(min(4vw, sizing.$h4), 1rem);
     }
 
     .header-links {
@@ -30,6 +32,10 @@ header {
         column-gap: spacing.$unit;
         row-gap: calc(spacing.$unit / 2);
         flex-wrap: wrap;
+
+        @media print {
+            display: none;
+        }
 
         .header-link {
             display: block;

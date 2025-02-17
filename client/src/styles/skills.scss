@@ -1,0 +1,16 @@
+@use 'spacing';
+@use 'custom';
+
+.skills {
+    @include custom.box(0);
+
+    .skill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: calc(spacing.$unit / 2);
+
+        .skill {
+            @include custom.truncate;
+        }
+    }
+}

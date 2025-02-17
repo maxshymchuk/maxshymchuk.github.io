@@ -1,0 +1,79 @@
+@use 'breakpoints';
+@use 'spacing';
+@use 'colors';
+@use 'custom';
+
+.projects {
+    @include custom.box(0);
+
+    .projects-list {
+        & > :first-child {
+            margin-top: 0;
+        }
+    }
+
+    .repo {
+        @include spacing.margin-y(1.5);
+
+        display: flex;
+        flex-direction: column;
+        gap: calc(spacing.$unit / 2);
+
+        @media print {
+            @include spacing.margin-y;
+        }
+
+        @media screen and (max-width: breakpoints.$sm) {
+            @include spacing.margin-y;
+            gap: calc(spacing.$unit / 4);
+        }
+
+        .repo-title {
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc(spacing.$unit / 4) calc(spacing.$unit / 2);
+
+            .repo-name {
+                @include custom.truncate;
+                margin: 0;
+                font-size: inherit;
+            }
+
+            .repo-links {
+                white-space: nowrap;
+
+                @media print {
+                    display: none;
+                }
+            }
+
+            .repo-markers {
+                display: flex;
+                gap: calc(spacing.$unit / 2);
+
+                @media print {
+                    display: none;
+                }
+
+                .repo-marker {
+                    @include colors.theme('color', colors.$text-muted);
+
+                    & {
+                        display: flex;
+                        align-items: center;
+                        gap: calc(spacing.$unit / 4);
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+
+        .repo-description {
+            display: -webkit-box;
+            line-clamp: 4;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+}

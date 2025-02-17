@@ -3,10 +3,16 @@
 @use 'custom';
 
 footer {
-    @include custom.attention;
+    @include custom.box;
 
     & {
-        border-bottom: none;
-        margin-bottom: 0;
+        position: sticky;
+        top: 100%;
+        border-top-style: dashed;
+        border-top-width: 2px;
+
+        @media print {
+            display: none;
+        }
     }
 }

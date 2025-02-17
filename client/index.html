@@ -29,12 +29,12 @@
                 background-color: var(--default-background-color);
                 color: var(--default-color);
                 height: 100%;
-                overflow: hidden;
                 font-size: var(--default-font-size);
                 -webkit-text-size-adjust: none;
                 text-size-adjust: none;
                 font-family: 'Montserrat', sans-serif;
                 margin: 0;
+                font-size: 1rem;
             }
             .invisible {
                 display: none !important;
@@ -95,31 +95,67 @@
         </noscript>
         <div id="content" class="content invisible">
             <header>
-                <article>
-                    <h1 id="header-name" class="header-title"></h1>
-                    <h2 id="header-bio" class="header-subtitle"></h2>
-                </article>
+                <div>
+                    <h1 id="header-name" class="header-name"></h1>
+                    <h3 id="header-bio" class="header-bio"></h3>
+                </div>
                 <div id="header-links" class="header-links"></div>
             </header>
             <main>
-                <div class="project">
-                    <div>Currently i'm working on my own Framework and UI library!</div>
-                </div>
-                <div id="repositories-list" class="repos">
-                    <div class="repo">Empty</div>
-                    <template id="template-repo">
-                        <div class="repo">
-                            <article class="repo-title">
-                                <h3 class="repo-name">Name</h3>
-                                <div class="repo-links">Links</div>
-                                <div class="repo-markers">
-                                    <div class="repo-marker archived">archived</div>
+                <section class="skills">
+                    <h3>Skills</h3>
+                    <div class="skill-list">
+                        <div class="skill">React</div>
+                        <div class="skill">JavaScript</div>
+                        <div class="skill">TypeScript</div>
+                        <div class="skill">HTML</div>
+                        <div class="skill">Webpack</div>
+                        <div class="skill">Styled Components</div>
+                        <div class="skill">SASS</div>
+                        <div class="skill">Material</div>
+                        <div class="skill">Redux</div>
+                        <div class="skill">Redux-Toolkit</div>
+                        <div class="skill">Effector</div>
+                        <div class="skill">BaseWeb</div>
+                        <div class="skill">Styletron</div>
+                        <div class="skill">Axios</div>
+                        <div class="skill">Vite</div>
+                        <div class="skill">Parcel</div>
+                        <div class="skill">Zod</div>
+                        <div class="skill">Yup</div>
+                        <div class="skill">Bootstrap</div>
+                        <div class="skill">DevExtreme</div>
+                        <div class="skill">i18n</div>
+                        <div class="skill">JsPDF</div>
+                        <div class="skill">Recharts</div>
+                        <div class="skill">Formik</div>
+                        <div class="skill">MobX</div>
+                        <div class="skill">Node</div>
+                        <div class="skill">Mongo</div>
+                        <div class="skill">Jest</div>
+                        <div class="skill">RTL</div>
+                        <div class="skill">WebWorkers</div>
+                        <div class="skill">Python</div>
+                    </div>
+                </section>
+                <section class="projects">
+                    <h3>Projects</h3>
+                    <div id="projects-list" class="projects-list">
+                        <div class="repo">Empty</div>
+                        <template id="template-repo">
+                            <section class="repo">
+                                <div class="repo-title">
+                                    <h3 class="repo-name"></h3>
+                                    <div class="repo-links"></div>
+                                    <div class="repo-markers">
+                                        <div class="repo-marker archived">archived</div>
+                                    </div>
                                 </div>
-                            </article>
-                            <p class="repo-description">Description</p>
-                        </div>
-                    </template>
-                </div>
+                                <p class="repo-description"></p>
+                            </section>
+                        </template>
+                    </div>
+                </section>
             </main>
             <footer>
                 <div id="updated-at"></div>

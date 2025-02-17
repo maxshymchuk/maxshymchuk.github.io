@@ -13,18 +13,11 @@ function renderRepo(templateRepo: HTMLTemplateElement, repo: MappedRepo): Node |
     const repoName = clonedRepo?.querySelector<HTMLElement>('.repo-name');
     const repoDescription = clonedRepo?.querySelector<HTMLElement>('.repo-description');
     const repoLinks = clonedRepo?.querySelector<HTMLElement>('.repo-links');
-    const repoStars = clonedRepo?.querySelector<HTMLElement>('.repo-marker.stars');
-    const repoStarsSpan = repoStars?.querySelector<HTMLElement>('span');
     const repoArchived = clonedRepo?.querySelector<HTMLElement>('.repo-marker.archived');
 
     if (repoName) repoName.innerText = repo.name;
     if (repoLinks) repoLinks.innerHTML = renderLinks(repo);
     if (!repo.archived) repoArchived?.remove();
-    if (repo.stars > 0) {
-        if (repoStarsSpan) repoStarsSpan.innerText = `${repo.stars}`;
-    } else {
-        repoStars?.remove();
-    }
     if (repo.description) {
         if (repoDescription) repoDescription.innerText = repo.description;
     } else {
@@ -36,7 +29,7 @@ function renderRepo(templateRepo: HTMLTemplateElement, repo: MappedRepo): Node |
 
 function reposModule(repositories: Array<MappedRepo>): void {
     if (repositories.length === 0) return;
-    const listElement = document.getElementById('repositories-list');
+    const listElement = document.getElementById('projects-list');
     const templateRepo = document.getElementById('template-repo') as HTMLTemplateElement | null;
     if (!listElement || !templateRepo) return;
     const repos: Array<Node> = [];
