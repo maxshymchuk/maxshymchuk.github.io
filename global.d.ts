@@ -21,7 +21,7 @@ type Person = {
     received_events_url: string;
     type: string;
     site_admin: boolean;
-}
+};
 
 type User = {
     login: string;
@@ -56,7 +56,7 @@ type User = {
     following: number;
     created_at: string;
     updated_at: string;
-}
+};
 
 type Repo = {
     id: number;
@@ -138,7 +138,7 @@ type Repo = {
     open_issues: number;
     watchers: number;
     default_branch: string;
-}
+};
 
 type Asset = {
     url: string;
@@ -154,7 +154,7 @@ type Asset = {
     created_at: string;
     updated_at: string;
     browser_download_url: string;
-}
+};
 
 type Release = {
     url: string;
@@ -175,7 +175,7 @@ type Release = {
     tarball_url: string;
     zipball_url: string;
     body: string;
-}
+};
 
 type GitFile = {
     filename: string;
@@ -185,7 +185,7 @@ type GitFile = {
     size: number;
     truncated: boolean;
     content: string;
-}
+};
 
 type HistoryItem = {
     user: Person;
@@ -195,9 +195,9 @@ type HistoryItem = {
         total: number;
         additions: number;
         deletions: number;
-    },
+    };
     url: string;
-}
+};
 
 type Gist = {
     url: string;
@@ -214,18 +214,18 @@ type Gist = {
     updated_at: string;
     description: string;
     comments: number;
-    user: Nullable<Person>,
+    user: Nullable<Person>;
     comments_url: string;
     owner: Person;
     forks: Array<unknown>;
     history: Array<HistoryItem>;
     truncated: boolean;
-}
+};
 
 type Meta = {
     timestamp: number;
     snapshot: string;
-}
+};
 
 type MappedRepo = {
     name: string;
@@ -236,22 +236,28 @@ type MappedRepo = {
     page: string;
     topics: Array<string>;
     archived: boolean;
-}
+};
 
 type MappedUser = {
     login: string;
     name: Nullable<string>;
     bio: Nullable<string>;
-    email: Nullable<string>;
     repos_url: string;
-}
+};
+
+type Links = 'github' | 'linkedin' | 'telegram' | 'notion' | 'email';
+
+type Custom = {
+    links: Partial<Record<Links, string>>;
+};
 
 type UserData = {
     user: MappedUser;
     repositories: Array<MappedRepo>;
-}
+    custom: Custom;
+};
 
 type Data = {
     meta: Meta;
     data: UserData;
-}
+};
