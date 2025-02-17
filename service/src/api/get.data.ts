@@ -12,17 +12,15 @@ async function getData(): Promise<UserData> {
         filtered.push(repo);
     }
 
-    const custom: Custom = {
-        links: {
-            github: process.env.GITHUB,
-            linkedin: process.env.LINKEDIN,
-            telegram: process.env.TELEGRAM,
-            notion: process.env.NOTION,
-            email: process.env.EMAIL,
-        },
-    };
+    const links: Array<Link> = [];
 
-    return { user, repositories: filtered, custom };
+    if (process.env.GITHUB) links.push({ key: 'github', title: 'Github', url: process.env.GITHUB });
+    if (process.env.LINKEDIN) links.push({ key: 'linkedin', title: 'LinkedIn', url: process.env.LINKEDIN });
+    if (process.env.TELEGRAM) links.push({ key: 'telegram', title: 'Telegram', url: process.env.TELEGRAM });
+    if (process.env.NOTION) links.push({ key: 'notion', title: 'Notion', url: process.env.NOTION });
+    if (process.env.EMAIL) links.push({ key: 'email', title: 'Email', url: process.env.EMAIL });
+
+    return { user, repositories: filtered, custom: { links } };
 }
 
 export { getData };

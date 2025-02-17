@@ -245,10 +245,16 @@ type MappedUser = {
     repos_url: string;
 };
 
-type Links = 'github' | 'linkedin' | 'telegram' | 'notion' | 'email';
+type LinkKeys = 'github' | 'linkedin' | 'telegram' | 'notion' | 'email';
+
+type Link = {
+    key: LinkKeys;
+    title: string;
+    url: string;
+};
 
 type Custom = {
-    links: Partial<Record<Links, string>>;
+    links: Array<Link>;
 };
 
 type UserData = {
