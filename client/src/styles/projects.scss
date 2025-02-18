@@ -10,14 +10,17 @@
         & > :first-child {
             margin-top: 0;
         }
+        & > :last-child {
+            margin-bottom: 0;
+        }
     }
 
     .repo {
         @include spacing.margin-y(1.5);
 
-        display: flex;
-        flex-direction: column;
-        gap: calc(spacing.$unit / 2);
+        & > * {
+            @include spacing.margin-y(0.5);
+        }
 
         @media print {
             @include spacing.margin-y;

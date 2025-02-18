@@ -1,0 +1,73 @@
+@use 'breakpoints';
+@use 'spacing';
+@use 'colors';
+@use 'sizing';
+@use 'custom';
+
+.experiences {
+    @include custom.box(0);
+
+    .experiences-list {
+        & > :first-child {
+            margin-top: 0;
+        }
+        & > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .experience {
+        @include spacing.margin-y(1.5);
+
+        & > * {
+            @include spacing.margin-y(0.5);
+        }
+
+        @media print {
+            @include spacing.margin-y;
+        }
+
+        @media screen and (max-width: breakpoints.$sm) {
+            @include spacing.margin-y;
+            gap: calc(spacing.$unit / 4);
+        }
+
+        .experience-company {
+            @include custom.truncate;
+        }
+
+        .experience-date {
+            @include custom.truncate;
+            @include colors.theme('color', colors.$text-muted);
+
+            & {
+                font-weight: bold;
+            }
+        }
+
+        .experience-achievements {
+            list-style: none;
+
+            & > li {
+                @include spacing.margin-y(0.5);
+                display: -webkit-box;
+                line-clamp: 2;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+        }
+
+        .experience-techstack {
+            @include colors.theme('color', colors.$text-muted);
+
+            & {
+                display: flex;
+                flex-wrap: wrap;
+                gap: calc(spacing.$unit / 4) calc(spacing.$unit / 2);
+                font-size: sizing.$h6;
+                font-weight: bold;
+            }
+        }
+    }
+}
