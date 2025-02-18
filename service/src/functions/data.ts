@@ -33,7 +33,7 @@ async function data(): Promise<Nullable<Data>> {
     if (saved) return saved;
 
     try {
-        const { user, repositories, custom } = await getData();
+        const { user, repositories } = await getData();
 
         const current = Date.now();
 
@@ -43,7 +43,7 @@ async function data(): Promise<Nullable<Data>> {
                 expired: current + Const.RequestIntervalMs,
                 snapshot: serialize(repositories),
             },
-            payload: { user, repositories, custom },
+            payload: { user, repositories },
         };
 
         waitUntil(Promise.all([updateDatabase(data), updateGist(data)]));

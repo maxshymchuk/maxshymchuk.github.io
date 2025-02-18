@@ -261,7 +261,6 @@ type Custom = {
 type UserData = {
     user: MappedUser;
     repositories: Array<MappedRepo>;
-    custom: Custom;
 };
 
 type Data = {
