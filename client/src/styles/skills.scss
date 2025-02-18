@@ -1,16 +1,30 @@
 @use 'spacing';
+@use 'breakpoints';
 @use 'custom';
 
 .skills {
     @include custom.box(0);
 
-    .skill-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: calc(spacing.$unit / 2);
+    .skills-section {
+        @include spacing.margin-y;
 
-        .skill {
+        & > * {
+            @include spacing.margin-y(0.5);
+        }
+
+        .skills-group {
             @include custom.truncate;
         }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc(spacing.$unit / 2);
+            list-style: none;
+        }
     }
+}
+
+.skill {
+    @include custom.truncate;
 }

@@ -19,6 +19,7 @@ a {
 
 p {
     margin: 0;
+    line-height: calc(sizing.$text * 1.5);
 }
 
 ul {
