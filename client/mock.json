@@ -198,15 +198,6 @@
                 "topics": [],
                 "archived": true
             }
-        ],
-        "custom": {
-            "links": [
-                { "key": "github", "title": "Github", "url": "1" },
-                { "key": "linkedin", "title": "LinkedIn", "url": "2" },
-                { "key": "telegram", "title": "Telegram", "url": "3" },
-                { "key": "notion", "title": "Notion", "url": "4" },
-                { "key": "email", "title": "Email", "url": "5" }
-            ]
-        }
+        ]
     }
 }

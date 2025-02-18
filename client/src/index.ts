@@ -19,7 +19,7 @@ const loaders = [
     }),
 ];
 
-async function retrieve(): Promise<Data> {
+async function load(): Promise<Data> {
     if (import.meta.env.DEV) return import('../mock.json') as Promise<Data>;
     const cache = getCache();
     if (cache && Date.now() < cache.meta.expired) return cache;
@@ -35,10 +35,9 @@ async function initialize() {
     content.classList.add('invisible');
 
     try {
-        const { meta, payload } = await retrieve();
+        const { meta, payload } = await load();
 
-        await headerModule(payload.user, payload.custom);
-
+        await headerModule(payload.user);
         reposModule(payload.repositories);
         footerModule(meta);
 

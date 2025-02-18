@@ -1,3 +1,5 @@
+import { custom } from '../custom';
+
 async function renderLink({ key, title, url }: Link): Promise<Node> {
     const link = document.createElement('a');
     link.setAttribute('class', 'header-link');
@@ -13,7 +15,7 @@ async function renderLink({ key, title, url }: Link): Promise<Node> {
     return link;
 }
 
-async function headerModule(user: MappedUser, custom: Custom): Promise<void> {
+async function headerModule(user: MappedUser): Promise<void> {
     const headerName = document.getElementById('header-name');
     if (headerName) {
         headerName.innerText = user.name ? user.name : user.login;
