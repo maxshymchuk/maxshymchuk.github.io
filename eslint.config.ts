@@ -7,7 +7,7 @@ import type { Linter } from 'eslint';
 /** @type {import('eslint').Linter.Config[]} */
 export default [
     { ignores: ['package-lock.json', 'public', 'node_modules', 'dist'] },
-    { files: ['**/*.{js,mjs,cjs,ts}'] },
+    { files: ['**/*.{js,mjs,cjs,jsx,ts,tsx}'] },
     { languageOptions: { globals: globals.browser } },
     pluginJs.configs.recommended,
     ...tseslint.configs.recommended,
