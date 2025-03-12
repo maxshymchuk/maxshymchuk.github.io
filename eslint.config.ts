@@ -4,8 +4,8 @@ import tseslint from 'typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default tseslint.config(
-    { ignores: ['package-lock.json', 'public', 'node_modules', 'dist'] },
-    { files: ['*/src/*.{js,mjs,cjs,jsx,ts,tsx}'] },
+    { ignores: ['**/*.config.ts', '**/*.d.ts', '**/package-lock.json', '**/public', '**/node_modules', '**/dist'] },
+    { files: ['*.{js,mjs,cjs,jsx,ts,tsx}'] },
     { languageOptions: { globals: globals.browser } },
     eslint.configs.recommended,
     tseslint.configs.recommendedTypeChecked,
@@ -21,7 +21,9 @@ export default tseslint.config(
         },
         languageOptions: {
             parserOptions: {
+                // allowDefaultProject: '*.js',
                 projectService: true,
+                // tsconfigRootDir: import.meta.dirname,
             },
         },
     },
