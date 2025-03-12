@@ -1,15 +1,28 @@
 import globals from 'globals';
-import pluginJs from '@eslint/js';
+import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
-import type { Linter } from 'eslint';
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
+export default tseslint.config(
     { ignores: ['package-lock.json', 'public', 'node_modules', 'dist'] },
-    { files: ['**/*.{js,mjs,cjs,jsx,ts,tsx}'] },
+    { files: ['*/src/*.{js,mjs,cjs,jsx,ts,tsx}'] },
     { languageOptions: { globals: globals.browser } },
-    pluginJs.configs.recommended,
-    ...tseslint.configs.recommended,
+    eslint.configs.recommended,
+    tseslint.configs.recommendedTypeChecked,
     eslintConfigPrettier,
-] satisfies Linter.Config[];
+    {
+        rules: {
+            '@typescript-eslint/restrict-template-expressions': 'off',
+            '@typescript-eslint/no-unsafe-assignment': 'off',
+            '@typescript-eslint/no-unsafe-member-access': 'off',
+            '@typescript-eslint/no-unsafe-return': 'off',
+            '@typescript-eslint/no-unsafe-argument': 'off',
+            '@typescript-eslint/no-unsafe-call': 'off',
+        },
+        languageOptions: {
+            parserOptions: {
+                projectService: true,
+            },
+        },
+    },
+);

@@ -37,7 +37,7 @@ function reposModule(repositories: Array<MappedRepo>): void {
         const result = renderRepo(templateRepo, repo);
         if (result) repos.push(result);
     }
-    listElement?.replaceChildren(...repos);
+    listElement.replaceChildren(...repos);
 }
 
 export { reposModule };

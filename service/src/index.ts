@@ -14,7 +14,7 @@ function log(text: string, path: string, file?: string) {
 
 async function createFunctionConfig(path: string, name: string) {
     await createDirectory(path);
-    return await writeFile(
+    await writeFile(
         path,
         stringify({
             runtime: 'nodejs22.x',
@@ -27,7 +27,7 @@ async function createFunctionConfig(path: string, name: string) {
 
 async function createConfig(path: string) {
     await createDirectory(path);
-    return await writeFile(
+    await writeFile(
         path,
         stringify({
             version: 3,

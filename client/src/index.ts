@@ -49,4 +49,4 @@ async function initialize() {
     }
 }
 
-window.addEventListener('load', async () => await initialize());
+window.addEventListener('load', () => void initialize());

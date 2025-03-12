@@ -1,3 +1,4 @@
 tsc -p client --noEmit
 tsc -p service --noEmit
-npx lint-staged
+npm run prettify
+npm run lint
