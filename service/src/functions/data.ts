@@ -28,11 +28,17 @@ async function updateGist(data: Data) {
 }
 
 async function data(): Promise<Nullable<Data>> {
+    console.log('data init');
+
     const saved = await database.read<Data>(database.keys.data);
+
+    console.log('saved', saved);
 
     if (saved) return saved;
 
     try {
+        console.log('getData');
+
         const { user, repositories } = await getData();
 
         const current = Date.now();
@@ -45,6 +51,8 @@ async function data(): Promise<Nullable<Data>> {
             },
             payload: { user, repositories },
         };
+
+        console.log('data', data);
 
         waitUntil(Promise.all([updateDatabase(data), updateGist(data)]));
 
