@@ -6,11 +6,13 @@ config({ override: true });
 
 async function refresh() {
     try {
-        const res = await database.del('data');
-        return res;
+        await database.open();
+        await database.del('data');
     } catch (error) {
-        console.log(error);
-        return error;
+        console.error(error);
+        throw error;
+    } finally {
+        await database.close();
     }
 }
 

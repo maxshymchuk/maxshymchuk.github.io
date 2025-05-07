@@ -28,15 +28,17 @@ async function updateGist(data: Data) {
 }
 
 async function data(): Promise<Nullable<Data>> {
-    console.log('data init');
-
-    const saved = await database.read<Data>(database.keys.data);
-
-    console.log('saved', saved);
-
-    if (saved) return saved;
-
     try {
+        await database.open();
+
+        console.log('data init');
+
+        const saved = await database.read<Data>(database.keys.data);
+
+        console.log('saved', saved);
+
+        if (saved) return saved;
+
         console.log('getData');
 
         const { user, repositories } = await getData();
@@ -58,8 +60,10 @@ async function data(): Promise<Nullable<Data>> {
 
         return data;
     } catch (error) {
-        console.log(error);
-        return saved;
+        console.error(error);
+        throw error;
+    } finally {
+        await database.close();
     }
 }
 
