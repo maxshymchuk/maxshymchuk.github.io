@@ -6,20 +6,32 @@ const keys = {
     data: 'data',
 } as const;
 
-const redis = await createClient().connect();
+const client = createClient();
+
+async function ensureConnection() {
+    try {
+        await client.connect();
+    } catch (err) {
+        console.error('Redis connection failed:', err);
+        throw err;
+    }
+}
 
 async function write<T>(key: ValueOf<typeof keys>, data: T): Promise<Nullable<string>> {
-    return redis.set(key, stringify(data), { expiration: { type: "PX", value: Const.RequestIntervalMs } });
+    await ensureConnection();
+    return client.set(key, stringify(data), { expiration: { type: 'PX', value: Const.RequestIntervalMs } });
 }
 
 async function read<T>(key: ValueOf<typeof keys>): Promise<Nullable<T>> {
-    const data = await redis.get(key);
+    await ensureConnection();
+    const data = await client.get(key);
     if (!data) return null;
     return JSON.parse(data);
 }
 
 async function del(key: ValueOf<typeof keys>): Promise<number> {
-    return redis.del(key);
+    await ensureConnection();
+    return client.del(key);
 }
 
 export default { keys, read, write, del };
