@@ -62,7 +62,7 @@ async function transform(from: string, where: string) {
         bundle: true,
         minify: true,
         entryPoints: [from],
-        format: 'esm',
+        format: 'cjs',
         platform: 'node',
         target: 'esnext',
         outdir: where,
