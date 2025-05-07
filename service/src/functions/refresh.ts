@@ -5,15 +5,7 @@ import { jsonHandler } from '../utils';
 config({ override: true });
 
 async function refresh() {
-    try {
-        await database.open();
-        await database.del('data');
-    } catch (error) {
-        console.error(error);
-        throw error;
-    } finally {
-        await database.close();
-    }
+    await database.del('data');
 }
 
 export default jsonHandler(refresh);

@@ -28,43 +28,26 @@ async function updateGist(data: Data) {
 }
 
 async function data(): Promise<Nullable<Data>> {
-    try {
-        await database.open();
+    const saved = await database.read<Data>(database.keys.data);
 
-        console.log('data init');
+    if (saved) return saved;
 
-        const saved = await database.read<Data>(database.keys.data);
+    const { user, repositories } = await getData();
 
-        console.log('saved', saved);
+    const current = Date.now();
 
-        if (saved) return saved;
+    const data: Data = {
+        meta: {
+            timestamp: current,
+            expired: current + Const.RequestIntervalMs,
+            snapshot: serialize(repositories),
+        },
+        payload: { user, repositories },
+    };
 
-        console.log('getData');
+    waitUntil(Promise.all([updateDatabase(data), updateGist(data)]));
 
-        const { user, repositories } = await getData();
-
-        const current = Date.now();
-
-        const data: Data = {
-            meta: {
-                timestamp: current,
-                expired: current + Const.RequestIntervalMs,
-                snapshot: serialize(repositories),
-            },
-            payload: { user, repositories },
-        };
-
-        console.log('data', data);
-
-        waitUntil(Promise.all([updateDatabase(data), updateGist(data)]));
-
-        return data;
-    } catch (error) {
-        console.error(error);
-        throw error;
-    } finally {
-        await database.close();
-    }
+    return data;
 }
 
 export default jsonHandler(data);

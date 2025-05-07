@@ -1,5 +1,6 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { createHash } from 'crypto';
+import database from './database';
 
 function stringify(obj: unknown, pretty = false): string {
     return JSON.stringify(obj, null, pretty ? '    ' : undefined);
@@ -12,7 +13,15 @@ function serialize(obj: unknown): string {
 
 function jsonHandler<T>(sender: (req: VercelRequest) => Promise<T>) {
     return async (req: VercelRequest, res: VercelResponse) => {
-        return res.json(await sender(req));
+        try {
+            await database.open();
+            return res.json(await sender(req));
+        } catch (error) {
+            console.error(error);
+            throw error;
+        } finally {
+            await database.close();
+        }
     };
 }
 
