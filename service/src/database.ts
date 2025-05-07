@@ -1,4 +1,4 @@
-import { kv } from '@vercel/kv';
+import { createClient } from 'redis';
 import { Const } from './constants';
 import { stringify } from './utils';
 
@@ -6,16 +6,20 @@ const keys = {
     data: 'data',
 } as const;
 
+const redis = await createClient().connect();
+
 async function write<T>(key: ValueOf<typeof keys>, data: T): Promise<Nullable<string>> {
-    return kv.set(key, stringify(data), { ex: Const.RequestIntervalMs / 1000 });
+    return redis.set(key, stringify(data), { expiration: { type: "PX", value: Const.RequestIntervalMs } });
 }
 
 async function read<T>(key: ValueOf<typeof keys>): Promise<Nullable<T>> {
-    return kv.get<T>(key);
+    const data = await redis.get(key);
+    if (!data) return null;
+    return JSON.parse(data);
 }
 
 async function del(key: ValueOf<typeof keys>): Promise<number> {
-    return kv.del(key);
+    return redis.del(key);
 }
 
 export default { keys, read, write, del };
