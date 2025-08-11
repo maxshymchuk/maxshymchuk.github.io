@@ -1,8 +1,7 @@
-function footerModule(meta: Meta): void {
-    const lastUpdated = document.getElementById('updated-at');
-    if (lastUpdated) {
-        lastUpdated.innerText = `Updated at ${new Date(meta.timestamp).toLocaleString()}`;
-    }
+import { Doms } from '../constants';
+
+function Footer(meta: Meta): void {
+    Doms.FooterUpdatedAt.innerText = `Updated at ${new Date(meta.timestamp).toLocaleString()}`;
 }
 
-export { footerModule };
+export { Footer };

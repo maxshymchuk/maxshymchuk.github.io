@@ -1,11 +1,8 @@
 import { getData } from './api';
-import { Const } from './constants';
-import { headerModule, reposModule, footerModule } from './modules';
+import { Const, Doms } from './constants';
+import { Header, Projects, Footer } from './modules';
 import { createLoader, parseGist } from './utils';
 import { getCache, setCache } from './utils/cache';
-
-const loader = document.getElementById('loader');
-const content = document.getElementById('content');
 
 const loaders = [
     createLoader(Const.Sources.Vercel),
@@ -29,23 +26,21 @@ async function load(): Promise<Data> {
 }
 
 async function initialize() {
-    if (!loader || !content) return;
-
-    loader.classList.remove('invisible');
-    content.classList.add('invisible');
+    Doms.Loader.classList.remove('invisible');
+    Doms.Content.classList.add('invisible');
 
     try {
         const { meta, payload } = await load();
 
-        await headerModule(payload.user);
-        reposModule(payload.repositories);
-        footerModule(meta);
+        await Header(payload.user);
+        Projects(payload.repositories);
+        Footer(meta);
 
-        loader.classList.add('invisible');
-        content.classList.remove('invisible');
+        Doms.Loader.classList.add('invisible');
+        Doms.Content.classList.remove('invisible');
     } catch (error) {
+        Doms.Loader.innerText = 'Error :(';
         console.error(error);
-        loader.innerText = 'Error :(';
     }
 }
 

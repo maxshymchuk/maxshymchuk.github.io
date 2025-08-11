@@ -1,3 +1,5 @@
+import { Doms } from '../constants';
+
 function renderLinks(repo: MappedRepo): string {
     const links = [
         { title: 'repo', url: repo.page },
@@ -27,17 +29,14 @@ function renderRepo(templateRepo: HTMLTemplateElement, repo: MappedRepo): Node |
     return clonedRepo;
 }
 
-function reposModule(repositories: Array<MappedRepo>): void {
+function Projects(repositories: Array<MappedRepo>): void {
     if (repositories.length === 0) return;
-    const listElement = document.getElementById('projects-list');
-    const templateRepo = document.getElementById('template-repo') as HTMLTemplateElement | null;
-    if (!listElement || !templateRepo) return;
     const repos: Array<Node> = [];
     for (const repo of repositories) {
-        const result = renderRepo(templateRepo, repo);
+        const result = renderRepo(Doms.ProjectsTemplate, repo);
         if (result) repos.push(result);
     }
-    listElement.replaceChildren(...repos);
+    Doms.ProjectsList.replaceChildren(...repos);
 }
 
-export { reposModule };
+export { Projects };
