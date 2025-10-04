@@ -1,0 +1,12 @@
+.print-only {
+    display: none;
+    @media print {
+        display: inherit;
+    }
+}
+
+.print-avoid-break {
+    @media print {
+        break-inside: avoid-page;
+    }
+}

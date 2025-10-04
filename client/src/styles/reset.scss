@@ -1,6 +1,4 @@
-@use 'colors';
-@use 'sizing';
-@use 'spacing';
+@use 'variables' as *;
 
 * {
     box-sizing: border-box;
@@ -9,17 +7,16 @@
 }
 
 a {
-    @include colors.theme('color', colors.$link);
+    @include color-theme('color', $color-link);
 
     & {
         text-decoration: none;
-        flex-shrink: 0;
     }
 }
 
 p {
     margin: 0;
-    line-height: calc(sizing.$text * 1.5);
+    line-height: calc($typo-text-default * 1.5);
 }
 
 ul {
@@ -50,29 +47,29 @@ h3,
 h4,
 h5,
 h6 {
-    margin: spacing.$unit 0;
+    margin: $spacing-unit 0;
 }
 
 h1 {
-    font-size: sizing.$h1;
+    font-size: $typo-h1;
 }
 
 h2 {
-    font-size: sizing.$h2;
+    font-size: $typo-h2;
 }
 
 h3 {
-    font-size: sizing.$h3;
+    font-size: $typo-h3;
 }
 
 h4 {
-    font-size: sizing.$h4;
+    font-size: $typo-h4;
 }
 
 h5 {
-    font-size: sizing.$h5;
+    font-size: $typo-h5;
 }
 
 h6 {
-    font-size: sizing.$h6;
+    font-size: $typo-h6;
 }

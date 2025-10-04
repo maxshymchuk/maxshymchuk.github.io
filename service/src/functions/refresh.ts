@@ -5,7 +5,7 @@ import { jsonHandler } from '../utils';
 config({ override: true });
 
 async function refresh() {
-    await database.del('data');
+    await database.del(database.keys.data);
 }
 
 export default jsonHandler(refresh);

@@ -246,20 +246,16 @@ type MappedUser = {
     repos_url: string;
 };
 
-type LinkKeys = 'github' | 'linkedin' | 'telegram' | 'notion' | 'email';
-
-type Link = {
-    key: LinkKeys;
+type Contact = {
     title: string;
     url: string;
-};
-
-type Custom = {
-    links: Array<Link>;
+    prettyUrl?: string;
+    logo?: string;
 };
 
 type UserData = {
     user: MappedUser;
+    contacts: Array<Contact>;
     repositories: Array<MappedRepo>;
 };
 

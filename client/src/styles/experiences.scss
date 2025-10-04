@@ -1,7 +1,4 @@
-@use 'breakpoints';
-@use 'spacing';
-@use 'colors';
-@use 'sizing';
+@use 'variables' as *;
 @use 'custom';
 
 .experiences {
@@ -17,19 +14,19 @@
     }
 
     .experience {
-        @include spacing.margin-y(1.5);
+        @include spacing-margin-y(1.5);
 
         & > * {
-            @include spacing.margin-y(0.5);
+            @include spacing-margin-y(0.5);
         }
 
         @media print {
-            @include spacing.margin-y;
+            @include spacing-margin-y;
         }
 
-        @media screen and (max-width: breakpoints.$sm) {
-            @include spacing.margin-y;
-            gap: calc(spacing.$unit / 4);
+        @media screen and (max-width: $breakpoint-sm) {
+            @include spacing-margin-y;
+            gap: calc($spacing-unit / 4);
         }
 
         .experience-company {
@@ -38,7 +35,7 @@
 
         .experience-date {
             @include custom.truncate;
-            @include colors.theme('color', colors.$text-muted);
+            @include color-theme('color', $color-text-muted);
 
             & {
                 font-weight: bold;
@@ -49,7 +46,7 @@
             list-style: none;
 
             & > li {
-                @include spacing.margin-y(0.5);
+                @include spacing-margin-y(0.5);
                 display: -webkit-box;
                 line-clamp: 6;
                 -webkit-line-clamp: 6;
@@ -59,13 +56,13 @@
         }
 
         .experience-techstack {
-            @include colors.theme('color', colors.$text-muted);
+            @include color-theme('color', $color-text-muted);
 
             & {
                 display: flex;
                 flex-wrap: wrap;
-                gap: calc(spacing.$unit / 4) calc(spacing.$unit / 2);
-                font-size: sizing.$h6;
+                gap: calc($spacing-unit / 4) calc($spacing-unit / 2);
+                font-size: $typo-h6;
                 font-weight: bold;
             }
         }

@@ -1,36 +1,33 @@
-@use 'breakpoints';
-@use 'spacing';
-@use 'colors';
-@use 'sizing';
+@use 'variables' as *;
 
 header {
-    @include spacing.padding-x;
-    @include spacing.margin-y;
-    @include spacing.margin-center(x);
-    @include spacing.max-width;
+    @include spacing-padding-x;
+    @include spacing-margin-y;
+    @include spacing-margin-center(x);
+    @include spacing-max-width;
 
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: spacing.$unit;
+    gap: $spacing-unit;
 
     .header-name {
         margin: 0;
-        font-size: max(min(10vw, sizing.$h1), 2rem);
+        font-size: max(min(10vw, $typo-h1), 2rem);
     }
 
     .header-bio {
         margin: 0;
-        margin-top: calc(spacing.$unit / 4);
-        font-size: max(min(4vw, sizing.$h4), 1rem);
+        margin-top: calc($spacing-unit / 4);
+        font-size: max(min(4vw, $typo-h4), 1rem);
     }
 
     .header-links {
         display: flex;
-        column-gap: spacing.$unit;
-        row-gap: calc(spacing.$unit / 2);
+        column-gap: $spacing-unit;
+        row-gap: calc($spacing-unit / 2);
         flex-wrap: wrap;
         align-items: center;
 
@@ -43,7 +40,7 @@ header {
             color: inherit;
 
             svg {
-                @include colors.theme('fill', colors.$text-muted);
+                @include color-theme('fill', $color-text-muted);
 
                 & {
                     width: 30px;
@@ -51,7 +48,7 @@ header {
                 }
             }
 
-            @media screen and (max-width: breakpoints.$sm) {
+            @media screen and (max-width: $breakpoint-sm) {
                 svg {
                     width: 25px;
                     height: 25px;

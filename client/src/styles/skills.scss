@@ -1,15 +1,14 @@
-@use 'spacing';
-@use 'breakpoints';
+@use 'variables' as *;
 @use 'custom';
 
 .skills {
     @include custom.box(0);
 
     .skills-section {
-        @include spacing.margin-y;
+        @include spacing-margin-y;
 
         & > * {
-            @include spacing.margin-y(0.5);
+            @include spacing-margin-y(0.5);
         }
 
         .skills-group {
@@ -19,7 +18,7 @@
         .skills-list {
             display: flex;
             flex-wrap: wrap;
-            gap: calc(spacing.$unit / 2);
+            gap: calc($spacing-unit / 2);
             list-style: none;
         }
     }

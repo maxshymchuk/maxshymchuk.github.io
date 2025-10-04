@@ -9,7 +9,7 @@ function renderLinks(repo: MappedRepo): string {
     return `[ ${links.map((link) => `<a href="${link.url}" target="_blank">${link.title}</a>`).join(' | ')} ]`;
 }
 
-function renderRepo(templateRepo: HTMLTemplateElement, repo: MappedRepo): Node | null {
+function renderRepoItem(templateRepo: HTMLTemplateElement, repo: MappedRepo): Node | null {
     const clonedRepo = templateRepo.content.querySelector('.repo')?.cloneNode(true) as Nullable<HTMLElement>;
 
     const repoName = clonedRepo?.querySelector<HTMLElement>('.repo-name');
@@ -29,14 +29,16 @@ function renderRepo(templateRepo: HTMLTemplateElement, repo: MappedRepo): Node |
     return clonedRepo;
 }
 
-function Projects(repositories: Array<MappedRepo>): void {
-    if (repositories.length === 0) return;
-    const repos: Array<Node> = [];
-    for (const repo of repositories) {
-        const result = renderRepo(Doms.ProjectsTemplate, repo);
-        if (result) repos.push(result);
+export default async function render(repositories: Array<MappedRepo>) {
+    try {
+        if (repositories.length === 0) return;
+        const repos: Array<Node> = [];
+        for (const repo of repositories) {
+            const result = renderRepoItem(Doms.ProjectsTemplate, repo);
+            if (result) repos.push(result);
+        }
+        Doms.ProjectsList.replaceChildren(...repos);
+    } catch (error) {
+        console.error(error);
     }
-    Doms.ProjectsList.replaceChildren(...repos);
 }
-
-export { Projects };

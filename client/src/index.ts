@@ -1,8 +1,11 @@
 import { getData } from './api';
 import { Const, Doms } from './constants';
-import { Header, Projects, Footer } from './modules';
 import { createLoader, parseGist } from './utils';
 import { getCache, setCache } from './utils/cache';
+import renderHeader from './renderers/header';
+import renderContacts from './renderers/contacts';
+import renderProjects from './renderers/projects';
+import renderFooter from './renderers/footer';
 
 const loaders = [
     createLoader(Const.Sources.Vercel),
@@ -32,9 +35,10 @@ async function initialize() {
     try {
         const { meta, payload } = await load();
 
-        await Header(payload.user);
-        Projects(payload.repositories);
-        Footer(meta);
+        await renderHeader(payload.user, payload.contacts);
+        await renderContacts(payload.contacts);
+        await renderProjects(payload.repositories);
+        await renderFooter(meta);
 
         Doms.Loader.classList.add('invisible');
         Doms.Content.classList.remove('invisible');
