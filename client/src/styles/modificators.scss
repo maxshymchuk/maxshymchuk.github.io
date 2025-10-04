@@ -5,7 +5,13 @@
     }
 }
 
-.print-avoid-break {
+.print-page-break {
+    @media print {
+        break-before: page;
+    }
+}
+
+.print-avoid-break-inside {
     @media print {
         break-inside: avoid-page;
     }

@@ -12,70 +12,70 @@
         & > :last-child {
             margin-bottom: 0;
         }
+    }
 
-        .repo {
-            @include spacing-margin-y(1.5);
+    .repo {
+        @include spacing-margin-y(1.5);
 
-            & > * {
-                @include spacing-margin-y(0.5);
+        & > * {
+            @include spacing-margin-y(0.5);
+        }
+
+        @media print {
+            @include spacing-margin-y;
+        }
+
+        @media screen and (max-width: $breakpoint-sm) {
+            @include spacing-margin-y;
+            gap: calc($spacing-unit / 4);
+        }
+
+        .repo-title {
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc($spacing-unit / 4) calc($spacing-unit / 2);
+
+            .repo-name {
+                @include custom.truncate;
+                margin: 0;
+                font-size: inherit;
             }
 
-            @media print {
-                @include spacing-margin-y;
+            .repo-links {
+                white-space: nowrap;
+
+                @media print {
+                    display: none;
+                }
             }
 
-            @media screen and (max-width: $breakpoint-sm) {
-                @include spacing-margin-y;
-                gap: calc($spacing-unit / 4);
-            }
-
-            .repo-title {
+            .repo-markers {
                 display: flex;
-                flex-wrap: wrap;
-                gap: calc($spacing-unit / 4) calc($spacing-unit / 2);
+                gap: calc($spacing-unit / 2);
 
-                .repo-name {
-                    @include custom.truncate;
-                    margin: 0;
-                    font-size: inherit;
+                @media print {
+                    display: none;
                 }
 
-                .repo-links {
-                    white-space: nowrap;
+                .repo-marker {
+                    @include color-theme('color', $color-text-muted);
 
-                    @media print {
-                        display: none;
-                    }
-                }
-
-                .repo-markers {
-                    display: flex;
-                    gap: calc($spacing-unit / 2);
-
-                    @media print {
-                        display: none;
-                    }
-
-                    .repo-marker {
-                        @include color-theme('color', $color-text-muted);
-
-                        & {
-                            display: flex;
-                            align-items: center;
-                            gap: calc($spacing-unit / 4);
-                            font-weight: bold;
-                        }
+                    & {
+                        display: flex;
+                        align-items: center;
+                        gap: calc($spacing-unit / 4);
+                        font-weight: bold;
                     }
                 }
             }
+        }
 
-            .repo-description {
-                display: -webkit-box;
-                line-clamp: 4;
-                -webkit-line-clamp: 4;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
+        .repo-description {
+            display: -webkit-box;
+            line-clamp: 4;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
     }
 }

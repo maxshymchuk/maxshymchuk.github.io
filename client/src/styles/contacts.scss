@@ -12,47 +12,47 @@
         & > :last-child {
             margin-bottom: 0;
         }
+    }
 
-        .contact {
-            @include spacing-margin-y;
+    .contact {
+        @include spacing-margin-y;
 
-            display: flex;
-            align-items: center;
-            gap: $spacing-unit;
+        display: flex;
+        align-items: center;
+        gap: $spacing-unit;
 
-            @media print {
-                @include spacing-margin-y(0.5);
-                gap: calc($spacing-unit / 2);
+        @media print {
+            @include spacing-margin-y(0.5);
+            gap: calc($spacing-unit / 2);
+        }
+
+        .contact-icon {
+            display: block;
+            color: inherit;
+
+            svg {
+                @include color-theme('fill', $color-text-muted);
+
+                & {
+                    width: 30px;
+                    height: 30px;
+                }
+
+                @media print {
+                    fill: inherit;
+                }
             }
 
-            .contact-icon {
-                display: block;
-                color: inherit;
-
+            @media screen and (max-width: $breakpoint-sm) {
                 svg {
-                    @include color-theme('fill', $color-text-muted);
-
-                    & {
-                        width: 30px;
-                        height: 30px;
-                    }
-
-                    @media print {
-                        fill: inherit;
-                    }
-                }
-
-                @media screen and (max-width: $breakpoint-sm) {
-                    svg {
-                        width: 25px;
-                        height: 25px;
-                    }
+                    width: 25px;
+                    height: 25px;
                 }
             }
+        }
 
-            .contact-link {
-                @include custom.truncate;
-            }
+        .contact-link {
+            @include custom.truncate;
         }
     }
 }
