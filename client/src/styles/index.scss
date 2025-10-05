@@ -15,9 +15,19 @@
         margin: 0 auto;
         max-width: 1000px;
         grid-template-areas:
-            'aside header .'
-            'aside main .';
+            '. aside header .'
+            '. aside main .';
         gap: $spacing-unit-default;
+
+        @media screen and (max-width: $breakpoint-sm) {
+            grid-template-areas:
+                '. header .'
+                '. main .';
+
+            aside {
+                display: none;
+            }
+        }
 
         & > * {
             min-width: 0;
