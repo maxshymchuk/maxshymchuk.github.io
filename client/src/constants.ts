@@ -6,7 +6,7 @@ const Doms = {
     HeaderBio: document.getElementById('header-bio') as HTMLHeadingElement,
     HeaderLinks: document.getElementById('header-links') as HTMLDivElement,
 
-    ContactsLinks: document.getElementById('contacts-links') as HTMLDivElement,
+    ContactsLinks: document.getElementById('contacts-section') as HTMLDivElement,
 
     ProjectsList: document.getElementById('projects-list') as HTMLDivElement,
     ProjectsTemplate: document.getElementById('template-repo') as HTMLTemplateElement,

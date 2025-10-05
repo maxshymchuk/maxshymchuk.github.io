@@ -7,6 +7,7 @@ async function createContactItem({ title, url, prettyUrl, logo }: Contact): Prom
     if (logo) {
         const icon = createElement('div', { class: 'contact-icon' });
         icon.style.fontSize = '0';
+        icon.classList.add('icon');
         icon.innerHTML = logo;
         wrapper.append(icon);
     }

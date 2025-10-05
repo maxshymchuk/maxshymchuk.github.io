@@ -10,6 +10,7 @@ async function renderLinkItem({ title, url, logo }: Contact): Promise<Node> {
     });
     if (logo) {
         link.style.fontSize = '0';
+        link.classList.add('icon');
         link.innerHTML = logo;
     } else {
         link.innerText = title;

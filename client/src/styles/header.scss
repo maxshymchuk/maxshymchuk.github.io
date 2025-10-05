@@ -1,33 +1,35 @@
 @use 'variables' as *;
+@use 'mixins';
 
 header {
-    @include spacing-padding-x;
-    @include spacing-margin-y;
-    @include spacing-margin-center(x);
-    @include spacing-max-width;
+    @include mixins.flex(row, $spacing-unit-default);
 
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: $spacing-unit;
+    & {
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        padding-top: $spacing-unit-default;
+    }
 
     .header-name {
-        margin: 0;
-        font-size: max(min(10vw, $typo-h1), 2rem);
+        @include mixins.clamp(2);
+
+        & {
+            margin: 0;
+            font-size: max(min(10vw, $typo-h1), 2rem);
+        }
     }
 
     .header-bio {
         margin: 0;
-        margin-top: calc($spacing-unit / 4);
+        margin-top: calc($spacing-unit-default / 4);
         font-size: max(min(4vw, $typo-h4), 1rem);
     }
 
     .header-links {
         display: flex;
-        column-gap: $spacing-unit;
-        row-gap: calc($spacing-unit / 2);
+        column-gap: $spacing-unit-default;
+        row-gap: calc($spacing-unit-default / 2);
         flex-wrap: wrap;
         align-items: center;
 
@@ -38,25 +40,12 @@ header {
         .header-link {
             display: block;
             color: inherit;
-
-            svg {
-                @include color-theme('fill', $color-text-muted);
-
-                & {
-                    width: 30px;
-                    height: 30px;
-                }
-            }
+            width: 30px;
+            height: 30px;
 
             @media screen and (max-width: $breakpoint-sm) {
-                svg {
-                    width: 25px;
-                    height: 25px;
-                }
-            }
-
-            &:hover {
-                opacity: 0.8;
+                width: 25px;
+                height: 25px;
             }
         }
     }

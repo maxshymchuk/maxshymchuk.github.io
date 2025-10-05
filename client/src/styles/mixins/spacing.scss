@@ -1,0 +1,19 @@
+@mixin margin-x($unit, $ratio: 1) {
+    margin-left: calc($unit * $ratio);
+    margin-right: calc($unit * $ratio);
+}
+
+@mixin margin-y($unit, $ratio: 1) {
+    margin-top: calc($unit * $ratio);
+    margin-bottom: calc($unit * $ratio);
+}
+
+@mixin padding-x($unit, $ratio: 1) {
+    padding-left: calc($unit * $ratio);
+    padding-right: calc($unit * $ratio);
+}
+
+@mixin padding-y($unit, $ratio: 1) {
+    padding-top: calc($unit * $ratio);
+    padding-bottom: calc($unit * $ratio);
+}

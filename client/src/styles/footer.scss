@@ -1,7 +1,9 @@
-@use 'custom';
+@use 'variables' as *;
+@use 'mixins';
 
 footer {
-    @include custom.box;
+    @include mixins.padding-x($spacing-unit-default);
+    @include mixins.padding-y($spacing-unit-default);
 
     & {
         position: sticky;

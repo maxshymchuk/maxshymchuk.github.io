@@ -1,13 +1,42 @@
+@use 'variables' as *;
+@use 'mixins';
 @use 'reset';
 @use 'modificators';
+@use 'aside';
 @use 'header';
-@use 'contacts';
-@use 'experiences';
-@use 'skills';
-@use 'projects';
+@use 'main';
 @use 'footer';
 
 .content {
-    height: inherit;
     animation: 0.1s linear 1 forwards fade-in;
+
+    .grid {
+        display: grid;
+        margin: 0 auto;
+        max-width: 1000px;
+        grid-template-areas:
+            'aside header .'
+            'aside main .';
+        gap: $spacing-unit-default;
+
+        & > * {
+            min-width: 0;
+        }
+
+        aside {
+            grid-area: aside;
+        }
+
+        header {
+            grid-area: header;
+        }
+
+        main {
+            grid-area: main;
+        }
+
+        @media print {
+            @include mixins.flex(column, $spacing-unit-default);
+        }
+    }
 }

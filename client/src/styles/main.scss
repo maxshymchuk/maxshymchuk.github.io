@@ -1,0 +1,175 @@
+@use 'variables' as *;
+@use 'mixins';
+
+main {
+    .contacts .contacts-section {
+        @include mixins.margin-y($spacing-unit-default);
+
+        .contact {
+            @include mixins.margin-y($spacing-unit-sm);
+            @include mixins.flex(row, $spacing-unit-default);
+
+            & {
+                align-items: center;
+            }
+
+            .contact-icon {
+                display: block;
+                color: inherit;
+                width: 30px;
+                height: 30px;
+
+                @media screen and (max-width: $breakpoint-sm) {
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+
+            .contact-link {
+                @include mixins.truncate;
+            }
+        }
+    }
+
+    .skills .skills-section {
+        @include mixins.margin-y($spacing-unit-default);
+
+        .skills-group,
+        .skills-list {
+            @include mixins.margin-y($spacing-unit-sm);
+        }
+
+        .skills-group {
+            @include mixins.truncate;
+        }
+
+        .skills-list {
+            @include mixins.flex(row, calc($spacing-unit-default / 2));
+
+            & {
+                flex-wrap: wrap;
+                list-style: none;
+            }
+
+            & > li {
+                @include mixins.truncate;
+            }
+        }
+    }
+
+    .experiences .experience {
+        @include mixins.margin-y($spacing-unit-default);
+
+        @media screen and (max-width: $breakpoint-sm) {
+            gap: calc($spacing-unit-default / 4);
+        }
+
+        .experience-company,
+        .experience-date,
+        .experience-achievements,
+        .experience-techstack {
+            @include mixins.margin-y($spacing-unit-sm);
+        }
+
+        .experience-company {
+            @include mixins.truncate;
+        }
+
+        .experience-date {
+            @include mixins.truncate;
+            @include color-theme('color', $color-text-muted);
+
+            & {
+                font-weight: bold;
+            }
+        }
+
+        .experience-achievements {
+            list-style: none;
+
+            & > li {
+                @include mixins.margin-y($spacing-unit-sm);
+
+                p {
+                    @include mixins.clamp(6);
+                }
+            }
+        }
+
+        .experience-techstack {
+            @include color-theme('color', $color-text-muted);
+
+            & {
+                display: flex;
+                flex-wrap: wrap;
+                gap: calc($spacing-unit-default / 4) calc($spacing-unit-default / 2);
+                font-size: $typo-h6;
+                font-weight: bold;
+                list-style: none;
+            }
+
+            & > li {
+                @include mixins.truncate;
+            }
+        }
+    }
+
+    .projects .repo {
+        @include mixins.margin-y($spacing-unit-default);
+
+        & > * {
+            @include mixins.margin-y($spacing-unit-sm);
+        }
+
+        @media screen and (max-width: $breakpoint-sm) {
+            gap: calc($spacing-unit-default / 4);
+        }
+
+        .repo-title {
+            @include mixins.flex(row, calc($spacing-unit-default / 4) calc($spacing-unit-default / 2));
+
+            & {
+                flex-wrap: wrap;
+            }
+
+            .repo-name {
+                @include mixins.truncate;
+                margin: 0;
+                font-size: inherit;
+            }
+
+            .repo-links {
+                white-space: nowrap;
+
+                @media print {
+                    display: none;
+                }
+            }
+
+            .repo-markers {
+                @include mixins.flex(row, calc($spacing-unit-default / 2));
+
+                @media print {
+                    display: none;
+                }
+
+                .repo-marker {
+                    @include color-theme('color', $color-text-muted);
+
+                    & {
+                        @include mixins.flex(row, calc($spacing-unit-default / 4));
+
+                        & {
+                            align-items: center;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+
+        .repo-description {
+            @include mixins.clamp(4);
+        }
+    }
+}

@@ -115,69 +115,80 @@
             </div>
         </noscript>
         <div id="content" class="content invisible">
-            <header>
-                <div>
-                    <h1 id="header-name" class="header-name"></h1>
-                    <h3 id="header-bio" class="header-bio"></h3>
-                </div>
-                <div id="header-links" class="header-links"></div>
-            </header>
-            <main>
-                <section class="contacts print-only print-avoid-break-inside">
-                    <h3>Contacts</h3>
-                    <div id="contacts-links" class="contacts-list"></div>
-                </section>
-
-                <section class="skills print-avoid-break-inside">
-                    <h3>Skills</h3>
-                    <section class="skills-section print-avoid-break-inside">
-                        <h4 class="skills-group">Proficient</h4>
-                        <ul class="skills-list">
-                            <li class="skill">React</li>
-                            <li class="skill">TypeScript</li>
-                            <li class="skill">Redux-Toolkit</li>
-                            <li class="skill">Effector</li>
-                            <li class="skill">Bootstrap</li>
-                            <li class="skill">Material</li>
-                            <li class="skill">BaseWeb</li>
-                            <li class="skill">DevExtreme</li>
-                            <li class="skill">Styled Components</li>
-                            <li class="skill">SASS</li>
-                            <li class="skill">Styletron</li>
-                            <li class="skill">Axios</li>
-                            <li class="skill">Formik</li>
-                            <li class="skill">Vite</li>
-                            <li class="skill">Webpack</li>
-                            <li class="skill">Parcel</li>
-                            <li class="skill">i18n</li>
-                            <li class="skill">Zod</li>
-                            <li class="skill">Yup</li>
-                            <li class="skill">Vercel</li>
-                        </ul>
+            <div class="grid">
+                <aside>
+                    <section class="actions">
+                        <button title="Print" class="icon" onclick="window.print()">
+                            <svg viewBox="0 0 16 16">
+                                <path
+                                    d="M5 1c-1.105 0-2 .895-2 2v2H2C.895 5 0 5.895 0 7v3c0 1.105.895 2 2 2h1v1c0 1.105.895 2 2 2h6c1.105 0 2-.895 2-2v-1h1c1.105 0 2-.895 2-2V7c0-1.105-.895-2-2-2h-1V3c0-1.105-.895-2-2-2H5ZM4 3c0-.552.448-1 1-1h6c.552 0 1 .448 1 1v2H4V3Zm1 5c-1.105 0-2 .895-2 2v1H2c-.552 0-1-.448-1-1V7c0-.552.448-1 1-1h12c.552 0 1 .448 1 1v3c0 .552-.448 1-1 1h-1v-1c0-1.105-.895-2-2-2H5Z"
+                                />
+                            </svg>
+                        </button>
                     </section>
-                    <section class="skills-section print-avoid-break-inside">
-                        <h4 class="skills-group">Familiar</h4>
-                        <ul class="skills-list">
-                            <li class="skill">Node</li>
-                            <li class="skill">MobX</li>
-                            <li class="skill">JsPDF</li>
-                            <li class="skill">Tolgee</li>
-                            <li class="skill">Recharts</li>
-                            <li class="skill">ApplicationInsights</li>
-                            <li class="skill">SignalR</li>
-                            <li class="skill">Mongo</li>
-                            <li class="skill">Jest</li>
-                            <li class="skill">RTL</li>
-                            <li class="skill">WebWorkers</li>
-                            <li class="skill">ServiceWorkers</li>
-                            <li class="skill">Python</li>
-                        </ul>
+                </aside>
+                <header>
+                    <div>
+                        <h1 id="header-name" class="header-name"></h1>
+                        <h3 id="header-bio" class="header-bio"></h3>
+                    </div>
+                    <div id="header-links" class="header-links"></div>
+                </header>
+                <main>
+                    <section class="contacts print-only print-avoid-break-inside">
+                        <h3>Contacts</h3>
+                        <section id="contacts-section" class="contacts-section"></section>
                     </section>
-                </section>
 
-                <section class="experiences print-avoid-break-inside print-page-break">
-                    <h3>Experience</h3>
-                    <div class="experiences-list">
+                    <section class="skills print-avoid-break-inside">
+                        <h3>Skills</h3>
+                        <section class="skills-section print-avoid-break-inside">
+                            <h4 class="skills-group">Proficient</h4>
+                            <ul class="skills-list">
+                                <li>React</li>
+                                <li>TypeScript</li>
+                                <li>Redux-Toolkit</li>
+                                <li>Effector</li>
+                                <li>Bootstrap</li>
+                                <li>Material</li>
+                                <li>BaseWeb</li>
+                                <li>DevExtreme</li>
+                                <li>Styled Components</li>
+                                <li>SASS</li>
+                                <li>Styletron</li>
+                                <li>Axios</li>
+                                <li>Formik</li>
+                                <li>Vite</li>
+                                <li>Webpack</li>
+                                <li>Parcel</li>
+                                <li>i18n</li>
+                                <li>Zod</li>
+                                <li>Yup</li>
+                                <li>Vercel</li>
+                            </ul>
+                        </section>
+                        <section class="skills-section print-avoid-break-inside">
+                            <h4 class="skills-group">Familiar</h4>
+                            <ul class="skills-list">
+                                <li>Node</li>
+                                <li>MobX</li>
+                                <li>JsPDF</li>
+                                <li>Tolgee</li>
+                                <li>Recharts</li>
+                                <li>ApplicationInsights</li>
+                                <li>SignalR</li>
+                                <li>Mongo</li>
+                                <li>Jest</li>
+                                <li>RTL</li>
+                                <li>WebWorkers</li>
+                                <li>ServiceWorkers</li>
+                                <li>Python</li>
+                            </ul>
+                        </section>
+                    </section>
+
+                    <section class="experiences print-avoid-break-inside print-page-break">
+                        <h3>Experience</h3>
                         <section class="experience print-avoid-break-inside">
                             <h4 class="experience-company">Swappsi Software</h4>
                             <div class="experience-date">Dec 2024 - current</div>
@@ -217,21 +228,21 @@
                                     </p>
                                 </li>
                             </ul>
-                            <div class="experience-techstack">
-                                <div class="skill">React</div>
-                                <div class="skill">TypeScript</div>
-                                <div class="skill">Redux-Toolkit</div>
-                                <div class="skill">Vite</div>
-                                <div class="skill">DevExtreme</div>
-                                <div class="skill">Axios</div>
-                                <div class="skill">Bootstrap</div>
-                                <div class="skill">SASS</div>
-                                <div class="skill">Yup</div>
-                                <div class="skill">i18n</div>
-                                <div class="skill">Tolgee</div>
-                                <div class="skill">ApplicationInsights</div>
-                                <div class="skill">SignalR</div>
-                            </div>
+                            <ul class="experience-techstack">
+                                <li>React</li>
+                                <li>TypeScript</li>
+                                <li>Redux-Toolkit</li>
+                                <li>Vite</li>
+                                <li>DevExtreme</li>
+                                <li>Axios</li>
+                                <li>Bootstrap</li>
+                                <li>SASS</li>
+                                <li>Yup</li>
+                                <li>i18n</li>
+                                <li>Tolgee</li>
+                                <li>ApplicationInsights</li>
+                                <li>SignalR</li>
+                            </ul>
                         </section>
                         <section class="experience print-avoid-break-inside">
                             <h4 class="experience-company">Sunmait Technologies</h4>
@@ -264,19 +275,19 @@
                                     </p>
                                 </li>
                             </ul>
-                            <div class="experience-techstack">
-                                <div class="skill">React</div>
-                                <div class="skill">TypeScript</div>
-                                <div class="skill">Effector</div>
-                                <div class="skill">Redux</div>
-                                <div class="skill">Parcel</div>
-                                <div class="skill">Webpack</div>
-                                <div class="skill">Styletron</div>
-                                <div class="skill">BaseWeb</div>
-                                <div class="skill">JsPDF</div>
-                                <div class="skill">Recharts</div>
-                                <div class="skill">Zod</div>
-                            </div>
+                            <ul class="experience-techstack">
+                                <li>React</li>
+                                <li>TypeScript</li>
+                                <li>Effector</li>
+                                <li>Redux</li>
+                                <li>Parcel</li>
+                                <li>Webpack</li>
+                                <li>Styletron</li>
+                                <li>BaseWeb</li>
+                                <li>JsPDF</li>
+                                <li>Recharts</li>
+                                <li>Zod</li>
+                            </ul>
                         </section>
                         <section class="experience print-avoid-break-inside">
                             <h4 class="experience-company">Sam-Solutions</h4>
@@ -298,40 +309,40 @@
                                     </p>
                                 </li>
                             </ul>
-                            <div class="experience-techstack">
-                                <div class="skill">React</div>
-                                <div class="skill">TypeScript</div>
-                                <div class="skill">MaterialUI</div>
-                                <div class="skill">MobX</div>
-                                <div class="skill">Webpack</div>
-                                <div class="skill">Axios</div>
-                                <div class="skill">Node</div>
-                                <div class="skill">Mongo</div>
-                                <div class="skill">Jest</div>
-                            </div>
+                            <ul class="experience-techstack">
+                                <li>React</li>
+                                <li>TypeScript</li>
+                                <li>MaterialUI</li>
+                                <li>MobX</li>
+                                <li>Webpack</li>
+                                <li>Axios</li>
+                                <li>Node</li>
+                                <li>Mongo</li>
+                                <li>Jest</li>
+                            </ul>
                         </section>
-                    </div>
-                </section>
+                    </section>
 
-                <section class="projects print-avoid-break-inside print-page-break">
-                    <h3>GitHub Projects</h3>
-                    <div id="projects-list" class="projects-list">
-                        <div class="repo">Empty</div>
-                        <template id="template-repo">
-                            <section class="repo print-avoid-break-inside">
-                                <div class="repo-title">
-                                    <h3 class="repo-name"></h3>
-                                    <div class="repo-links"></div>
-                                    <div class="repo-markers">
-                                        <div class="repo-marker archived">archived</div>
+                    <section class="projects print-avoid-break-inside print-page-break">
+                        <h3>GitHub Projects</h3>
+                        <div id="projects-list" class="projects-list">
+                            <div class="repo">Empty</div>
+                            <template id="template-repo">
+                                <section class="repo print-avoid-break-inside">
+                                    <div class="repo-title">
+                                        <h3 class="repo-name"></h3>
+                                        <div class="repo-links"></div>
+                                        <div class="repo-markers">
+                                            <div class="repo-marker archived">archived</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <p class="repo-description"></p>
-                            </section>
-                        </template>
-                    </div>
-                </section>
-            </main>
+                                    <p class="repo-description"></p>
+                                </section>
+                            </template>
+                        </div>
+                    </section>
+                </main>
+            </div>
             <footer>
                 <div id="updated-at"></div>
             </footer>
