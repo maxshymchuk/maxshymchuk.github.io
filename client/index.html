@@ -44,7 +44,7 @@
             body {
                 background-color: var(--default-background-color);
                 color: var(--default-color);
-                height: 100%;
+                min-height: 100vh;
                 font-size: var(--default-font-size);
                 -webkit-text-size-adjust: none;
                 text-size-adjust: none;
@@ -127,24 +127,35 @@
                         </button>
                     </section>
                 </aside>
-                <header>
-                    <div>
-                        <h1 id="header-name" class="header-name"></h1>
-                        <h3 id="header-bio" class="header-bio"></h3>
-                    </div>
-                    <div id="header-links" class="header-links"></div>
-                </header>
-                <main>
-                    <section class="contacts print-only print-avoid-break-inside">
-                        <h3>Contacts</h3>
-                        <section id="contacts-section" class="contacts-section"></section>
-                    </section>
 
-                    <section class="skills print-avoid-break-inside">
+                <header id="header">
+                    <template id="template-header">
+                        <div>
+                            <h1 class="name"></h1>
+                            <h3 class="bio"></h3>
+                        </div>
+                        <div class="links"></div>
+                    </template>
+                </header>
+
+                <main>
+                    <div id="contacts" class="print-avoid-break-inside print-only">
+                        <h3>Contacts</h3>
+                        <section class="contacts">
+                            <template id="template-contact">
+                                <div class="contact">
+                                    <div class="logo"></div>
+                                    <a class="link" target="_blank"></a>
+                                </div>
+                            </template>
+                        </section>
+                    </div>
+
+                    <div class="print-avoid-break-inside">
                         <h3>Skills</h3>
-                        <section class="skills-section print-avoid-break-inside">
-                            <h4 class="skills-group">Proficient</h4>
-                            <ul class="skills-list">
+                        <section class="skills print-avoid-break-inside">
+                            <h4 class="skills group">Proficient</h4>
+                            <ul class="skills list">
                                 <li>React</li>
                                 <li>TypeScript</li>
                                 <li>Redux-Toolkit</li>
@@ -167,9 +178,9 @@
                                 <li>Vercel</li>
                             </ul>
                         </section>
-                        <section class="skills-section print-avoid-break-inside">
-                            <h4 class="skills-group">Familiar</h4>
-                            <ul class="skills-list">
+                        <section class="skills print-avoid-break-inside">
+                            <h4 class="skills group">Familiar</h4>
+                            <ul class="skills list">
                                 <li>Node</li>
                                 <li>MobX</li>
                                 <li>JsPDF</li>
@@ -183,169 +194,156 @@
                                 <li>WebWorkers</li>
                                 <li>ServiceWorkers</li>
                                 <li>Python</li>
+                                <li>SQL</li>
+                                <li>NoSQL</li>
                             </ul>
                         </section>
-                    </section>
+                        <section class="skills print-avoid-break-inside">
+                            <h4 class="skills group">Planned</h4>
+                            <ul class="skills list">
+                                <li>Vue</li>
+                                <li>RTK Query</li>
+                                <li>Tailwind</li>
+                            </ul>
+                        </section>
+                    </div>
 
-                    <section class="experiences print-avoid-break-inside print-page-break">
+                    <div class="print-avoid-break-inside print-page-break">
                         <h3>Experience</h3>
                         <section class="experience print-avoid-break-inside">
-                            <h4 class="experience-company">Swappsi Software</h4>
-                            <div class="experience-date">Dec 2024 - current</div>
-                            <ul class="experience-achievements">
+                            <h4 class="experience company">Swappsi Software</h4>
+                            <div class="experience date">Dec 2024 - current</div>
+                            <ul class="experience achievements">
                                 <li>
-                                    <p>
-                                        Implemented secure redux-centered authentification handler with
-                                        <strong>reliable token refresh</strong> to provide smooth usage without
-                                        unnecessary sign outs
-                                    </p>
+                                    Implemented secure redux-centered authentification handler with
+                                    <strong>reliable token refresh</strong> to provide smooth usage without unnecessary
+                                    sign outs
                                 </li>
                                 <li>
-                                    <p>
-                                        Played a key role in the front-end development of a modular healthcare system
-                                        that <strong>won the "Supplier of the Year"</strong> at the National Care Awards
-                                        2023 in the United Kingdom
-                                    </p>
+                                    Played a key role in the front-end development of a modular healthcare system that
+                                    <strong>won the "Supplier of the Year"</strong> at the National Care Awards 2023 in
+                                    the United Kingdom
                                 </li>
                                 <li>
-                                    <p>
-                                        Improved the company's <strong>frontend framework</strong> to provide easy and
-                                        stable project updates
-                                    </p>
+                                    Improved the company's <strong>frontend framework</strong> to provide easy and
+                                    stable project updates
                                 </li>
                                 <li>
-                                    <p>
-                                        Made a system for
-                                        <strong>secure and reliable management of contracts and agreements</strong>
-                                        between talents and other collaborators
-                                    </p>
+                                    Made a system for
+                                    <strong>secure and reliable management of contracts and agreements</strong>
+                                    between talents and other collaborators
                                 </li>
                                 <li>
-                                    <p>
-                                        Created modular and composite
-                                        <strong>highly optimized AI-chat</strong> component with support of easy
-                                        integration
-                                    </p>
+                                    Created modular and composite
+                                    <strong>highly optimized AI-chat</strong> component with support of easy integration
                                 </li>
                             </ul>
-                            <ul class="experience-techstack">
-                                <li>React</li>
-                                <li>TypeScript</li>
-                                <li>Redux-Toolkit</li>
-                                <li>Vite</li>
-                                <li>DevExtreme</li>
-                                <li>Axios</li>
-                                <li>Bootstrap</li>
-                                <li>SASS</li>
-                                <li>Yup</li>
-                                <li>i18n</li>
-                                <li>Tolgee</li>
-                                <li>ApplicationInsights</li>
-                                <li>SignalR</li>
-                            </ul>
+                            <footer>
+                                <ul class="experience techstack">
+                                    <li>React</li>
+                                    <li>TypeScript</li>
+                                    <li>Redux-Toolkit</li>
+                                    <li>Vite</li>
+                                    <li>DevExtreme</li>
+                                    <li>Axios</li>
+                                    <li>Bootstrap</li>
+                                    <li>SASS</li>
+                                    <li>Yup</li>
+                                    <li>i18n</li>
+                                    <li>Tolgee</li>
+                                    <li>ApplicationInsights</li>
+                                    <li>SignalR</li>
+                                </ul>
+                            </footer>
                         </section>
                         <section class="experience print-avoid-break-inside">
-                            <h4 class="experience-company">Sunmait Technologies</h4>
-                            <div class="experience-date">Dec 2020 - Nov 2024</div>
-                            <ul class="experience-achievements">
+                            <h4 class="experience company">Sunmait Technologies</h4>
+                            <div class="experience date">Dec 2020 - Nov 2024</div>
+                            <ul class="experience achievements">
                                 <li>
-                                    <p>
-                                        Designed and developed responsive React applications from scratch, such as
-                                        <strong>a powerful graphic editor</strong> with tools for editing text, images,
-                                        QR codes and other elements
-                                    </p>
+                                    Designed and developed responsive React applications from scratch, such as
+                                    <strong>a powerful graphic editor</strong> with tools for editing text, images, QR
+                                    codes and other elements
                                 </li>
                                 <li>
-                                    <p>
-                                        Led the creation of a special
-                                        <strong>reusable library of UI components</strong>, based and extended on
-                                        another library
-                                    </p>
+                                    Led the creation of a special
+                                    <strong>reusable library of UI components</strong>, based and extended on another
+                                    library
                                 </li>
                                 <li>
-                                    <p>
-                                        Engineered completely <strong>independent and responsive widgets</strong> for
-                                        web pages with improved security
-                                    </p>
+                                    Engineered completely <strong>independent and responsive widgets</strong> for web
+                                    pages with improved security
                                 </li>
                                 <li>
-                                    <p>
-                                        Integrated modern React applications into legacy systems, ensuring smooth
-                                        compatibility and <strong>enhancing overall system performance</strong>
-                                    </p>
+                                    Integrated modern React applications into legacy systems, ensuring smooth
+                                    compatibility and <strong>enhancing overall system performance</strong>
                                 </li>
                             </ul>
-                            <ul class="experience-techstack">
-                                <li>React</li>
-                                <li>TypeScript</li>
-                                <li>Effector</li>
-                                <li>Redux</li>
-                                <li>Parcel</li>
-                                <li>Webpack</li>
-                                <li>Styletron</li>
-                                <li>BaseWeb</li>
-                                <li>JsPDF</li>
-                                <li>Recharts</li>
-                                <li>Zod</li>
-                            </ul>
+                            <footer>
+                                <ul class="experience techstack">
+                                    <li>React</li>
+                                    <li>TypeScript</li>
+                                    <li>Effector</li>
+                                    <li>Redux</li>
+                                    <li>Parcel</li>
+                                    <li>Webpack</li>
+                                    <li>Styletron</li>
+                                    <li>BaseWeb</li>
+                                    <li>JsPDF</li>
+                                    <li>Recharts</li>
+                                    <li>Zod</li>
+                                </ul>
+                            </footer>
                         </section>
                         <section class="experience print-avoid-break-inside">
-                            <h4 class="experience-company">Sam-Solutions</h4>
-                            <div class="experience-date">Sep 2019 - Aug 2020</div>
-                            <ul class="experience-achievements">
+                            <h4 class="experience company">Sam-Solutions</h4>
+                            <div class="experience date">Sep 2019 - Aug 2020</div>
+                            <ul class="experience achievements">
+                                <li>Completed the <strong>JavaScript Fundamentals Course</strong></li>
                                 <li>
-                                    <p>Completed the <strong>JavaScript Fundamentals Course</strong></p>
+                                    Assisted in developing <strong>a 3D editor</strong> for kitchen furniture and
+                                    fittings
                                 </li>
                                 <li>
-                                    <p>
-                                        Assisted in developing <strong>a 3D editor</strong> for kitchen furniture and
-                                        fittings
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Developed <strong>a full-stack course project</strong> on the topic "transport
-                                        company"
-                                    </p>
+                                    Developed <strong>a full-stack course project</strong> on the topic "transport
+                                    company"
                                 </li>
                             </ul>
-                            <ul class="experience-techstack">
-                                <li>React</li>
-                                <li>TypeScript</li>
-                                <li>MaterialUI</li>
-                                <li>MobX</li>
-                                <li>Webpack</li>
-                                <li>Axios</li>
-                                <li>Node</li>
-                                <li>Mongo</li>
-                                <li>Jest</li>
-                            </ul>
+                            <footer>
+                                <ul class="experience techstack">
+                                    <li>React</li>
+                                    <li>TypeScript</li>
+                                    <li>MaterialUI</li>
+                                    <li>MobX</li>
+                                    <li>Webpack</li>
+                                    <li>Axios</li>
+                                    <li>Node</li>
+                                    <li>Mongo</li>
+                                    <li>Jest</li>
+                                </ul>
+                            </footer>
                         </section>
-                    </section>
+                    </div>
 
-                    <section class="projects print-avoid-break-inside print-page-break">
+                    <div id="projects" class="print-avoid-break-inside print-page-break">
                         <h3>GitHub Projects</h3>
-                        <div id="projects-list" class="projects-list">
-                            <div class="repo">Empty</div>
-                            <template id="template-repo">
-                                <section class="repo print-avoid-break-inside">
-                                    <div class="repo-title">
-                                        <h3 class="repo-name"></h3>
-                                        <div class="repo-links"></div>
-                                        <div class="repo-markers">
-                                            <div class="repo-marker archived">archived</div>
+                        <div class="projects">
+                            <template id="template-project">
+                                <section class="project print-avoid-break-inside">
+                                    <div class="title">
+                                        <h3 class="name"></h3>
+                                        <div class="links"></div>
+                                        <div class="markers">
+                                            <div class="marker archived">archived</div>
                                         </div>
                                     </div>
-                                    <p class="repo-description"></p>
+                                    <p class="description"></p>
                                 </section>
                             </template>
                         </div>
-                    </section>
+                    </div>
                 </main>
             </div>
-            <footer>
-                <div id="updated-at"></div>
-            </footer>
         </div>
     </body>
 </html>

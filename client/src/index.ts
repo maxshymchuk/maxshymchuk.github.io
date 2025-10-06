@@ -5,7 +5,6 @@ import { getCache, setCache } from './utils/cache';
 import renderHeader from './renderers/header';
 import renderContacts from './renderers/contacts';
 import renderProjects from './renderers/projects';
-import renderFooter from './renderers/footer';
 
 const loaders = [
     createLoader(Const.Sources.Vercel),
@@ -35,10 +34,11 @@ async function initialize() {
     try {
         const { meta, payload } = await load();
 
-        await renderHeader(payload.user, payload.contacts);
-        await renderContacts(payload.contacts);
-        await renderProjects(payload.repositories);
-        await renderFooter(meta);
+        renderHeader(payload.user, payload.contacts);
+        renderContacts(payload.contacts);
+        renderProjects(payload.repositories);
+
+        console.log(`Updated at ${new Date(meta.timestamp).toLocaleString()}`);
 
         Doms.Loader.classList.add('invisible');
         Doms.Content.classList.remove('invisible');

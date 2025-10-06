@@ -1,43 +1,50 @@
 import { Doms } from '../constants';
 
-function renderLinks(repo: MappedRepo): string {
+function renderLinks(project: MappedRepo) {
     const links = [
-        { title: 'repo', url: repo.page },
-        { title: 'site', url: repo.site },
-        { title: 'release', url: repo.release },
-    ].filter((link) => link.url && link.url !== `${window.location.origin}/`);
+        { title: 'repo', url: project.page },
+        { title: 'site', url: project.site },
+        { title: 'release', url: project.release },
+    ].filter((link) => link.url);
     return `[ ${links.map((link) => `<a href="${link.url}" target="_blank">${link.title}</a>`).join(' | ')} ]`;
 }
 
-function renderRepoItem(templateRepo: HTMLTemplateElement, repo: MappedRepo): Node | null {
-    const clonedRepo = templateRepo.content.querySelector('.repo')?.cloneNode(true) as Nullable<HTMLElement>;
+function renderProject(template: HTMLTemplateElement, project: MappedRepo) {
+    const clone = template.content.querySelector('.project')?.cloneNode(true) as Nullable<HTMLElement>;
 
-    const repoName = clonedRepo?.querySelector<HTMLElement>('.repo-name');
-    const repoDescription = clonedRepo?.querySelector<HTMLElement>('.repo-description');
-    const repoLinks = clonedRepo?.querySelector<HTMLElement>('.repo-links');
-    const repoArchived = clonedRepo?.querySelector<HTMLElement>('.repo-marker.archived');
+    const name = clone?.querySelector<HTMLElement>('.name');
+    const links = clone?.querySelector<HTMLElement>('.links');
+    const archived = clone?.querySelector<HTMLElement>('.marker.archived');
+    const description = clone?.querySelector<HTMLElement>('.description');
 
-    if (repoName) repoName.innerText = repo.name;
-    if (repoLinks) repoLinks.innerHTML = renderLinks(repo);
-    if (!repo.archived) repoArchived?.remove();
-    if (repo.description) {
-        if (repoDescription) repoDescription.innerText = repo.description;
-    } else {
-        repoDescription?.remove();
+    if (name) name.innerText = project.name;
+    if (links) links.innerHTML = renderLinks(project);
+    if (archived) {
+        if (!project.archived) archived.remove();
+    }
+    if (description) {
+        if (project.description) {
+            description.innerText = project.description;
+        } else {
+            description.remove();
+        }
     }
 
-    return clonedRepo;
+    return clone;
 }
 
-export default async function render(repositories: Array<MappedRepo>) {
+export default function render(projects: Array<MappedRepo>) {
     try {
-        if (repositories.length === 0) return;
-        const repos: Array<Node> = [];
-        for (const repo of repositories) {
-            const result = renderRepoItem(Doms.ProjectsTemplate, repo);
-            if (result) repos.push(result);
+        if (projects.length > 0) {
+            const nodes: Array<Node> = [];
+            for (const project of projects) {
+                const result = renderProject(Doms.TemplateProject, project);
+                if (result) nodes.push(result);
+            }
+            Doms.Projects.querySelector('.projects')?.replaceChildren(...nodes);
+        } else {
+            Doms.Projects.remove();
         }
-        Doms.ProjectsList.replaceChildren(...repos);
     } catch (error) {
         console.error(error);
     }

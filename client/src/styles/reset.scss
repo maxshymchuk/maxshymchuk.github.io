@@ -76,20 +76,17 @@ h6 {
 }
 
 .icon {
-    svg {
-        @include color-theme('fill', $color-text-muted);
+    display: inline-block;
+    flex-shrink: 0;
 
-        & {
-            width: 100%;
-            height: 100%;
-        }
+    @include color-theme('fill', $color-text-muted);
 
-        &:hover {
-            opacity: 0.8;
-        }
+    & {
+        width: 100%;
+        height: 100%;
+    }
 
-        @media print {
-            fill: inherit;
-        }
+    @media print {
+        fill: inherit;
     }
 }

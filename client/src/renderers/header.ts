@@ -1,38 +1,49 @@
 import { Doms } from '../constants';
-import { createElement } from '../utils';
+import { createElement, createIcon } from '../utils';
 
-async function renderLinkItem({ title, url, logo }: Contact): Promise<Node> {
-    const link = createElement('a', {
-        title,
-        href: url,
-        target: '_blank',
-        class: 'header-link',
-    });
-    if (logo) {
-        link.style.fontSize = '0';
-        link.classList.add('icon');
-        link.innerHTML = logo;
-    } else {
-        link.innerText = title;
-    }
+function renderLink({ title, url, logo }: Contact) {
+    const link = createElement('a', { title, href: url, target: '_blank' });
+    link.append(createIcon(logo) ?? title);
     return link;
 }
 
-export default async function render(user: MappedUser, contacts: Array<Contact>) {
-    try {
-        Doms.HeaderName.innerText = user.name ? user.name : user.login;
+function renderHeader(template: HTMLTemplateElement, user: MappedUser, contacts: Array<Contact>) {
+    const clone = template.content.cloneNode(true) as Nullable<HTMLElement>;
 
+    const name = clone?.querySelector<HTMLDivElement>('.name');
+    const bio = clone?.querySelector<HTMLDivElement>('.bio');
+    const links = clone?.querySelector<HTMLDivElement>('.links');
+
+    if (name) {
+        name.innerText = user.name ? user.name : user.login;
+    }
+
+    if (bio) {
         if (user.bio) {
-            Doms.HeaderBio.innerText = user.bio;
+            bio.innerText = user.bio;
         } else {
-            Doms.HeaderBio.remove();
+            bio.remove();
         }
+    }
 
+    if (links) {
         if (contacts.length > 0) {
-            const nodes = await Promise.all(contacts.map(renderLinkItem));
-            Doms.HeaderLinks.append(...nodes);
+            links.append(...contacts.map(renderLink));
         } else {
-            Doms.HeaderLinks.remove();
+            links.remove();
+        }
+    }
+
+    return clone;
+}
+
+export default function render(user: MappedUser, contacts: Array<Contact>) {
+    try {
+        const node = renderHeader(Doms.TemplateHeader, user, contacts);
+        if (node) {
+            Doms.Header.replaceChildren(node);
+        } else {
+            Doms.Header.remove();
         }
     } catch (error) {
         console.error(error);

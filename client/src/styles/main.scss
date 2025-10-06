@@ -2,7 +2,7 @@
 @use 'mixins';
 
 main {
-    .contacts .contacts-section {
+    .contacts {
         @include mixins.margin-y($spacing-unit-default);
 
         .contact {
@@ -13,37 +13,37 @@ main {
                 align-items: center;
             }
 
-            .contact-icon {
-                display: block;
-                color: inherit;
-                width: 30px;
-                height: 30px;
+            .logo {
+                .icon {
+                    width: 30px;
+                    height: 30px;
 
-                @media screen and (max-width: $breakpoint-sm) {
-                    width: 25px;
-                    height: 25px;
+                    @media screen and (max-width: $breakpoint-sm) {
+                        width: 25px;
+                        height: 25px;
+                    }
                 }
-            }
 
-            .contact-link {
-                @include mixins.truncate;
+                &:has(.icon) {
+                    font-size: 0;
+                }
             }
         }
     }
 
-    .skills .skills-section {
+    .skills {
         @include mixins.margin-y($spacing-unit-default);
 
-        .skills-group,
-        .skills-list {
+        &.group,
+        &.list {
             @include mixins.margin-y($spacing-unit-sm);
         }
 
-        .skills-group {
+        &.group {
             @include mixins.truncate;
         }
 
-        .skills-list {
+        &.list {
             @include mixins.flex(row, calc($spacing-unit-default / 2));
 
             & {
@@ -57,25 +57,21 @@ main {
         }
     }
 
-    .experiences .experience {
+    .experience {
         @include mixins.margin-y($spacing-unit-default);
 
-        @media screen and (max-width: $breakpoint-sm) {
-            gap: calc($spacing-unit-default / 4);
-        }
-
-        .experience-company,
-        .experience-date,
-        .experience-achievements,
-        .experience-techstack {
+        &.company,
+        &.date,
+        &.achievements,
+        &.techstack {
             @include mixins.margin-y($spacing-unit-sm);
         }
 
-        .experience-company {
+        &.company {
             @include mixins.truncate;
         }
 
-        .experience-date {
+        &.date {
             @include mixins.truncate;
             @include color-theme('color', $color-text-muted);
 
@@ -84,19 +80,20 @@ main {
             }
         }
 
-        .experience-achievements {
+        &.achievements {
             list-style: none;
 
             & > li {
                 @include mixins.margin-y($spacing-unit-sm);
+                @include mixins.clamp(6);
 
-                p {
-                    @include mixins.clamp(6);
+                & {
+                    line-height: calc($typo-text-default * 1.5);
                 }
             }
         }
 
-        .experience-techstack {
+        &.techstack {
             @include color-theme('color', $color-text-muted);
 
             & {
@@ -114,62 +111,64 @@ main {
         }
     }
 
-    .projects .repo {
+    .projects {
         @include mixins.margin-y($spacing-unit-default);
 
-        & > * {
-            @include mixins.margin-y($spacing-unit-sm);
-        }
+        .project {
+            @include mixins.margin-y($spacing-unit-default);
 
-        @media screen and (max-width: $breakpoint-sm) {
-            gap: calc($spacing-unit-default / 4);
-        }
-
-        .repo-title {
-            @include mixins.flex(row, calc($spacing-unit-default / 4) calc($spacing-unit-default / 2));
-
-            & {
-                flex-wrap: wrap;
+            @media screen and (max-width: $breakpoint-sm) {
+                gap: calc($spacing-unit-default / 4);
             }
 
-            .repo-name {
-                @include mixins.truncate;
-                margin: 0;
-                font-size: inherit;
+            .title,
+            .description {
+                @include mixins.margin-y($spacing-unit-sm);
             }
 
-            .repo-links {
-                white-space: nowrap;
+            .title {
+                @include mixins.flex(row, calc($spacing-unit-default / 4) calc($spacing-unit-default / 2));
 
-                @media print {
-                    display: none;
-                }
-            }
-
-            .repo-markers {
-                @include mixins.flex(row, calc($spacing-unit-default / 2));
-
-                @media print {
-                    display: none;
+                & {
+                    flex-wrap: wrap;
                 }
 
-                .repo-marker {
-                    @include color-theme('color', $color-text-muted);
+                .name {
+                    @include mixins.truncate;
+                    margin: 0;
+                    font-size: inherit;
+                }
 
-                    & {
-                        @include mixins.flex(row, calc($spacing-unit-default / 4));
+                .links {
+                    white-space: nowrap;
+
+                    @media print {
+                        display: none;
+                    }
+                }
+
+                .markers {
+                    @extend .title;
+
+                    margin: 0;
+
+                    @media print {
+                        display: none;
+                    }
+
+                    .marker {
+                        @include color-theme('color', $color-text-muted);
 
                         & {
-                            align-items: center;
                             font-weight: bold;
                         }
                     }
                 }
             }
-        }
 
-        .repo-description {
-            @include mixins.clamp(4);
+            .description {
+                @include mixins.clamp(4);
+            }
         }
     }
 }

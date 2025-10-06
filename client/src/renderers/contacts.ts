@@ -1,28 +1,35 @@
 import { Doms } from '../constants';
-import { createElement } from '../utils';
+import { createIcon } from '../utils';
 
-async function createContactItem({ title, url, prettyUrl, logo }: Contact): Promise<Node> {
-    const wrapper = createElement('div', { class: 'contact' });
-    const link = createElement('a', { class: 'contact-link', title, href: url, target: '_blank' });
+function renderContact(template: HTMLTemplateElement, contact: Contact) {
+    const clone = template.content.cloneNode(true) as Nullable<HTMLElement>;
+
+    const logo = clone?.querySelector<HTMLDivElement>('.logo');
+    const link = clone?.querySelector<HTMLAnchorElement>('.link');
+
     if (logo) {
-        const icon = createElement('div', { class: 'contact-icon' });
-        icon.style.fontSize = '0';
-        icon.classList.add('icon');
-        icon.innerHTML = logo;
-        wrapper.append(icon);
+        logo.append(createIcon(contact.logo) ?? contact.title);
     }
-    link.textContent = prettyUrl ?? url;
-    wrapper.append(link);
-    return wrapper;
+
+    if (link) {
+        link.href = contact.url;
+        link.innerText = contact.prettyUrl ?? contact.url;
+    }
+
+    return clone;
 }
 
-export default async function render(contacts: Array<Contact>) {
+export default function render(contacts: Array<Contact>) {
     try {
         if (contacts.length > 0) {
-            const nodes = await Promise.all(contacts.map(createContactItem));
-            Doms.ContactsLinks.append(...nodes);
+            const nodes: Array<Node> = [];
+            for (const contact of contacts) {
+                const result = renderContact(Doms.TemplateContact, contact);
+                if (result) nodes.push(result);
+            }
+            Doms.Contacts.querySelector('.contacts')?.replaceChildren(...nodes);
         } else {
-            Doms.ContactsLinks.remove();
+            Doms.Contacts.remove();
         }
     } catch (error) {
         console.error(error);

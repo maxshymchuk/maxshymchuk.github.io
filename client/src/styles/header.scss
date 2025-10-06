@@ -11,7 +11,7 @@ header {
         padding-top: $spacing-unit-default;
     }
 
-    .header-name {
+    .name {
         @include mixins.clamp(2);
 
         & {
@@ -20,13 +20,13 @@ header {
         }
     }
 
-    .header-bio {
+    .bio {
         margin: 0;
         margin-top: calc($spacing-unit-default / 4);
         font-size: max(min(4vw, $typo-h4), 1rem);
     }
 
-    .header-links {
+    .links {
         display: flex;
         column-gap: $spacing-unit-default;
         row-gap: calc($spacing-unit-default / 2);
@@ -37,15 +37,23 @@ header {
             display: none;
         }
 
-        .header-link {
-            display: block;
-            color: inherit;
-            width: 30px;
-            height: 30px;
+        a {
+            .icon {
+                width: 30px;
+                height: 30px;
 
-            @media screen and (max-width: $breakpoint-sm) {
-                width: 25px;
-                height: 25px;
+                @media screen and (max-width: $breakpoint-sm) {
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+
+            &:has(.icon) {
+                font-size: 0;
+            }
+
+            &:hover {
+                opacity: 0.8;
             }
         }
     }

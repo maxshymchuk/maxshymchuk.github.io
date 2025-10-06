@@ -5,19 +5,21 @@
 @use 'aside';
 @use 'header';
 @use 'main';
-@use 'footer';
 
 .content {
     animation: 0.1s linear 1 forwards fade-in;
+    min-height: inherit;
 
     .grid {
         display: grid;
         margin: 0 auto;
         max-width: 1000px;
+        grid-template-rows: max-content;
         grid-template-areas:
             '. aside header .'
             '. aside main .';
         gap: $spacing-unit-default;
+        min-height: inherit;
 
         @media screen and (max-width: $breakpoint-sm) {
             grid-template-areas:

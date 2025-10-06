@@ -2,16 +2,13 @@ const Doms = {
     Loader: document.getElementById('loader') as HTMLDivElement,
     Content: document.getElementById('content') as HTMLDivElement,
 
-    HeaderName: document.getElementById('header-name') as HTMLHeadingElement,
-    HeaderBio: document.getElementById('header-bio') as HTMLHeadingElement,
-    HeaderLinks: document.getElementById('header-links') as HTMLDivElement,
+    TemplateHeader: document.getElementById('template-header') as HTMLTemplateElement,
+    TemplateContact: document.getElementById('template-contact') as HTMLTemplateElement,
+    TemplateProject: document.getElementById('template-project') as HTMLTemplateElement,
 
-    ContactsLinks: document.getElementById('contacts-section') as HTMLDivElement,
-
-    ProjectsList: document.getElementById('projects-list') as HTMLDivElement,
-    ProjectsTemplate: document.getElementById('template-repo') as HTMLTemplateElement,
-
-    FooterUpdatedAt: document.getElementById('updated-at') as HTMLDivElement,
+    Header: document.getElementById('header') as HTMLDivElement,
+    Contacts: document.getElementById('contacts') as HTMLDivElement,
+    Projects: document.getElementById('projects') as HTMLDivElement,
 };
 
 const Const = {

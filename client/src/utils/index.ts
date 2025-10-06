@@ -2,7 +2,7 @@ export * from './parsers';
 
 export { createLoader } from './loader';
 
-export function createElement<K extends keyof HTMLElementTagNameMap>(
+function createElement<K extends keyof HTMLElementTagNameMap>(
     tagName: K,
     attributes?: Record<string, string>,
 ): HTMLElementTagNameMap[K] {
@@ -14,3 +14,16 @@ export function createElement<K extends keyof HTMLElementTagNameMap>(
     }
     return element;
 }
+
+function createIcon(html?: string) {
+    if (!html) return;
+    const template = createElement('template');
+    template.innerHTML = html;
+    const node = template.content.firstElementChild;
+    if (node) {
+        node.classList.add('icon');
+        return node;
+    }
+}
+
+export { createElement, createIcon };
