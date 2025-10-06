@@ -1,21 +1,3 @@
-const Doms = {
-    Loader: document.getElementById('loader') as HTMLDivElement,
-    Content: document.getElementById('content') as HTMLDivElement,
-
-    About: document.getElementById('about') as HTMLDivElement,
-    Header: document.getElementById('header') as HTMLDivElement,
-    Contacts: document.getElementById('contacts') as HTMLDivElement,
-    Skills: document.getElementById('skills') as HTMLDivElement,
-    Experience: document.getElementById('experiences') as HTMLDivElement,
-    Projects: document.getElementById('projects') as HTMLDivElement,
-
-    TemplateHeader: document.getElementById('template-header') as HTMLTemplateElement,
-    TemplateContact: document.getElementById('template-contact') as HTMLTemplateElement,
-    TemplateSkillsGroup: document.getElementById('template-skills-group') as HTMLTemplateElement,
-    TemplateExperience: document.getElementById('template-experience') as HTMLTemplateElement,
-    TemplateProject: document.getElementById('template-project') as HTMLTemplateElement,
-};
-
 const Const = {
     LocalStorage: 'cache',
     FileName: 'maxshymchuk-backup.json',
@@ -25,4 +7,4 @@ const Const = {
     },
 };
 
-export { Doms, Const };
+export { Const };

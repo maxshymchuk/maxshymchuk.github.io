@@ -1,4 +1,4 @@
-import { Doms } from '../constants';
+import { DOMS } from '../doms';
 import { createElement, createIcon } from '../utils';
 
 function renderLink({ title, url, logo }: Contact) {
@@ -39,11 +39,11 @@ function renderHeader(template: HTMLTemplateElement, user: MappedUser, contacts:
 
 export default function render(user: MappedUser, contacts: Array<Contact>) {
     try {
-        const node = renderHeader(Doms.TemplateHeader, user, contacts);
+        const node = renderHeader(DOMS.TemplateHeader.node, user, contacts);
         if (node) {
-            Doms.Header.replaceChildren(node);
+            DOMS.Header.node.replaceChildren(node);
         } else {
-            Doms.Header.remove();
+            DOMS.Header.node.remove();
         }
     } catch (error) {
         console.error(error);

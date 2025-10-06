@@ -41,6 +41,10 @@ main {
 
     .about {
         @include mixins.margin-y($spacing-unit-default);
+
+        p {
+            @include mixins.margin-y($spacing-unit-sm);
+        }
     }
 
     .skills {

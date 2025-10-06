@@ -243,7 +243,6 @@ type MappedUser = {
     login: string;
     name: Nullable<string>;
     bio: Nullable<string>;
-    repos_url: string;
 };
 
 type Contact = {

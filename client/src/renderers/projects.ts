@@ -1,4 +1,4 @@
-import { Doms } from '../constants';
+import { DOMS } from '../doms';
 
 function renderLinks({ page, site, release }: MappedRepo) {
     const links = [
@@ -38,12 +38,12 @@ export default function render(projects: Array<MappedRepo>) {
         if (projects.length > 0) {
             const nodes: Array<Node> = [];
             for (const project of projects) {
-                const result = renderProject(Doms.TemplateProject, project);
+                const result = renderProject(DOMS.TemplateProject.node, project);
                 if (result) nodes.push(result);
             }
-            Doms.Projects.querySelector('.projects')?.replaceChildren(...nodes);
+            DOMS.Projects.node.querySelector('.projects')?.replaceChildren(...nodes);
         } else {
-            Doms.Projects.remove();
+            DOMS.Projects.node.remove();
         }
     } catch (error) {
         console.error(error);

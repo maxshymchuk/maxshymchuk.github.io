@@ -1,4 +1,4 @@
-import { Doms } from '../constants';
+import { DOMS } from '../doms';
 import { createElement } from '../utils';
 
 function renderAbout(line: string) {
@@ -15,9 +15,9 @@ export default function render(about: Array<string>) {
                 const result = renderAbout(line);
                 if (result) nodes.push(result);
             }
-            Doms.About.querySelector('.about')?.replaceChildren(...nodes);
+            DOMS.About.node.querySelector('.about')?.replaceChildren(...nodes);
         } else {
-            Doms.About.remove();
+            DOMS.About.node.remove();
         }
     } catch (error) {
         console.error(error);

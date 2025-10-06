@@ -1,4 +1,4 @@
-import { Doms } from '../constants';
+import { DOMS } from '../doms';
 import { createElement } from '../utils';
 
 function renderTechItem(value: string) {
@@ -38,12 +38,12 @@ export default function render(experiences: Array<Experience>) {
         if (experiences.length > 0) {
             const nodes: Array<Node> = [];
             for (const experience of experiences) {
-                const result = renderExperience(Doms.TemplateExperience, experience);
+                const result = renderExperience(DOMS.TemplateExperience.node, experience);
                 if (result) nodes.push(result);
             }
-            Doms.Experience.querySelector('.experiences')?.replaceChildren(...nodes);
+            DOMS.Experience.node.querySelector('.experiences')?.replaceChildren(...nodes);
         } else {
-            Doms.Experience.remove();
+            DOMS.Experience.node.remove();
         }
     } catch (error) {
         console.error(error);

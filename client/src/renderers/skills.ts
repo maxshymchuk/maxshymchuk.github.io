@@ -1,4 +1,4 @@
-import { Doms } from '../constants';
+import { DOMS } from '../doms';
 import { createElement } from '../utils';
 
 function renderListItem(value: string) {
@@ -26,12 +26,12 @@ export default function render(groups: Array<SkillsGroup>) {
         if (groups.length > 0) {
             const nodes: Array<Node> = [];
             for (const group of groups) {
-                const result = renderSkillsGroup(Doms.TemplateSkillsGroup, group);
+                const result = renderSkillsGroup(DOMS.TemplateSkillsGroup.node, group);
                 if (result) nodes.push(result);
             }
-            Doms.Skills.querySelector('.skills')?.replaceChildren(...nodes);
+            DOMS.Skills.node.querySelector('.skills')?.replaceChildren(...nodes);
         } else {
-            Doms.Skills.remove();
+            DOMS.Skills.node.remove();
         }
     } catch (error) {
         console.error(error);

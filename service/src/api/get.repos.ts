@@ -21,11 +21,11 @@ async function getRepos(): Promise<Array<MappedRepo>> {
             ? 'https://api.github.com/user/repos?visibility=public'
             : `https://api.github.com/users/${process.env.USER}/repos`,
     );
-    const repos = (await reposResponse.json()) as Array<Repo>;
+    const repos: Array<Repo> = await reposResponse.json();
     return Promise.all(
         repos.map(async (repo) => {
             const releasesResponse = await get(repo.releases_url.replace('{/id}', ''));
-            const releases = (await releasesResponse.json()) as Array<Release>;
+            const releases: Array<Release> = await releasesResponse.json();
             return mapRepo(repo, releases.length > 0 ? releases[0] : null);
         }),
     );

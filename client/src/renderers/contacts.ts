@@ -1,4 +1,4 @@
-import { Doms } from '../constants';
+import { DOMS } from '../doms';
 import { createIcon } from '../utils';
 
 function renderContact(template: HTMLTemplateElement, contact: Contact) {
@@ -26,12 +26,12 @@ export default function render(contacts: Array<Contact>) {
         if (contacts.length > 0) {
             const nodes: Array<Node> = [];
             for (const contact of contacts) {
-                const result = renderContact(Doms.TemplateContact, contact);
+                const result = renderContact(DOMS.TemplateContact.node, contact);
                 if (result) nodes.push(result);
             }
-            Doms.Contacts.querySelector('.contacts')?.replaceChildren(...nodes);
+            DOMS.Contacts.node.querySelector('.contacts')?.replaceChildren(...nodes);
         } else {
-            Doms.Contacts.remove();
+            DOMS.Contacts.node.remove();
         }
     } catch (error) {
         console.error(error);

@@ -1,5 +1,5 @@
 import { getData } from './api';
-import { Const, Doms } from './constants';
+import { Const } from './constants';
 import { createLoader, parseGist } from './utils';
 import { getCache, setCache } from './utils/cache';
 import renderHeader from './renderers/header';
@@ -8,6 +8,7 @@ import renderAbout from './renderers/about';
 import renderSkills from './renderers/skills';
 import renderExperiences from './renderers/experiences';
 import renderProjects from './renderers/projects';
+import { DOMS } from './doms';
 
 const loaders = [
     createLoader(Const.Sources.Vercel),
@@ -22,7 +23,10 @@ const loaders = [
 ];
 
 async function load(): Promise<Data> {
-    if (import.meta.env.DEV) return import('../mock.json') as Promise<Data>;
+    if (import.meta.env.DEV) {
+        const mock = await import('./mock');
+        return mock.default;
+    }
     const cache = getCache();
     if (cache && Date.now() < cache.meta.expired) return cache;
     const data = await getData(loaders);
@@ -31,8 +35,8 @@ async function load(): Promise<Data> {
 }
 
 async function initialize() {
-    Doms.Loader.classList.remove('invisible');
-    Doms.Content.classList.add('invisible');
+    DOMS.Loader.node.classList.remove('invisible');
+    DOMS.Content.node.classList.add('invisible');
 
     try {
         const { meta, payload } = await load();
@@ -46,10 +50,10 @@ async function initialize() {
 
         console.log(`Updated at ${new Date(meta.timestamp).toLocaleString()}`);
 
-        Doms.Loader.classList.add('invisible');
-        Doms.Content.classList.remove('invisible');
+        DOMS.Loader.node.classList.add('invisible');
+        DOMS.Content.node.classList.remove('invisible');
     } catch (error) {
-        Doms.Loader.innerText = 'Error :(';
+        DOMS.Loader.node.innerText = 'Error :(';
         console.error(error);
     }
 }
