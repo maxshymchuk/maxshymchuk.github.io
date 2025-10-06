@@ -20,6 +20,12 @@
                 "prettyUrl": "github.com/maxshymchuk"
             }
         ],
+        "about": [
+            "<strong>Eastern Europe</strong> based React developer.",
+            "Selfnamed type-safe guard and memoization master.",
+            "Huge fan of lightweight minimalistic apps and small <code>node_modules.</code>",
+            "Always trying to build <strong>robust</strong>, <strong>stable</strong> and <strong>high-quality</strong> web applications."
+        ],
         "skills": [
             {
                 "title": "Proficient",
@@ -49,6 +55,7 @@
             {
                 "title": "Familiar",
                 "list": [
+                    "React Hook Form",
                     "Node",
                     "MobX",
                     "JsPDF",
@@ -68,7 +75,7 @@
             },
             {
                 "title": "Planned",
-                "list": ["Vue", "RTK Query", "Tailwind"]
+                "list": ["React Native", "Vue", "Svelte", "RTK Query", "Tailwind", "Astro", "Web Components"]
             }
         ],
         "experiences": [
@@ -95,7 +102,8 @@
                     "i18n",
                     "Tolgee",
                     "ApplicationInsights",
-                    "SignalR"
+                    "SignalR",
+                    "ServiceWorkers"
                 ]
             },
             {
@@ -130,6 +138,15 @@
                     "Developed <strong>a full-stack course project</strong> on the topic \"transport company\""
                 ],
                 "techstack": ["React", "TypeScript", "MaterialUI", "MobX", "Webpack", "Axios", "Node", "Mongo", "Jest"]
+            },
+            {
+                "company": "University",
+                "interval": "Sep 2017 - Jul 2021",
+                "achievements": [
+                    "Developed applications with support of <strong>high-load operations</strong> for practical use",
+                    "Created a repository that stores helpful projects <strong>anyone can download and comment</strong>"
+                ],
+                "techstack": ["React", "TypeScript", "MaterialUI", "Webpack", "Node", "WebWorkers"]
             }
         ],
         "repositories": [

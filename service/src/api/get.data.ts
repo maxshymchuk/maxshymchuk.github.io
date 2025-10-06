@@ -2,6 +2,7 @@ import { getRepos } from './get.repos';
 import { getUser } from './get.user';
 import { Const } from '../constants';
 import contacts from '../data/contacts.json';
+import about from '../data/about.json';
 import skills from '../data/skills.json';
 import experiences from '../data/experiences.json';
 
@@ -15,7 +16,7 @@ async function getData(): Promise<UserData> {
         filtered.push(repo);
     }
 
-    return { user, contacts, skills, experiences, repositories: filtered };
+    return { user, contacts, about, skills, experiences, repositories: filtered };
 }
 
 export { getData };

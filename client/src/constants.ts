@@ -2,6 +2,7 @@ const Doms = {
     Loader: document.getElementById('loader') as HTMLDivElement,
     Content: document.getElementById('content') as HTMLDivElement,
 
+    About: document.getElementById('about') as HTMLDivElement,
     Header: document.getElementById('header') as HTMLDivElement,
     Contacts: document.getElementById('contacts') as HTMLDivElement,
     Skills: document.getElementById('skills') as HTMLDivElement,

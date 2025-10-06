@@ -4,6 +4,7 @@ import { createLoader, parseGist } from './utils';
 import { getCache, setCache } from './utils/cache';
 import renderHeader from './renderers/header';
 import renderContacts from './renderers/contacts';
+import renderAbout from './renderers/about';
 import renderSkills from './renderers/skills';
 import renderExperiences from './renderers/experiences';
 import renderProjects from './renderers/projects';
@@ -38,6 +39,7 @@ async function initialize() {
 
         renderHeader(payload.user, payload.contacts);
         renderContacts(payload.contacts);
+        renderAbout(payload.about);
         renderSkills(payload.skills);
         renderExperiences(payload.experiences);
         renderProjects(payload.repositories);

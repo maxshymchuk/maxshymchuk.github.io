@@ -11,17 +11,20 @@ header {
         padding-top: $spacing-unit-default;
     }
 
+    .name,
+    .bio {
+        margin: 0;
+    }
+
     .name {
         @include mixins.clamp(2);
 
         & {
-            margin: 0;
             font-size: max(min(10vw, $typo-h1), 2rem);
         }
     }
 
     .bio {
-        margin: 0;
         margin-top: calc($spacing-unit-default / 4);
         font-size: max(min(4vw, $typo-h4), 1rem);
     }

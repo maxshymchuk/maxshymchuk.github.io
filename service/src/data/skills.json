@@ -27,6 +27,7 @@
     {
         "title": "Familiar",
         "list": [
+            "React Hook Form",
             "Node",
             "MobX",
             "JsPDF",
@@ -46,6 +47,6 @@
     },
     {
         "title": "Planned",
-        "list": ["Vue", "RTK Query", "Tailwind"]
+        "list": ["React Native", "Vue", "Svelte", "RTK Query", "Tailwind", "Astro", "Web Components"]
     }
 ]

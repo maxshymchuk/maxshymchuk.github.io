@@ -22,7 +22,8 @@
             "i18n",
             "Tolgee",
             "ApplicationInsights",
-            "SignalR"
+            "SignalR",
+            "ServiceWorkers"
         ]
     },
     {
@@ -57,5 +58,14 @@
             "Developed <strong>a full-stack course project</strong> on the topic \"transport company\""
         ],
         "techstack": ["React", "TypeScript", "MaterialUI", "MobX", "Webpack", "Axios", "Node", "Mongo", "Jest"]
+    },
+    {
+        "company": "University",
+        "interval": "Sep 2017 - Jul 2021",
+        "achievements": [
+            "Developed applications with support of <strong>high-load operations</strong> for practical use",
+            "Created a repository that stores helpful projects <strong>anyone can download and comment</strong>"
+        ],
+        "techstack": ["React", "TypeScript", "MaterialUI", "Webpack", "Node", "WebWorkers"]
     }
 ]

@@ -12,3 +12,10 @@
     overflow: hidden;
     word-wrap: break-word;
 }
+
+@mixin hyphenate {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}

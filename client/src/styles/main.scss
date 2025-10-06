@@ -2,6 +2,14 @@
 @use 'mixins';
 
 main {
+    article > h3 {
+        @include mixins.hyphenate;
+
+        & {
+            text-transform: capitalize;
+        }
+    }
+
     .contacts {
         @include mixins.margin-y($spacing-unit-default);
 
@@ -31,19 +39,27 @@ main {
         }
     }
 
+    .about {
+        @include mixins.margin-y($spacing-unit-default);
+    }
+
     .skills {
         @include mixins.margin-y($spacing-unit-default);
 
         .skills-group {
             @include mixins.margin-y($spacing-unit-default);
 
-            &.group,
+            &.title,
             &.list {
                 @include mixins.margin-y($spacing-unit-sm);
             }
 
-            &.group {
-                @include mixins.truncate;
+            &.title {
+                @include mixins.hyphenate;
+
+                & {
+                    text-transform: capitalize;
+                }
             }
 
             &.list {
@@ -75,7 +91,11 @@ main {
             }
 
             &.company {
-                @include mixins.truncate;
+                @include mixins.hyphenate;
+
+                & {
+                    text-transform: capitalize;
+                }
             }
 
             &.date {
@@ -92,11 +112,6 @@ main {
 
                 & > li {
                     @include mixins.margin-y($spacing-unit-sm);
-                    @include mixins.clamp(6);
-
-                    & {
-                        line-height: calc($typo-text-default * 1.5);
-                    }
                 }
             }
 
@@ -172,10 +187,6 @@ main {
                         }
                     }
                 }
-            }
-
-            .description {
-                @include mixins.clamp(4);
             }
         }
     }

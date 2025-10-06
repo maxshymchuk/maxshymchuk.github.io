@@ -1,9 +1,17 @@
 import { Doms } from '../constants';
 import { createElement } from '../utils';
 
-function renderListItem(value: string) {
+function renderTechItem(value: string) {
     const li = createElement('li');
     li.innerHTML = value;
+    return li;
+}
+
+function renderAchievementItem(value: string) {
+    const li = createElement('li');
+    const p = createElement('p');
+    p.innerHTML = value;
+    li.append(p);
     return li;
 }
 
@@ -17,10 +25,10 @@ function renderExperience(template: HTMLTemplateElement, experience: Experience)
 
     const { company, interval, achievements, techstack } = experience;
 
-    if (_company) _company.innerText = company;
+    if (_company) _company.innerText = company.toLowerCase();
     if (_date) _date.innerText = interval;
-    if (_achievements) _achievements.append(...achievements.map(renderListItem));
-    if (_techstack) _techstack.append(...techstack.map(renderListItem));
+    if (_achievements) _achievements.append(...achievements.map(renderAchievementItem));
+    if (_techstack) _techstack.append(...techstack.map(renderTechItem));
 
     return clone;
 }

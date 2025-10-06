@@ -15,7 +15,7 @@ function renderSkillsGroup(template: HTMLTemplateElement, group: SkillsGroup) {
 
     const { title, list } = group;
 
-    if (_title) _title.innerText = title;
+    if (_title) _title.innerText = title.toLowerCase();
     if (_list) _list.append(...list.map(renderListItem));
 
     return clone;

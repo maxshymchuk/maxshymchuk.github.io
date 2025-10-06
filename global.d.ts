@@ -268,6 +268,7 @@ type Experience = {
 type UserData = {
     user: MappedUser;
     contacts: Array<Contact>;
+    about: Array<string>;
     skills: Array<SkillsGroup>;
     experiences: Array<Experience>;
     repositories: Array<MappedRepo>;
