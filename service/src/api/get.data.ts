@@ -2,6 +2,8 @@ import { getRepos } from './get.repos';
 import { getUser } from './get.user';
 import { Const } from '../constants';
 import contacts from '../data/contacts.json';
+import skills from '../data/skills.json';
+import experiences from '../data/experiences.json';
 
 async function getData(): Promise<UserData> {
     const [user, repositories] = await Promise.all([getUser(), getRepos()]);
@@ -13,7 +15,7 @@ async function getData(): Promise<UserData> {
         filtered.push(repo);
     }
 
-    return { user, contacts, repositories: filtered };
+    return { user, contacts, skills, experiences, repositories: filtered };
 }
 
 export { getData };

@@ -4,6 +4,8 @@ import { createLoader, parseGist } from './utils';
 import { getCache, setCache } from './utils/cache';
 import renderHeader from './renderers/header';
 import renderContacts from './renderers/contacts';
+import renderSkills from './renderers/skills';
+import renderExperiences from './renderers/experiences';
 import renderProjects from './renderers/projects';
 
 const loaders = [
@@ -36,6 +38,8 @@ async function initialize() {
 
         renderHeader(payload.user, payload.contacts);
         renderContacts(payload.contacts);
+        renderSkills(payload.skills);
+        renderExperiences(payload.experiences);
         renderProjects(payload.repositories);
 
         console.log(`Updated at ${new Date(meta.timestamp).toLocaleString()}`);

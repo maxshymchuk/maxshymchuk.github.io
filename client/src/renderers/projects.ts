@@ -1,32 +1,32 @@
 import { Doms } from '../constants';
 
-function renderLinks(project: MappedRepo) {
+function renderLinks({ page, site, release }: MappedRepo) {
     const links = [
-        { title: 'repo', url: project.page },
-        { title: 'site', url: project.site },
-        { title: 'release', url: project.release },
+        { title: 'repo', url: page },
+        { title: 'site', url: site },
+        { title: 'release', url: release },
     ].filter((link) => link.url);
-    return `[ ${links.map((link) => `<a href="${link.url}" target="_blank">${link.title}</a>`).join(' | ')} ]`;
+    return `[ ${links.map(({ url, title }) => `<a href="${url}" target="_blank">${title}</a>`).join(' | ')} ]`;
 }
 
 function renderProject(template: HTMLTemplateElement, project: MappedRepo) {
     const clone = template.content.querySelector('.project')?.cloneNode(true) as Nullable<HTMLElement>;
 
-    const name = clone?.querySelector<HTMLElement>('.name');
-    const links = clone?.querySelector<HTMLElement>('.links');
-    const archived = clone?.querySelector<HTMLElement>('.marker.archived');
-    const description = clone?.querySelector<HTMLElement>('.description');
+    const _name = clone?.querySelector<HTMLElement>('.name');
+    const _links = clone?.querySelector<HTMLElement>('.links');
+    const _archived = clone?.querySelector<HTMLElement>('.marker.archived');
+    const _description = clone?.querySelector<HTMLElement>('.description');
 
-    if (name) name.innerText = project.name;
-    if (links) links.innerHTML = renderLinks(project);
-    if (archived) {
-        if (!project.archived) archived.remove();
-    }
-    if (description) {
-        if (project.description) {
-            description.innerText = project.description;
+    const { name, archived, description } = project;
+
+    if (_name) _name.innerText = name;
+    if (_links) _links.innerHTML = renderLinks(project);
+    if (_archived && !archived) _archived.remove();
+    if (_description) {
+        if (description) {
+            _description.innerText = description;
         } else {
-            description.remove();
+            _description.remove();
         }
     }
 

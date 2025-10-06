@@ -34,79 +34,87 @@ main {
     .skills {
         @include mixins.margin-y($spacing-unit-default);
 
-        &.group,
-        &.list {
-            @include mixins.margin-y($spacing-unit-sm);
-        }
+        .skills-group {
+            @include mixins.margin-y($spacing-unit-default);
 
-        &.group {
-            @include mixins.truncate;
-        }
-
-        &.list {
-            @include mixins.flex(row, calc($spacing-unit-default / 2));
-
-            & {
-                flex-wrap: wrap;
-                list-style: none;
+            &.group,
+            &.list {
+                @include mixins.margin-y($spacing-unit-sm);
             }
 
-            & > li {
+            &.group {
                 @include mixins.truncate;
+            }
+
+            &.list {
+                @include mixins.flex(row, calc($spacing-unit-default / 2));
+
+                & {
+                    flex-wrap: wrap;
+                    list-style: none;
+                }
+
+                & > li {
+                    @include mixins.truncate;
+                }
             }
         }
     }
 
-    .experience {
+    .experiences {
         @include mixins.margin-y($spacing-unit-default);
 
-        &.company,
-        &.date,
-        &.achievements,
-        &.techstack {
-            @include mixins.margin-y($spacing-unit-sm);
-        }
+        .experience {
+            @include mixins.margin-y($spacing-unit-default);
 
-        &.company {
-            @include mixins.truncate;
-        }
-
-        &.date {
-            @include mixins.truncate;
-            @include color-theme('color', $color-text-muted);
-
-            & {
-                font-weight: bold;
-            }
-        }
-
-        &.achievements {
-            list-style: none;
-
-            & > li {
+            &.company,
+            &.date,
+            &.achievements,
+            &.techstack {
                 @include mixins.margin-y($spacing-unit-sm);
-                @include mixins.clamp(6);
+            }
+
+            &.company {
+                @include mixins.truncate;
+            }
+
+            &.date {
+                @include mixins.truncate;
+                @include color-theme('color', $color-text-muted);
 
                 & {
-                    line-height: calc($typo-text-default * 1.5);
+                    font-weight: bold;
                 }
             }
-        }
 
-        &.techstack {
-            @include color-theme('color', $color-text-muted);
-
-            & {
-                display: flex;
-                flex-wrap: wrap;
-                gap: calc($spacing-unit-default / 4) calc($spacing-unit-default / 2);
-                font-size: $typo-h6;
-                font-weight: bold;
+            &.achievements {
                 list-style: none;
+
+                & > li {
+                    @include mixins.margin-y($spacing-unit-sm);
+                    @include mixins.clamp(6);
+
+                    & {
+                        line-height: calc($typo-text-default * 1.5);
+                    }
+                }
             }
 
-            & > li {
-                @include mixins.truncate;
+            &.techstack {
+                @include color-theme('color', $color-text-muted);
+
+                & {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: calc($spacing-unit-default / 4) calc($spacing-unit-default / 2);
+                    font-size: $typo-h6;
+                    font-weight: bold;
+                    list-style: none;
+                }
+
+                & > li {
+                    @include mixins.truncate;
+                }
             }
         }
     }

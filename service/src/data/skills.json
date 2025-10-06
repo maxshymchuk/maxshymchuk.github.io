@@ -1,0 +1,51 @@
+[
+    {
+        "title": "Proficient",
+        "list": [
+            "React",
+            "TypeScript",
+            "Redux-Toolkit",
+            "Effector",
+            "Bootstrap",
+            "Material",
+            "BaseWeb",
+            "DevExtreme",
+            "Styled Components",
+            "SASS",
+            "Styletron",
+            "Axios",
+            "Formik",
+            "Vite",
+            "Webpack",
+            "Parcel",
+            "i18n",
+            "Zod",
+            "Yup",
+            "Vercel"
+        ]
+    },
+    {
+        "title": "Familiar",
+        "list": [
+            "Node",
+            "MobX",
+            "JsPDF",
+            "Tolgee",
+            "Recharts",
+            "ApplicationInsights",
+            "SignalR",
+            "Mongo",
+            "Jest",
+            "RTL",
+            "WebWorkers",
+            "ServiceWorkers",
+            "Python",
+            "SQL",
+            "NoSQL"
+        ]
+    },
+    {
+        "title": "Planned",
+        "list": ["Vue", "RTK Query", "Tailwind"]
+    }
+]

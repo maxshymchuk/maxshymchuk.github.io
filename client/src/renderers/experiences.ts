@@ -1,0 +1,43 @@
+import { Doms } from '../constants';
+import { createElement } from '../utils';
+
+function renderListItem(value: string) {
+    const li = createElement('li');
+    li.innerHTML = value;
+    return li;
+}
+
+function renderExperience(template: HTMLTemplateElement, experience: Experience) {
+    const clone = template.content.querySelector('.experience')?.cloneNode(true) as Nullable<HTMLElement>;
+
+    const _company = clone?.querySelector<HTMLHeadingElement>('.company');
+    const _date = clone?.querySelector<HTMLDivElement>('.date');
+    const _achievements = clone?.querySelector<HTMLUListElement>('.achievements');
+    const _techstack = clone?.querySelector<HTMLUListElement>('.techstack');
+
+    const { company, interval, achievements, techstack } = experience;
+
+    if (_company) _company.innerText = company;
+    if (_date) _date.innerText = interval;
+    if (_achievements) _achievements.append(...achievements.map(renderListItem));
+    if (_techstack) _techstack.append(...techstack.map(renderListItem));
+
+    return clone;
+}
+
+export default function render(experiences: Array<Experience>) {
+    try {
+        if (experiences.length > 0) {
+            const nodes: Array<Node> = [];
+            for (const experience of experiences) {
+                const result = renderExperience(Doms.TemplateExperience, experience);
+                if (result) nodes.push(result);
+            }
+            Doms.Experience.querySelector('.experiences')?.replaceChildren(...nodes);
+        } else {
+            Doms.Experience.remove();
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}

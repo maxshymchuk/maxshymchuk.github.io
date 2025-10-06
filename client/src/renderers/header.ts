@@ -10,27 +10,27 @@ function renderLink({ title, url, logo }: Contact) {
 function renderHeader(template: HTMLTemplateElement, user: MappedUser, contacts: Array<Contact>) {
     const clone = template.content.cloneNode(true) as Nullable<HTMLElement>;
 
-    const name = clone?.querySelector<HTMLDivElement>('.name');
-    const bio = clone?.querySelector<HTMLDivElement>('.bio');
-    const links = clone?.querySelector<HTMLDivElement>('.links');
+    const _name = clone?.querySelector<HTMLDivElement>('.name');
+    const _bio = clone?.querySelector<HTMLDivElement>('.bio');
+    const _links = clone?.querySelector<HTMLDivElement>('.links');
 
-    if (name) {
-        name.innerText = user.name ? user.name : user.login;
-    }
+    const { name, login, bio } = user;
 
-    if (bio) {
-        if (user.bio) {
-            bio.innerText = user.bio;
+    if (_name) _name.innerText = name ? name : login;
+
+    if (_bio) {
+        if (bio) {
+            _bio.innerText = bio;
         } else {
-            bio.remove();
+            _bio.remove();
         }
     }
 
-    if (links) {
+    if (_links) {
         if (contacts.length > 0) {
-            links.append(...contacts.map(renderLink));
+            _links.append(...contacts.map(renderLink));
         } else {
-            links.remove();
+            _links.remove();
         }
     }
 

@@ -253,9 +253,23 @@ type Contact = {
     logo?: string;
 };
 
+type SkillsGroup = {
+    title: string;
+    list: Array<string>;
+};
+
+type Experience = {
+    company: string;
+    interval: string;
+    achievements: Array<string>;
+    techstack: Array<string>;
+};
+
 type UserData = {
     user: MappedUser;
     contacts: Array<Contact>;
+    skills: Array<SkillsGroup>;
+    experiences: Array<Experience>;
     repositories: Array<MappedRepo>;
 };
 

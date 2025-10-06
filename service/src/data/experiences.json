@@ -1,0 +1,61 @@
+[
+    {
+        "company": "Swappsi Software",
+        "interval": "Dec 2024 - current",
+        "achievements": [
+            "Implemented secure redux-centered authentification handler with <strong>reliable token refresh</strong> to provide smooth usage without unnecessary sign outs",
+            "Played a key role in the front-end development of a modular healthcare system that <strong>won the \"Supplier of the Year\"</strong> at the National Care Awards 2023 in the United Kingdom",
+            "Improved the company's <strong>frontend framework</strong> to provide easy and stable project updates",
+            "Made a system for <strong>secure and reliable management of contracts and agreements</strong> between talents and other collaborators",
+            "Created modular and composite <strong>highly optimized AI-chat</strong> component with support of easy integration"
+        ],
+        "techstack": [
+            "React",
+            "TypeScript",
+            "Redux-Toolkit",
+            "Vite",
+            "DevExtreme",
+            "Axios",
+            "Bootstrap",
+            "SASS",
+            "Yup",
+            "i18n",
+            "Tolgee",
+            "ApplicationInsights",
+            "SignalR"
+        ]
+    },
+    {
+        "company": "Sunmait Technologies",
+        "interval": "Dec 2020 - Nov 2024",
+        "achievements": [
+            "Designed and developed responsive React applications from scratch, such as <strong>a powerful graphic editor</strong> with tools for editing text, images, QR codes and other elements",
+            "Led the creation of a special <strong>reusable library of UI components</strong>, based and extended on another library",
+            "Engineered completely <strong>independent and responsive widgets</strong> for web pages with improved security",
+            "Integrated modern React applications into legacy systems, ensuring smooth compatibility and <strong>enhancing overall system performance</strong>"
+        ],
+        "techstack": [
+            "React",
+            "TypeScript",
+            "Effector",
+            "Redux",
+            "Parcel",
+            "Webpack",
+            "Styletron",
+            "BaseWeb",
+            "JsPDF",
+            "Recharts",
+            "Zod"
+        ]
+    },
+    {
+        "company": "Sam-Solutions",
+        "interval": "Sep 2019 - Aug 2020",
+        "achievements": [
+            "Completed the <strong>JavaScript Fundamentals Course</strong>",
+            "Assisted in developing <strong>a 3D editor</strong> for kitchen furniture and fittings",
+            "Developed <strong>a full-stack course project</strong> on the topic \"transport company\""
+        ],
+        "techstack": ["React", "TypeScript", "MaterialUI", "MobX", "Webpack", "Axios", "Node", "Mongo", "Jest"]
+    }
+]

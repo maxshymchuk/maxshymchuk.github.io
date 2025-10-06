@@ -4,16 +4,18 @@ import { createIcon } from '../utils';
 function renderContact(template: HTMLTemplateElement, contact: Contact) {
     const clone = template.content.cloneNode(true) as Nullable<HTMLElement>;
 
-    const logo = clone?.querySelector<HTMLDivElement>('.logo');
-    const link = clone?.querySelector<HTMLAnchorElement>('.link');
+    const _logo = clone?.querySelector<HTMLDivElement>('.logo');
+    const _link = clone?.querySelector<HTMLAnchorElement>('.link');
 
-    if (logo) {
-        logo.append(createIcon(contact.logo) ?? contact.title);
+    const { title, url, prettyUrl, logo } = contact;
+
+    if (_logo) {
+        _logo.append(createIcon(logo) ?? title);
     }
 
-    if (link) {
-        link.href = contact.url;
-        link.innerText = contact.prettyUrl ?? contact.url;
+    if (_link) {
+        _link.href = url;
+        _link.innerText = prettyUrl ?? url;
     }
 
     return clone;
