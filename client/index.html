@@ -117,7 +117,7 @@
         <div id="content" class="content invisible">
             <div class="grid">
                 <aside>
-                    <section class="actions">
+                    <div class="actions">
                         <button title="Print" class="icon" onclick="window.print()">
                             <svg viewBox="0 0 16 16">
                                 <path
@@ -125,7 +125,7 @@
                                 />
                             </svg>
                         </button>
-                    </section>
+                    </div>
                 </aside>
 
                 <header id="header">
@@ -139,38 +139,38 @@
                 </header>
 
                 <main>
-                    <article id="about" class="print-avoid-break-inside">
+                    <section id="about" class="print-avoid-break-inside">
                         <h3>about me</h3>
-                        <section class="about"></section>
-                    </article>
+                        <article class="about"></article>
+                    </section>
 
-                    <article id="contacts" class="print-avoid-break-inside print-only">
+                    <section id="contacts" class="print-avoid-break-inside print-only">
                         <h3>contacts</h3>
-                        <section class="contacts">
+                        <article class="contacts">
                             <template id="template-contact">
                                 <div class="contact">
                                     <div class="logo"></div>
                                     <a class="link" target="_blank"></a>
                                 </div>
                             </template>
-                        </section>
-                    </article>
+                        </article>
+                    </section>
 
-                    <article id="skills" class="print-avoid-break-inside print-page-break">
+                    <section id="skills" class="print-avoid-break-inside print-page-break">
                         <h3>skills</h3>
-                        <section class="skills">
+                        <article class="skills">
                             <template id="template-skills-group">
                                 <div class="skills-group print-avoid-break-inside">
                                     <h4 class="skills-group title"></h4>
                                     <ul class="skills-group list"></ul>
                                 </div>
                             </template>
-                        </section>
-                    </article>
+                        </article>
+                    </section>
 
-                    <article id="experiences" class="print-avoid-break-inside print-page-break">
+                    <section id="experiences" class="print-avoid-break-inside print-page-break">
                         <h3>experience</h3>
-                        <section class="experiences">
+                        <article class="experiences">
                             <template id="template-experience">
                                 <div class="experience print-avoid-break-inside">
                                     <h4 class="experience company"></h4>
@@ -181,14 +181,14 @@
                                     </footer>
                                 </div>
                             </template>
-                        </section>
-                    </article>
+                        </article>
+                    </section>
 
-                    <article id="projects" class="print-avoid-break-inside print-page-break">
+                    <section id="projects" class="print-avoid-break-inside print-page-break">
                         <h3>projects</h3>
                         <div class="projects">
                             <template id="template-project">
-                                <section class="project print-avoid-break-inside">
+                                <article class="project print-avoid-break-inside">
                                     <div class="title">
                                         <h3 class="name"></h3>
                                         <div class="links"></div>
@@ -197,10 +197,10 @@
                                         </div>
                                     </div>
                                     <p class="description"></p>
-                                </section>
+                                </article>
                             </template>
                         </div>
-                    </article>
+                    </section>
                 </main>
             </div>
         </div>

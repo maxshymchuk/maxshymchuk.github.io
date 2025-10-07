@@ -2,7 +2,7 @@
 @use 'mixins';
 
 main {
-    article > h3 {
+    section > h3 {
         @include mixins.hyphenate;
 
         & {
