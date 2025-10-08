@@ -3,6 +3,6 @@
     "exclude": ["node_modules"],
     "include": ["src/**/*"],
     "compilerOptions": {
-        "types": ["vite/client", "../global.d.ts"]
+        "types": ["vite/client", "../github.d.ts", "../global.d.ts"]
     }
 }

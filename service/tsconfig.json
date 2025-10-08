@@ -4,6 +4,6 @@
     "include": ["src/**/*"],
     "compilerOptions": {
         "outDir": "dist",
-        "types": ["../global.d.ts"]
+        "types": ["../github.d.ts", "../global.d.ts"]
     }
 }
