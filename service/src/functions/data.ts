@@ -26,34 +26,36 @@ async function updateGist(data: Data) {
     }
 }
 
-export default async () => {
-    try {
-        await database.open();
+export default {
+    async fetch() {
+        try {
+            await database.open();
 
-        const saved = await database.read<Data>(database.keys.data);
+            const saved = await database.read<Data>(database.keys.data);
 
-        if (saved) return saved;
+            if (saved) return saved;
 
-        const userData = await getData();
+            const userData = await getData();
 
-        const current = Date.now();
+            const current = Date.now();
 
-        const data: Data = {
-            meta: {
-                timestamp: current,
-                expired: current + Const.RequestIntervalMs,
-                snapshot: serialize(userData.repositories),
-            },
-            payload: userData,
-        };
+            const data: Data = {
+                meta: {
+                    timestamp: current,
+                    expired: current + Const.RequestIntervalMs,
+                    snapshot: serialize(userData.repositories),
+                },
+                payload: userData,
+            };
 
-        waitUntil(Promise.all([updateDatabase(data), updateGist(data)]));
+            waitUntil(Promise.all([updateDatabase(data), updateGist(data)]));
 
-        return Response.json(data);
-    } catch (error) {
-        console.error(error);
-        throw error;
-    } finally {
-        await database.close();
-    }
+            return Response.json(data);
+        } catch (error) {
+            console.error(error);
+            throw error;
+        } finally {
+            await database.close();
+        }
+    },
 };
