@@ -25,7 +25,7 @@ const loaders = [
 async function load(): Promise<Data> {
     if (import.meta.env.DEV) {
         const mock = await import('./mock');
-        return mock.default;
+        return mock.default();
     }
     const cache = getCache();
     if (cache && Date.now() < cache.meta.expired) return cache;

@@ -1,0 +1,7 @@
+{
+    "extends": "../tsconfig.json",
+    "include": ["**/*"],
+    "compilerOptions": {
+        "types": ["../github.d.ts", "../global.d.ts"]
+    }
+}

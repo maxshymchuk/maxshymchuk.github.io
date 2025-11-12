@@ -1,19 +1,10 @@
 import { getRepos } from './get.repos';
 import { getUser } from './get.user';
-import contacts from '../data/contacts.json';
-import contactsCIS from '../data/contacts-cis.json';
-import about from '../data/about.json';
-import aboutCIS from '../data/about-cis.json';
-import skills from '../data/skills.json';
-import experiences from '../data/experiences.json';
 import { Geo } from '@vercel/functions';
-
-const CIS = ['AM', 'AZ', 'BY', 'KZ', 'KG', 'MD', 'RU', 'TJ', 'UZ'];
+import { getStaticDataByCountry } from '../../../share';
 
 async function getData(geo: Geo): Promise<UserData> {
     const [user, repositories] = await Promise.all([getUser(), getRepos()]);
-
-    const isCIS = Boolean(geo.country && CIS.includes(geo.country));
 
     const filtered: Array<MappedRepo> = [];
     for (const repo of repositories) {
@@ -21,12 +12,11 @@ async function getData(geo: Geo): Promise<UserData> {
         filtered.push(repo);
     }
 
+    const staticData = getStaticDataByCountry(geo.country);
+
     return {
+        ...staticData,
         user,
-        contacts: isCIS ? contactsCIS : contacts,
-        about: isCIS ? aboutCIS : about,
-        skills,
-        experiences,
         repositories: filtered,
     };
 }

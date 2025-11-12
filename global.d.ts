@@ -44,12 +44,15 @@ type Experience = {
     techstack: Array<string>;
 };
 
-type UserData = {
-    user: MappedUser;
-    contacts: Array<Contact>;
+type StaticData = {
     about: Array<string>;
+    contacts: Array<Contact>;
     skills: Array<SkillsGroup>;
     experiences: Array<Experience>;
+};
+
+type UserData = StaticData & {
+    user: MappedUser;
     repositories: Array<MappedRepo>;
 };
 

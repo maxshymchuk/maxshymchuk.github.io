@@ -1,3 +1,5 @@
+import { getStaticDataByCountry } from '../../share';
+
 const ref =
     'lorem ipsum dolor sit amet consectetur adipisicing elit optio ipsum incidunt nam praesentium cumque dolores deserunt amet temporibus libero non veniam sunt mollitia culpa architecto totam assumenda distinctio tempore commodi';
 
@@ -38,13 +40,10 @@ const repositories = Array.from(Array(10)).map(() => ({
     archived: !!Math.round(Math.random()),
 }));
 
-export default (async () => {
-    const about = (await import('../../service/src/data/about.json')).default;
-    const contacts = (await import('../../service/src/data/contacts.json')).default;
-    const experiences = (await import('../../service/src/data/experiences.json')).default;
-    const skills = (await import('../../service/src/data/skills.json')).default;
+export default async () => {
+    const staticData = getStaticDataByCountry(import.meta.env.VITE_DEV_COUNTRY);
     return {
         meta,
-        payload: { user, about, contacts, experiences, skills, repositories },
+        payload: { ...staticData, user, repositories },
     };
-})();
+};
