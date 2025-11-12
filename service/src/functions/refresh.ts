@@ -1,7 +1,4 @@
-import { config } from 'dotenv';
 import database from '../database';
-
-config({ override: true });
 
 export default {
     async fetch() {
