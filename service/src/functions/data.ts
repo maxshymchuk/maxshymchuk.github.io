@@ -1,7 +1,7 @@
 import database from '../database';
 import { getData, patchGist } from '../api';
 import { serialize, stringify } from '../utils';
-import { waitUntil } from '@vercel/functions';
+import { geolocation, waitUntil } from '@vercel/functions';
 import { Const } from '../constants';
 
 async function updateDatabase(data: Data) {
@@ -24,7 +24,7 @@ async function updateGist(data: Data) {
 }
 
 export default {
-    async fetch() {
+    async fetch(req: Request) {
         try {
             await database.open();
 
@@ -32,7 +32,9 @@ export default {
 
             if (saved) return Response.json(saved);
 
-            const userData = await getData();
+            const geo = geolocation(req);
+
+            const userData = await getData(geo);
 
             const current = Date.now();
 

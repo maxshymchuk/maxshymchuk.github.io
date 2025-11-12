@@ -53,10 +53,6 @@ async function createConfig(path: string) {
                     dest: '/refresh',
                     continue: true,
                 },
-                {
-                    src: '/test',
-                    dest: '/test',
-                },
             ],
         }),
     );
