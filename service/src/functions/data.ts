@@ -3,6 +3,9 @@ import { getData, patchGist } from '../api';
 import { serialize, stringify } from '../utils';
 import { waitUntil } from '@vercel/functions';
 import { Const } from '../constants';
+import { config } from 'dotenv';
+
+config({ override: true });
 
 async function updateDatabase(data: Data) {
     try {

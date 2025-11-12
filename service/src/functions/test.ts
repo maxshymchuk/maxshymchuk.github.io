@@ -1,4 +1,7 @@
 import { geolocation, Request } from '@vercel/functions';
+import { config } from 'dotenv';
+
+config({ override: true });
 
 export default (req: Request) => {
     try {

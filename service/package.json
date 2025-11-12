@@ -13,6 +13,7 @@
     "dependencies": {
         "@vercel/functions": "^3.3.0",
         "@vercel/node": "^5.5.5",
+        "dotenv": "^17.2.3",
         "express": "^5.1.0",
         "redis": "^5.9.0"
     },
