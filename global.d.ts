@@ -51,10 +51,12 @@ type StaticData = {
     experiences: Array<Experience>;
 };
 
-type UserData = StaticData & {
+type DynamicData = {
     user: MappedUser;
     repositories: Array<MappedRepo>;
 };
+
+type UserData = StaticData & DynamicData;
 
 type Data = {
     meta: Meta;

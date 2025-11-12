@@ -16,4 +16,4 @@ function getStaticDataByCountry(country?: string | null): StaticData {
         : { about, contacts, skills, experiences };
 }
 
-export { getStaticDataByCountry };
+export { isCISCountry, getStaticDataByCountry };

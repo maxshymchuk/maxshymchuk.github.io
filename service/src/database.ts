@@ -4,6 +4,7 @@ import { stringify } from './utils';
 
 const keys = {
     data: 'data',
+    dataCIS: 'data-cis',
 } as const;
 
 const client = createClient({ url: process.env.REDIS_URL });

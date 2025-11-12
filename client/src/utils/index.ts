@@ -1,5 +1,3 @@
-export * from './parsers';
-
 export { createLoader } from './loader';
 
 function createElement<K extends keyof HTMLElementTagNameMap>(

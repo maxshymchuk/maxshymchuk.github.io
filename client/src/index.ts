@@ -1,6 +1,6 @@
 import { getData } from './api';
 import { Const } from './constants';
-import { createLoader, parseGist } from './utils';
+import { createLoader } from './utils';
 import { getCache, setCache } from './utils/cache';
 import renderHeader from './renderers/header';
 import renderContacts from './renderers/contacts';
@@ -10,17 +10,7 @@ import renderExperiences from './renderers/experiences';
 import renderProjects from './renderers/projects';
 import { DOMS } from './doms';
 
-const loaders = [
-    createLoader(Const.Sources.Vercel),
-    createLoader({
-        url: Const.Sources.Gist,
-        headers: {
-            Accept: 'application/vnd.github.raw+json',
-            'X-GitHub-Api-Version': '2022-11-28',
-        },
-        parser: parseGist,
-    }),
-];
+const loaders = [createLoader(Const.Sources.Vercel)];
 
 async function load(): Promise<Data> {
     if (import.meta.env.DEV) {

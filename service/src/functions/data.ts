@@ -1,40 +1,26 @@
 import database from '../database';
-import { getData, patchGist } from '../api';
-import { serialize, stringify } from '../utils';
+import { getData } from '../api';
+import { serialize } from '../utils';
 import { geolocation, waitUntil } from '@vercel/functions';
 import { Const } from '../constants';
-
-async function updateDatabase(data: Data) {
-    try {
-        await database.write<Data>(database.keys.data, data);
-        console.log('Data update succeed');
-    } catch (error) {
-        console.log(`Data update failed: ${error}`);
-    }
-}
-
-async function updateGist(data: Data) {
-    try {
-        const { history } = await patchGist(stringify(data, true));
-        console.log('Gist update succeed');
-        console.log(`New version -> ${history[0].version}`);
-    } catch (error) {
-        console.log(`Gist update failed: ${error}`);
-    }
-}
+import { getStaticDataByCountry, isCISCountry } from '../../../share';
 
 export default {
     async fetch(req: Request) {
         try {
             await database.open();
 
-            const saved = await database.read<Data>(database.keys.data);
+            const { country } = geolocation(req);
+
+            const dbKey = isCISCountry(country) ? database.keys.dataCIS : database.keys.data;
+
+            const saved = await database.read<Data>(dbKey);
 
             if (saved) return Response.json(saved);
 
-            const geo = geolocation(req);
+            const userData = await getData();
 
-            const userData = await getData(geo);
+            const staticData = getStaticDataByCountry(country);
 
             const current = Date.now();
 
@@ -44,10 +30,10 @@ export default {
                     expired: current + Const.RequestIntervalMs,
                     snapshot: serialize(userData.repositories),
                 },
-                payload: userData,
+                payload: { ...staticData, ...userData },
             };
 
-            waitUntil(Promise.all([updateDatabase(data), updateGist(data)]));
+            waitUntil(database.write<Data>(dbKey, data));
 
             return Response.json(data);
         } catch (error) {
