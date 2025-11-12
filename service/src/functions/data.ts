@@ -33,7 +33,7 @@ export default {
 
             const saved = await database.read<Data>(database.keys.data);
 
-            if (saved) return saved;
+            if (saved) return Response.json(saved);
 
             const userData = await getData();
 
