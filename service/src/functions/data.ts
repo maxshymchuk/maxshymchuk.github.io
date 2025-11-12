@@ -27,7 +27,7 @@ async function updateGist(data: Data) {
     }
 }
 
-async function data(): Promise<Nullable<Data>> {
+export default jsonHandler(async () => {
     const saved = await database.read<Data>(database.keys.data);
 
     if (saved) return saved;
@@ -48,6 +48,4 @@ async function data(): Promise<Nullable<Data>> {
     waitUntil(Promise.all([updateDatabase(data), updateGist(data)]));
 
     return data;
-}
-
-export default jsonHandler(data);
+});

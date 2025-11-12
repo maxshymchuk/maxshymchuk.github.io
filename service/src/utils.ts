@@ -1,4 +1,4 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
+import { VercelResponse } from '@vercel/node';
 import { createHash } from 'crypto';
 import database from './database';
 
@@ -11,8 +11,8 @@ function serialize(obj: unknown): string {
     return hash.update(stringify(obj)).digest('hex');
 }
 
-function jsonHandler<T>(sender: (req: VercelRequest) => Promise<T>) {
-    return async (req: VercelRequest, res: VercelResponse) => {
+function jsonHandler<T>(sender: (req: Request) => Promise<T>) {
+    return async (req: Request, res: VercelResponse) => {
         try {
             await database.open();
             return res.json(await sender(req));
