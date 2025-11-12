@@ -1,5 +1,7 @@
 .github
 .husky
+.gitignore 
+.prettierignore
 
 node_modules
 dist

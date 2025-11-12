@@ -1,9 +1,14 @@
 import database from '../database';
-import { config } from 'dotenv';
-import { jsonHandler } from '../utils';
 
-config({ override: true });
-
-export default jsonHandler(async () => {
-    return database.del(database.keys.data);
-});
+export default async () => {
+    try {
+        await database.open();
+        await database.del(database.keys.data);
+        return new Response('OK');
+    } catch (error) {
+        console.error(error);
+        return new Response('FAILED');
+    } finally {
+        await database.close();
+    }
+};

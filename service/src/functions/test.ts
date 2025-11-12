@@ -1,9 +1,12 @@
-import { config } from 'dotenv';
-import { jsonHandler } from '../utils';
-import { geolocation } from '@vercel/functions';
+import { geolocation, Request } from '@vercel/functions';
 
-config({ override: true });
-
-export default jsonHandler(async (req) => {
-    return geolocation(req);
-});
+export default (req: Request) => {
+    try {
+        const geo = geolocation(req);
+        console.log(geo);
+        return Response.json(geo);
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};

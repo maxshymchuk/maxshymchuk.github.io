@@ -1,12 +1,8 @@
 import database from '../database';
-import { config } from 'dotenv';
 import { getData, patchGist } from '../api';
 import { serialize, stringify } from '../utils';
-import { jsonHandler } from '../utils';
 import { waitUntil } from '@vercel/functions';
 import { Const } from '../constants';
-
-config({ override: true });
 
 async function updateDatabase(data: Data) {
     try {
@@ -27,25 +23,34 @@ async function updateGist(data: Data) {
     }
 }
 
-export default jsonHandler(async () => {
-    const saved = await database.read<Data>(database.keys.data);
+export default async () => {
+    try {
+        await database.open();
 
-    if (saved) return saved;
+        const saved = await database.read<Data>(database.keys.data);
 
-    const userData = await getData();
+        if (saved) return saved;
 
-    const current = Date.now();
+        const userData = await getData();
 
-    const data: Data = {
-        meta: {
-            timestamp: current,
-            expired: current + Const.RequestIntervalMs,
-            snapshot: serialize(userData.repositories),
-        },
-        payload: userData,
-    };
+        const current = Date.now();
 
-    waitUntil(Promise.all([updateDatabase(data), updateGist(data)]));
+        const data: Data = {
+            meta: {
+                timestamp: current,
+                expired: current + Const.RequestIntervalMs,
+                snapshot: serialize(userData.repositories),
+            },
+            payload: userData,
+        };
 
-    return data;
-});
+        waitUntil(Promise.all([updateDatabase(data), updateGist(data)]));
+
+        return Response.json(data);
+    } catch (error) {
+        console.error(error);
+        throw error;
+    } finally {
+        await database.close();
+    }
+};
