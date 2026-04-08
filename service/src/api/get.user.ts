@@ -12,7 +12,7 @@ function mapUser(user: User): MappedUser {
 async function getUser(): Promise<MappedUser> {
     if (!process.env.USER) throw Error(Const.Error.EnvUser);
     const userResponse = await get(`https://api.github.com/users/${process.env.USER}`);
-    const user: User = await userResponse.json();
+    const user = (await userResponse.json()) as User;
     return mapUser(user);
 }
 

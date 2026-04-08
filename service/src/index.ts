@@ -17,7 +17,7 @@ async function createFunctionConfig(path: string, name: string) {
     await writeFile(
         path,
         stringify({
-            runtime: 'nodejs22.x',
+            runtime: 'nodejs24.x',
             handler: name,
             launcherType: 'Nodejs',
             shouldAddHelpers: true,
@@ -36,7 +36,7 @@ async function createConfig(path: string) {
                     src: '^(?:/(.*))$',
                     headers: {
                         'Access-Control-Allow-Credentials': 'true',
-                        'Access-Control-Allow-Origin': 'https://maxshymchuk.github.io',
+                        'Access-Control-Allow-Origin': 'https://shymch.uk',
                         'Access-Control-Allow-Methods': 'GET,PATCH',
                         'Access-Control-Allow-Headers':
                             'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
