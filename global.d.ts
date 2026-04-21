@@ -49,14 +49,5 @@ type UserData = {
 type Telemetry = {
     timestamp: number;
     ip: string | undefined;
-    geo: {
-        city?: string;
-        country?: string;
-        flag?: string;
-        region?: string;
-        countryRegion?: string;
-        latitude?: string;
-        longitude?: string;
-        postalCode?: string;
-    };
+    place: string | undefined;
 };

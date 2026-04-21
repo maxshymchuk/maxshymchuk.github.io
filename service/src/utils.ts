@@ -11,10 +11,11 @@ export function serialize(obj: unknown): string {
     return hash.update(stringify(obj)).digest('hex');
 }
 
-export async function telemetry(req: Request) {
+export function telemetry(req: Request) {
+    const { city, country } = geolocation(req);
     return database.add<Telemetry>(database.keys.telemetry, {
         timestamp: Date.now(),
         ip: ipAddress(req),
-        geo: geolocation(req),
+        place: [city, country].filter(Boolean).join(', '),
     });
 }

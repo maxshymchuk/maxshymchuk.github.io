@@ -18,13 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: 'npm'
-          cache-dependency-path: './service'
+          cache-dependency-path: './service/package-lock.json'
       - name: Install dependencies
         working-directory: ./service
         run: npm ci
@@ -32,7 +32,7 @@ jobs:
         working-directory: ./service
         run: npm run build
       - name: Saving build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: vercel-output
           path: ./service/.vercel
@@ -45,13 +45,13 @@ jobs:
     needs: build
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - name: Download build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: vercel-output
           path: ./service/.vercel
