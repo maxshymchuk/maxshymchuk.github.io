@@ -12,7 +12,7 @@ export default createAdapter((defaultApi) => {
         getData: async () => {
             const [{ data: user }, { data: repos }] = await Promise.all([
                 client.request('GET /user'),
-                client.request('GET /user/repos'),
+                client.request('GET /user/repos', { visibility: 'public' }),
             ]);
 
             const _user: MappedUser = {
