@@ -7,10 +7,6 @@ class RedisDriver<TKey extends string = string> implements DatabaseDriver<TKey> 
 
     constructor(url: string) {
         this.client = createClient({ url });
-
-        this.client.on('error', (error) => {
-            console.error('Redis client error:', error);
-        });
     }
 
     public async connect() {
