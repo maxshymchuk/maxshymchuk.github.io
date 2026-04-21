@@ -1,8 +1,9 @@
 {
-    "name": "aggregator-service",
+    "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite-node src/index.ts",
+        "build": "vite-node src/vercel.ts",
+        "start": "vite-node src/index.ts",
         "type-check": "tsc --noEmit"
     },
     "devDependencies": {
@@ -11,8 +12,8 @@
         "vite-node": "^6.0.0"
     },
     "dependencies": {
+        "@octokit/core": "^7.0.6",
         "@vercel/functions": "^3.4.3",
-        "@vercel/node": "^5.7.1",
         "express": "^5.2.1",
         "redis": "^5.11.0"
     },

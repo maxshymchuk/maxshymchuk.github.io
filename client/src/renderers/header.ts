@@ -1,5 +1,5 @@
 import { DOMS } from '../doms';
-import { createElement, createIcon } from '../utils';
+import { createElement, createIcon } from '../utils/factories';
 
 function renderLink({ title, url, logo }: Contact) {
     const link = createElement('a', { title, href: url, target: '_blank' });

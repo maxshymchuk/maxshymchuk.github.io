@@ -1,46 +1,28 @@
-import database from '../database';
-import { getData } from '../api';
-import { serialize } from '../utils';
-import { geolocation, waitUntil } from '@vercel/functions';
-import { Const } from '../constants';
-import { getStaticDataByCountry, isCISCountry } from '../../../share';
+import database from '../redis';
+import { waitUntil } from '@vercel/functions';
+import { INVALIDATE_AFTER_MS } from '../constants';
+import api from '../api';
+import github from '../api/adapters/github';
+import { telemetry } from '../utils';
 
-export default {
-    async fetch(req: Request) {
-        try {
-            await database.open();
+export default async function (req: Request) {
+    const client = api(github);
 
-            const { country } = geolocation(req);
+    try {
+        const cache = await database.read<UserData>(database.keys.data);
 
-            const dbKey = isCISCountry(country) ? database.keys.dataCIS : database.keys.data;
+        if (cache) return Response.json(cache);
 
-            const saved = await database.read<Data>(dbKey);
+        const data = await client.getData();
 
-            if (saved) return Response.json(saved);
+        if (!data) return new Response(null, { status: 404 });
 
-            const userData = await getData();
+        await database.write<UserData>(database.keys.data, data, {
+            expiration: { type: 'PX', value: INVALIDATE_AFTER_MS },
+        });
 
-            const staticData = getStaticDataByCountry(country);
-
-            const current = Date.now();
-
-            const data: Data = {
-                meta: {
-                    timestamp: current,
-                    expired: current + Const.RequestIntervalMs,
-                    snapshot: serialize(userData.repositories),
-                },
-                payload: { ...staticData, ...userData },
-            };
-
-            waitUntil(database.write<Data>(dbKey, data));
-
-            return Response.json(data);
-        } catch (error) {
-            console.error(error);
-            throw error;
-        } finally {
-            await database.close();
-        }
-    },
-};
+        return Response.json(data);
+    } finally {
+        waitUntil(telemetry(req));
+    }
+}

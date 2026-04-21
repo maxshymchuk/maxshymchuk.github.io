@@ -1,6 +1,4 @@
-export { createLoader } from './loader';
-
-function createElement<K extends keyof HTMLElementTagNameMap>(
+export function createElement<K extends keyof HTMLElementTagNameMap>(
     tagName: K,
     attributes?: Record<string, string>,
 ): HTMLElementTagNameMap[K] {
@@ -13,7 +11,7 @@ function createElement<K extends keyof HTMLElementTagNameMap>(
     return element;
 }
 
-function createIcon(html?: string) {
+export function createIcon(html?: string) {
     if (!html) return;
     const template = createElement('template');
     template.innerHTML = html;
@@ -23,5 +21,3 @@ function createIcon(html?: string) {
         return node;
     }
 }
-
-export { createElement, createIcon };

@@ -1,5 +1,5 @@
 import { DOMS } from '../doms';
-import { createElement } from '../utils';
+import { createElement } from '../utils/factories';
 
 function renderTechItem(value: string) {
     const li = createElement('li');

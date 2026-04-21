@@ -1,16 +1,26 @@
 import globals from 'globals';
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import eslintConfigPrettier from 'eslint-config-prettier';
+import prettier from 'eslint-config-prettier';
+import { defineConfig, globalIgnores } from 'eslint/config';
 
-export default tseslint.config(
-    { ignores: ['**/*.js', '**/public', '**/node_modules', '**/dist'] },
-    { files: ['*.{ts,tsx}'] },
-    { languageOptions: { globals: globals.browser } },
+export default defineConfig(
+    globalIgnores(['**/*.js', '**/public/**', '**/node_modules/**', '**/dist/**']),
+
     eslint.configs.recommended,
     tseslint.configs.recommendedTypeChecked,
-    eslintConfigPrettier,
+
     {
+        files: ['**/*.{ts,tsx}'],
+        languageOptions: {
+            globals: globals.browser,
+            parserOptions: {
+                projectService: {
+                    allowDefaultProject: ['eslint.config.ts', 'global.d.ts'],
+                },
+                tsconfigRootDir: import.meta.dirname,
+            },
+        },
         rules: {
             '@typescript-eslint/restrict-template-expressions': 'off',
             '@typescript-eslint/require-await': 'off',
@@ -20,11 +30,7 @@ export default tseslint.config(
             '@typescript-eslint/no-unsafe-argument': 'off',
             '@typescript-eslint/no-unsafe-call': 'off',
         },
-        languageOptions: {
-            parserOptions: {
-                projectService: true,
-                tsconfigRootDir: import.meta.dirname,
-            },
-        },
     },
+
+    prettier,
 );

@@ -1,12 +1,20 @@
+import { geolocation, ipAddress } from '@vercel/functions';
 import { createHash } from 'crypto';
+import database from './redis';
 
-function stringify(obj: unknown, pretty = false): string {
+export function stringify(obj: unknown, pretty = false): string {
     return JSON.stringify(obj, null, pretty ? '    ' : undefined);
 }
 
-function serialize(obj: unknown): string {
+export function serialize(obj: unknown): string {
     const hash = createHash('md5');
     return hash.update(stringify(obj)).digest('hex');
 }
 
-export { serialize, stringify };
+export async function telemetry(req: Request) {
+    return database.add<Telemetry>(database.keys.telemetry, {
+        timestamp: Date.now(),
+        ip: ipAddress(req),
+        geo: geolocation(req),
+    });
+}

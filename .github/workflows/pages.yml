@@ -21,6 +21,9 @@ concurrency:
   group: 'pages'
   cancel-in-progress: false
 
+env:
+  VITE_API_URL: ${{ secrets.API_URL }}
+
 jobs:
   # Build job
   build:

@@ -1,21 +1,14 @@
+type Primitive = string | number | boolean | null | undefined;
 type Nullable<T> = T | null;
-
 type ValueOf<T> = T[keyof T];
-
-type Meta = {
-    timestamp: number;
-    expired: number;
-    snapshot: string;
-};
 
 type MappedRepo = {
     name: string;
-    description: string;
+    description: Nullable<string>;
     stars: number;
     site: Nullable<string>;
     release: Nullable<string>;
     page: string;
-    topics: Array<string>;
     archived: boolean;
 };
 
@@ -44,21 +37,26 @@ type Experience = {
     techstack: Array<string>;
 };
 
-type StaticData = {
+type UserData = {
+    user: MappedUser;
+    repositories: Array<MappedRepo>;
     about: Array<string>;
     contacts: Array<Contact>;
     skills: Array<SkillsGroup>;
     experiences: Array<Experience>;
 };
 
-type DynamicData = {
-    user: MappedUser;
-    repositories: Array<MappedRepo>;
-};
-
-type UserData = StaticData & DynamicData;
-
-type Data = {
-    meta: Meta;
-    payload: UserData;
+type Telemetry = {
+    timestamp: number;
+    ip: string | undefined;
+    geo: {
+        city?: string;
+        country?: string;
+        flag?: string;
+        region?: string;
+        countryRegion?: string;
+        latitude?: string;
+        longitude?: string;
+        postalCode?: string;
+    };
 };

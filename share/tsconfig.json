@@ -1,5 +1,0 @@
-{
-    "compilerOptions": {
-        "types": ["../github.d.ts", "../global.d.ts"]
-    }
-}

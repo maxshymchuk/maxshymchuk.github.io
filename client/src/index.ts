@@ -1,7 +1,3 @@
-import { getData } from './api';
-import { Const } from './constants';
-import { createLoader } from './utils';
-import { getCache, setCache } from './utils/cache';
 import renderHeader from './renderers/header';
 import renderContacts from './renderers/contacts';
 import renderAbout from './renderers/about';
@@ -9,19 +5,21 @@ import renderSkills from './renderers/skills';
 import renderExperiences from './renderers/experiences';
 import renderProjects from './renderers/projects';
 import { DOMS } from './doms';
+import { API_URL } from './constants';
+import fetcher from 'fetcher';
+import userData from '../../data/userData';
+import cache from './utils/cache';
 
-const loaders = [createLoader(Const.Sources.Vercel)];
-
-async function load(): Promise<Data> {
-    if (import.meta.env.DEV) {
-        const mock = await import('./mock');
-        return mock.default();
+async function load(): Promise<UserData> {
+    try {
+        const cached = cache.get();
+        if (cached) return cached;
+        const data = await fetcher<UserData>('get', API_URL);
+        cache.set(data);
+        return data;
+    } catch {
+        return userData;
     }
-    const cache = getCache();
-    if (cache && Date.now() < cache.meta.expired) return cache;
-    const data = await getData(loaders);
-    setCache(data);
-    return data;
 }
 
 async function initialize() {
@@ -29,16 +27,14 @@ async function initialize() {
     DOMS.Content.node.classList.add('invisible');
 
     try {
-        const { meta, payload } = await load();
+        const data = await load();
 
-        renderHeader(payload.user, payload.contacts);
-        renderContacts(payload.contacts);
-        renderAbout(payload.about);
-        renderSkills(payload.skills);
-        renderExperiences(payload.experiences);
-        renderProjects(payload.repositories);
-
-        console.log(`Updated at ${new Date(meta.timestamp).toLocaleString()}`);
+        renderHeader(data.user, data.contacts);
+        renderContacts(data.contacts);
+        renderAbout(data.about);
+        renderSkills(data.skills);
+        renderExperiences(data.experiences);
+        renderProjects(data.repositories);
 
         DOMS.Loader.node.classList.add('invisible');
         DOMS.Content.node.classList.remove('invisible');

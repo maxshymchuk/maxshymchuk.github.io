@@ -1,5 +1,5 @@
 import { DOMS } from '../doms';
-import { createIcon } from '../utils';
+import { createIcon } from '../utils/factories';
 
 function renderContact(template: HTMLTemplateElement, contact: Contact) {
     const clone = template.content.cloneNode(true) as Nullable<HTMLElement>;
