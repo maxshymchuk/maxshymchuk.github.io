@@ -6,9 +6,9 @@ import renderExperiences from './renderers/experiences';
 import renderProjects from './renderers/projects';
 import { DOMS } from './doms';
 import { API_URL } from './constants';
-import fetcher from 'fetcher';
 import userData from '../../data/userData';
 import cache from './utils/cache';
+import fetcher from './utils/fetcher';
 
 async function load(): Promise<UserData> {
     try {

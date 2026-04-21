@@ -7,10 +7,6 @@
         "preview": "vite preview",
         "type-check": "tsc --noEmit"
     },
-    "dependencies": {
-        "fake": "file:../packages/fake",
-        "fetcher": "file:../packages/fetcher"
-    },
     "devDependencies": {
         "@types/node": "^25.6.0",
         "sass-embedded": "^1.99.0",
