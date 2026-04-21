@@ -2,13 +2,8 @@
     "name": "maxshymchuk.github.io",
     "description": "Monorepo for maxshymchuk.github.io aggregator",
     "type": "module",
-    "dependencies": {
-        "fake": "file:./packages/fake",
-        "fetcher": "file:./packages/fetcher"
-    },
     "devDependencies": {
         "@eslint/js": "^10.0.1",
-        "@types/node": "^25.5.2",
         "eslint": "^10.2.0",
         "eslint-config-prettier": "^10.1.8",
         "globals": "^17.4.0",
