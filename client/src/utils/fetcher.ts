@@ -7,16 +7,7 @@ async function fetcher<Response = unknown>(
     url: string,
     options?: FetcherOptions,
 ): Promise<Response> {
-    const response = await fetch(url, {
-        ...options,
-        headers: {
-            Expires: '0',
-            Pragma: 'no-cache',
-            'Cache-Control': 'no-cache, no-store, must-revalidate',
-            ...options?.headers,
-        },
-        method,
-    });
+    const response = await fetch(url, { ...options, method });
     return (await response.json()) as Response;
 }
 
