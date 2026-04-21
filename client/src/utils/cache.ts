@@ -3,7 +3,7 @@ import { INVALIDATE_DELAY_MS, LS_CACHE_KEY } from '../constants';
 type Cached<T> = { timestamp: number; payload: T };
 
 function isUserData(test: object): test is Cached<UserData> {
-    return 'timestamp' in test && 'user' in test;
+    return 'timestamp' in test && 'payload' in test;
 }
 
 const cache = {
