@@ -1,11 +1,11 @@
 import database from '../redis';
-import { waitUntil } from '@vercel/functions';
+// import { waitUntil } from '@vercel/functions';
 import { INVALIDATE_AFTER_MS, REDIS_URL } from '../constants';
 import api from '../api';
 import github from '../api/adapters/github';
-import { telemetry } from '../utils';
+// import { telemetry } from '../utils';
 
-export default async function (req: Request) {
+export default async function () {
     const client = api(github);
 
     console.log(REDIS_URL);
@@ -31,6 +31,6 @@ export default async function (req: Request) {
     } catch (error) {
         console.error(error);
     } finally {
-        waitUntil(telemetry(req));
+        // waitUntil(telemetry(req));
     }
 }
