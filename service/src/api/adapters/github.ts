@@ -23,7 +23,7 @@ export default createAdapter((defaultApi) => {
 
             const _repos: Array<MappedRepo> = [];
             for (const repo of repos) {
-                if (repo.name === _user.login) continue;
+                if (repo.name === _user.login || repo.name === `${_user.login}.github.io`) continue;
                 const { data: releases } = await client.request('GET /repos/{owner}/{repo}/releases', {
                     owner: _user.login,
                     repo: repo.name,
