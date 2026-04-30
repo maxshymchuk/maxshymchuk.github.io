@@ -170,7 +170,7 @@ function createVercelOutput(ctx: Context) {
             }
         },
         () => 'Done',
-        (err) => `Ended with error ${err}`,
+        (err) => `Ended with error ${String(err)}`,
     );
 }
 

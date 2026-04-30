@@ -4,8 +4,11 @@
     "type": "module",
     "devDependencies": {
         "@eslint/js": "^10.0.1",
+        "@types/node": "^25.6.0",
         "eslint": "^10.2.0",
         "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-prettier": "^5.5.5",
+        "eta": "^4.6.0",
         "globals": "^17.4.0",
         "husky": "^9.1.7",
         "jiti": "^2.6.1",
@@ -14,8 +17,20 @@
         "typescript": "^6.0.2",
         "typescript-eslint": "^8.58.1"
     },
+    "workspaces": [
+        "client",
+        "service"
+    ],
     "scripts": {
-        "lint": "eslint",
+        "start:client": "npm run start -w client",
+        "start:service": "npm run start -w service",
+        "start": "",
+        "lint": "eslint .",
+        "type-check": "tsc -b --noEmit",
         "prepare": "husky"
+    },
+    "lint-staged": {
+        "*.{ts,tsx}": "eslint --fix --max-warnings 0",
+        "*.{json,css,scss,html}": "prettier --write"
     }
 }

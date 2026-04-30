@@ -6,7 +6,7 @@ import renderExperiences from './renderers/experiences';
 import renderProjects from './renderers/projects';
 import { DOMS } from './doms';
 import { API_URL } from './constants';
-import userData from '../../data/userData';
+import userData from '../../data/user-data.json';
 import cache from './utils/cache';
 import fetcher from './utils/fetcher';
 

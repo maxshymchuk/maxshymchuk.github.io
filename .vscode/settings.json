@@ -1,0 +1,15 @@
+{
+    "[typescript][typescriptreact]": {
+        "editor.formatOnSave": false,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "always"
+        }
+    },
+    "[json][css][scss][html]": {
+        "editor.formatOnSave": false,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.prettier": "always"
+        }
+    },
+    "js/ts.preferences.importModuleSpecifier": "shortest"
+}
