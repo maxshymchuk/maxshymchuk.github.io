@@ -24,7 +24,6 @@
     "scripts": {
         "start:client": "npm run start -w client",
         "start:service": "npm run start -w service",
-        "start": "",
         "lint": "eslint .",
         "type-check": "tsc -b --noEmit",
         "prepare": "husky"
