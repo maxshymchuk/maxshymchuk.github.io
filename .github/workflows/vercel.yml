@@ -27,11 +27,9 @@ jobs:
           cache: 'npm'
           cache-dependency-path: './package-lock.json'
       - name: Install dependencies
-        working-directory: ./service
         run: npm ci
       - name: Build
-        working-directory: ./service
-        run: npm run build
+        run: npm run build -w service
       - name: Saving build
         uses: actions/upload-artifact@v7
         with:
