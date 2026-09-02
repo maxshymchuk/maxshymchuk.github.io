@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'mixins';
 
 aside {
     display: flex;
@@ -17,6 +18,10 @@ aside {
         bottom: $spacing-unit-default;
 
         button {
+            svg {
+                @include mixins.icon-svg;
+            }
+
             width: 30px;
             height: 30px;
 

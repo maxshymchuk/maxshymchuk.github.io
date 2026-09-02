@@ -37,13 +37,24 @@ type Experience = {
     techstack: Array<string>;
 };
 
-type UserData = {
+type StaticData = {
     user: MappedUser;
-    repositories: Array<MappedRepo>;
+    projects: Array<MappedRepo>;
     about: Array<string>;
     contacts: Array<Contact>;
     skills: Array<SkillsGroup>;
     experiences: Array<Experience>;
+};
+
+type DynamicData = {
+    user: MappedUser;
+    projects: Array<MappedRepo>;
+};
+
+type CacheData = {
+    version: string;
+    ttl: number;
+    data: DynamicData;
 };
 
 type Telemetry = {

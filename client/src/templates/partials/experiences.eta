@@ -1,0 +1,33 @@
+<section class="print-avoid-break-inside print-page-break">
+    <h3>experience</h3>
+    <article class="experiences">
+        <% it.data.forEach((experience) => { %>
+            <div class="experience print-avoid-break-inside">
+                <h4 class="experience company">
+                    <%= experience.company.toLowerCase() %>
+                </h4>
+                <div class="experience date">
+                    <%= experience.interval %>
+                </div>
+                <ul class="experience achievements">
+                    <% experience.achievements.forEach((achievement) => { %>
+                        <li>
+                            <p>
+                                <%~ achievement %>
+                            </p>
+                        </li>
+                    <% }) %>
+                </ul>
+                <footer>
+                    <ul class="experience techstack">
+                        <% experience.techstack.forEach((tech) => { %>
+                            <li>
+                                <%= tech %>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </footer>
+            </div>
+        <% }) %>
+    </article>
+</section>

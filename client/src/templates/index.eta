@@ -1,0 +1,39 @@
+<div class="content">
+    <div class="grid">
+        <aside>
+            <div class="actions">
+                <button title="Print" class="icon" onclick="window.print()">
+                    <svg viewBox="0 0 16 16">
+                        <path
+                            d="M5 1c-1.105 0-2 .895-2 2v2H2C.895 5 0 5.895 0 7v3c0 1.105.895 2 2 2h1v1c0 1.105.895 2 2 2h6c1.105 0 2-.895 2-2v-1h1c1.105 0 2-.895 2-2V7c0-1.105-.895-2-2-2h-1V3c0-1.105-.895-2-2-2H5ZM4 3c0-.552.448-1 1-1h6c.552 0 1 .448 1 1v2H4V3Zm1 5c-1.105 0-2 .895-2 2v1H2c-.552 0-1-.448-1-1V7c0-.552.448-1 1-1h12c.552 0 1 .448 1 1v3c0 .552-.448 1-1 1h-1v-1c0-1.105-.895-2-2-2H5Z"
+                        />
+                    </svg>
+                </button>
+            </div>
+        </aside>
+
+        <%~ include("./partials/header.eta", it.data) %>
+
+        <main>
+            <% if (it.about && it.about.length > 0) { %>
+                <%~ include("./partials/about.eta", { data: it.data.about }) %> 
+            <% } %>
+
+            <% if (it.contacts && it.contacts.length > 0) { %>
+                <%~ include("./partials/contacts.eta", { data: it.data.contacts }) %>
+            <% } %>
+
+            <% if (it.skills && it.skills.length > 0) { %>
+                <%~ include("./partials/skills.eta", { data: it.data.skills }) %>
+            <% } %>
+
+            <% if (it.experiences && it.experiences.length > 0) { %>
+                <%~ include("./partials/experiences.eta", { data: it.data.experiences }) %>
+            <% } %>
+
+            <% if (it.data.projects && it.data.projects.length > 0) { %>
+                <%~ include("./partials/projects.eta", { data: it.data.projects }) %>
+            <% } %>
+        </main>
+    </div>
+</div>

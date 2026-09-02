@@ -1,5 +1,5 @@
 type Api = {
-    getData: () => Promise<UserData>;
+    getData: () => Promise<DynamicData>;
 };
 
 type Adapter = (defaultApi: Api) => Api;

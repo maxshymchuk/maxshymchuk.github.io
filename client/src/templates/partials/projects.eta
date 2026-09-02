@@ -1,0 +1,55 @@
+<section id="projects" class="print-avoid-break-inside print-page-break">
+    <h3>projects</h3>
+    <div class="projects">
+        <% it.data.forEach((project) => { %>
+            <article class="project print-avoid-break-inside">
+                <div class="title">
+                    <h3 class="name">
+                        <%= project.name %>
+                    </h3>
+                    <div class="links">
+                        <% 
+                            const links = [
+                                { title: 'repo', url: project.page },
+                                { title: 'site', url: project.site },
+                                { title: 'release', url: project.release },
+                            ].filter(link => link.url);
+                        %>
+                        <% if (links.length > 0) { %>
+                            [&nbsp;
+                            <% links.forEach((link, i) => { %>
+                                <a href="<%= link.url %>" target="_blank">
+                                    <%= link.title %>
+                                </a>
+                                <% if (i < links.length - 1) { %> &nbsp;|&nbsp; <% } %>
+                            <% }) %>
+                            &nbsp;]
+                        <% } %>
+                    </div>
+                    <div class="markers">
+                        <% if (project.archived) { %>
+                            <div class="marker archived">archived</div>
+                        <% } %>
+                    </div>
+                </div>
+                <% if (project.description) { %>
+                    <p class="description">
+                        <%= project.description %>
+                    </p>
+                <% } %>
+            </article>
+        <% }) %>
+        <template id="template-project">
+            <article class="project print-avoid-break-inside">
+                <div class="title">
+                    <h3 class="name"></h3>
+                    <div class="links"></div>
+                    <div class="markers">
+                        <div class="marker archived">archived</div>
+                    </div>
+                </div>
+                <p class="description"></p>
+            </article>
+        </template>
+    </div>
+</section>

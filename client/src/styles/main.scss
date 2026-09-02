@@ -22,7 +22,9 @@ main {
             }
 
             .logo {
-                .icon {
+                svg {
+                    @include mixins.icon-svg;
+
                     width: 30px;
                     height: 30px;
 
@@ -32,7 +34,7 @@ main {
                     }
                 }
 
-                &:has(.icon) {
+                &:has(svg) {
                     font-size: 0;
                 }
             }

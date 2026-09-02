@@ -42,7 +42,7 @@ export default createAdapter((defaultApi) => {
 
             const defData = await defaultApi.getData();
 
-            return { ...defData, user: _user, repositories: _repos };
+            return { ...defData, user: _user, projects: _repos };
         },
     };
 });

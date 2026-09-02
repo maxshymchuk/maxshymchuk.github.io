@@ -3,12 +3,12 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="<%= it.description %>" />
+        <meta name="description" content="<%= it.meta.description %>" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="<%= it.title %>" />
-        <meta property="og:description" content="<%= it.description %>" />
-        <meta property="og:url" content="<%= it.root %>" />
-        <meta property="og:image" content="<%= it.root %>/preview.png" />
+        <meta property="og:title" content="<%= it.meta.title %>" />
+        <meta property="og:description" content="<%= it.meta.description %>" />
+        <meta property="og:url" content="<%= it.meta.root %>" />
+        <meta property="og:image" content="<%= it.meta.root %>/preview.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/png" />
@@ -29,16 +29,8 @@
         />
         <link href="src/styles/index.scss" rel="stylesheet" />
         <script type="module" defer src="src/index.ts"></script>
-        <title><%= it.title %></title>
+        <title><%= it.meta.title %></title>
         <style>
-            @keyframes fade-in {
-                from {
-                    opacity: 0;
-                }
-                to {
-                    opacity: 1;
-                }
-            }
             :root {
                 color-scheme: light dark;
 
@@ -61,36 +53,7 @@
                 font-family: 'Montserrat', sans-serif;
                 margin: 0;
                 font-size: 1rem;
-            }
-            .invisible {
-                display: none !important;
-            }
-            .blocker {
-                background-color: var(--default-background-color);
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-                padding: 20px;
-                gap: 20px;
-                user-select: none;
-                position: fixed;
-                left: 0;
-                right: 0;
-                top: 0;
-                bottom: 0;
-            }
-            .loader {
-                color: var(--default-color);
-                font-size: min(10vw, 10vh);
-                font-weight: bold;
-                opacity: 0;
-                animation: 0.1s linear 0.5s 1 forwards fade-in;
-            }
-            .loader-image {
-                fill: var(--default-color);
-                height: min(10vw, 10vh);
+                transition: background-color 0.5s;
             }
             @media (prefers-color-scheme: dark) {
                 html,
@@ -98,121 +61,10 @@
                     background-color: var(--default-background-color-dark);
                     color: var(--default-color-dark);
                 }
-                .blocker {
-                    background-color: var(--default-background-color-dark);
-                }
-                .loader {
-                    color: var(--default-color-dark);
-                }
-                .loader-image {
-                    fill: var(--default-color-dark);
-                }
             }
         </style>
     </head>
     <body>
-        <div id="loader" class="loader blocker">
-            <svg class="loader-image" viewBox="0 0 50 10">
-                <path
-                    d="M.04.89h1.62v5.68h3.51v1.32H.04v-7zM5.53 5.2c0-1.62 1.25-2.77 2.96-2.77s2.95 1.15 2.95 2.77-1.24 2.76-2.95 2.76S5.53 6.82 5.53 5.2zm4.33 0c0-.93-.59-1.49-1.37-1.49-.78 0-1.38.56-1.38 1.49 0 .93.6 1.49 1.38 1.49.78 0 1.37-.56 1.37-1.49zm7.29-.38v3.07h-1.46v-.67c-.29.49-.85.75-1.64.75-1.26 0-2.01-.7-2.01-1.63 0-.95.67-1.61 2.31-1.61h1.24c0-.67-.4-1.06-1.24-1.06-.57 0-1.16.19-1.55.5l-.56-1.09a4.14 4.14 0 0 1 2.32-.65c1.64 0 2.59.76 2.59 2.39zm-1.56 1.37v-.55h-1.07c-.73 0-.96.27-.96.63 0 .39.33.65.88.65.52 0 .97-.24 1.15-.73zM24.1.47v7.42h-1.49v-.62c-.39.47-.96.7-1.68.7-1.52 0-2.69-1.08-2.69-2.77s1.17-2.77 2.69-2.77c.66 0 1.22.21 1.61.65V.47h1.56zM22.57 5.2c0-.93-.6-1.49-1.37-1.49-.78 0-1.38.56-1.38 1.49 0 .93.6 1.49 1.38 1.49.77 0 1.37-.56 1.37-1.49zM25.35.89c0-.49.39-.87.97-.87s.97.36.97.84c0 .52-.39.9-.97.9s-.97-.38-.97-.87zm.19 1.62h1.56v5.38h-1.56V2.51zm8.51 2.3v3.08h-1.56V5.05c0-.87-.4-1.27-1.09-1.27-.75 0-1.29.46-1.29 1.45v2.66h-1.56V2.51h1.49v.63a2.36 2.36 0 0 1 1.78-.71c1.27 0 2.23.74 2.23 2.38zm7.01-2.3v4.48c0 2-1.08 2.92-3.02 2.92a4.43 4.43 0 0 1-2.64-.74l.62-1.12c.46.37 1.21.61 1.9.61 1.1 0 1.58-.5 1.58-1.47v-.23c-.41.45-1 .67-1.7.67-1.49 0-2.69-1.03-2.69-2.6s1.2-2.6 2.69-2.6c.75 0 1.37.25 1.78.77v-.69h1.48zm-1.53 2.52c0-.79-.59-1.32-1.41-1.32s-1.42.53-1.42 1.32.6 1.32 1.42 1.32 1.41-.53 1.41-1.32zm2.61 1.96c0-.58.43-.96.97-.96s.97.38.97.96c0 .57-.43.98-.97.98a.96.96 0 0 1-.97-.98zm2.62 0c0-.58.43-.96.97-.96s.97.38.97.96c0 .57-.43.98-.97.98a.96.96 0 0 1-.97-.98zm2.62 0c0-.58.43-.96.97-.96s.97.38.97.96c0 .57-.43.98-.97.98a.96.96 0 0 1-.97-.98z"
-                />
-            </svg>
-        </div>
-        <noscript>
-            <div class="blocker">
-                Scripts are disabled in your browser
-                <a href="https://github.com/maxshymchuk">Visit my GitHub then</a>
-            </div>
-        </noscript>
-        <div id="content" class="content invisible">
-            <div class="grid">
-                <aside>
-                    <div class="actions">
-                        <button title="Print" class="icon" onclick="window.print()">
-                            <svg viewBox="0 0 16 16">
-                                <path
-                                    d="M5 1c-1.105 0-2 .895-2 2v2H2C.895 5 0 5.895 0 7v3c0 1.105.895 2 2 2h1v1c0 1.105.895 2 2 2h6c1.105 0 2-.895 2-2v-1h1c1.105 0 2-.895 2-2V7c0-1.105-.895-2-2-2h-1V3c0-1.105-.895-2-2-2H5ZM4 3c0-.552.448-1 1-1h6c.552 0 1 .448 1 1v2H4V3Zm1 5c-1.105 0-2 .895-2 2v1H2c-.552 0-1-.448-1-1V7c0-.552.448-1 1-1h12c.552 0 1 .448 1 1v3c0 .552-.448 1-1 1h-1v-1c0-1.105-.895-2-2-2H5Z"
-                                />
-                            </svg>
-                        </button>
-                    </div>
-                </aside>
-
-                <header id="header">
-                    <template id="template-header">
-                        <div>
-                            <h1 class="name"></h1>
-                            <h3 class="bio"></h3>
-                        </div>
-                        <div class="links"></div>
-                    </template>
-                </header>
-
-                <main>
-                    <section id="about" class="print-avoid-break-inside">
-                        <h3>about me</h3>
-                        <article class="about"></article>
-                    </section>
-
-                    <section id="contacts" class="print-avoid-break-inside print-only">
-                        <h3>contacts</h3>
-                        <article class="contacts">
-                            <template id="template-contact">
-                                <div class="contact">
-                                    <div class="logo"></div>
-                                    <a class="link" target="_blank"></a>
-                                </div>
-                            </template>
-                        </article>
-                    </section>
-
-                    <section id="skills" class="print-avoid-break-inside print-page-break">
-                        <h3>skills</h3>
-                        <article class="skills">
-                            <template id="template-skills-group">
-                                <div class="skills-group print-avoid-break-inside">
-                                    <h4 class="skills-group title"></h4>
-                                    <ul class="skills-group list"></ul>
-                                </div>
-                            </template>
-                        </article>
-                    </section>
-
-                    <section id="experiences" class="print-avoid-break-inside print-page-break">
-                        <h3>experience</h3>
-                        <article class="experiences">
-                            <template id="template-experience">
-                                <div class="experience print-avoid-break-inside">
-                                    <h4 class="experience company"></h4>
-                                    <div class="experience date"></div>
-                                    <ul class="experience achievements"></ul>
-                                    <footer>
-                                        <ul class="experience techstack"></ul>
-                                    </footer>
-                                </div>
-                            </template>
-                        </article>
-                    </section>
-
-                    <section id="projects" class="print-avoid-break-inside print-page-break">
-                        <h3>projects</h3>
-                        <div class="projects">
-                            <template id="template-project">
-                                <article class="project print-avoid-break-inside">
-                                    <div class="title">
-                                        <h3 class="name"></h3>
-                                        <div class="links"></div>
-                                        <div class="markers">
-                                            <div class="marker archived">archived</div>
-                                        </div>
-                                    </div>
-                                    <p class="description"></p>
-                                </article>
-                            </template>
-                        </div>
-                    </section>
-                </main>
-            </div>
-        </div>
+        <%~ include("./src/templates/index.eta", it.data) %>
     </body>
 </html>

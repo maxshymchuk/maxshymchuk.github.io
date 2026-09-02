@@ -1,0 +1,17 @@
+<section class="print-avoid-break-inside print-page-break">
+    <h3>skills</h3>
+    <article class="skills">
+        <% it.data.forEach((group) => { %>
+            <div class="skills-group print-avoid-break-inside">
+                <h4 class="skills-group title">
+                    <%= group.title %>
+                </h4>
+                <ul class="skills-group list">
+                    <% group.list.forEach((skill) => { %>
+                        <li><%= skill %>
+                    <% }) %>
+                </ul>
+            </div>
+        <% }) %>
+    </article>
+</section>

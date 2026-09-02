@@ -1,0 +1,10 @@
+<section class="print-avoid-break-inside">
+    <h3>about me</h3>
+    <article class="about">
+        <% it.data.forEach((line) => { %>
+            <p>
+                <%~ line %>
+            </p>
+        <% }) %>
+    </article>
+</section>

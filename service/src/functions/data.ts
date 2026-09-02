@@ -10,7 +10,7 @@ export default {
         const client = api(github);
 
         try {
-            const cache = await database.read<UserData>(database.keys.data);
+            const cache = await database.read<DynamicData>(database.keys.data);
 
             if (cache) return Response.json(cache);
 
@@ -18,7 +18,7 @@ export default {
 
             if (!data) return new Response(null, { status: 404 });
 
-            await database.write<UserData>(database.keys.data, data, {
+            await database.write<DynamicData>(database.keys.data, data, {
                 expiration: { type: 'PX', value: INVALIDATE_AFTER_MS },
             });
 

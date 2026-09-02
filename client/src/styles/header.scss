@@ -41,7 +41,9 @@ header {
         }
 
         a {
-            .icon {
+            svg {
+                @include mixins.icon-svg;
+
                 width: 30px;
                 height: 30px;
 
@@ -51,7 +53,7 @@ header {
                 }
             }
 
-            &:has(.icon) {
+            &:has(svg) {
                 font-size: 0;
             }
 

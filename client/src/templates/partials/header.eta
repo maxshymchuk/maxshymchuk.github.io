@@ -1,0 +1,21 @@
+<header>
+    <div>
+        <h1 class="name">
+            <%= it.user.name || it.user.login %>
+        </h1>
+        <% if (it.user.bio) { %>
+            <h3 class="bio">
+                <%= it.user.bio %>
+            </h3>
+        <% } %>
+    </div>
+    <% if (it.contacts && it.contacts.length > 0) { %>
+        <div class="links">
+            <% it.contacts.forEach((contact) => { %>
+                <a href="<%= contact.url %>" title="<%= contact.title %>" target="_blank">
+                    <%~ contact.logo || contact.title %>
+                </a>
+            <% }) %>
+        </div>
+    <% } %>
+</header>

@@ -1,0 +1,19 @@
+<section class="print-avoid-break-inside print-only">
+    <h3>contacts</h3>
+    <article class="contacts">
+    <% it.data.forEach(function(contact){ %>
+        <div class="contact">
+            <div class="logo">
+            <% if (contact?.logo) { %>
+                <%~ contact.logo %>
+            <% } else { %>
+                <%= contact.title %>
+            <% } %>
+            </div>
+            <a class="link" href="<%= contact.url %>" target="_blank">
+                <%= contact.prettyUrl ?? contact.url %>
+            </a>
+        </div>
+    <% }) %>
+    </article>
+</section>
