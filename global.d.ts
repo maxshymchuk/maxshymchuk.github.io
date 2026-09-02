@@ -10,6 +10,7 @@ type MappedRepo = {
     release: Nullable<string>;
     page: string;
     archived: boolean;
+    forked: boolean;
 };
 
 type MappedUser = {

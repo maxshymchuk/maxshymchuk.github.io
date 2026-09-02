@@ -37,6 +37,7 @@ export default createAdapter((defaultApi) => {
                     release: latestRelease?.html_url || null,
                     page: repo.html_url,
                     archived: repo.archived,
+                    forked: repo.fork,
                 });
             }
 
